@@ -7,7 +7,8 @@ export function Header() {
   const Modal = useToggle();
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-yellow-500 backdrop-blur-md shadow-md border-b border-yellow-700">
+ 
+    <header className="fixed top-0 w-full z-50 bg-gradient-to-r from-amber-400 via-amber-500 to-gold backdrop-blur-md shadow-lg border-b border-goldDark">
       <div className="container mx-auto flex justify-between items-center h-20 md:h-24 px-4">
         <Logo />
 

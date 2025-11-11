@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   body {
     background-color: #0B0B0B; /* quase preto */
@@ -38,3 +39,32 @@
     100% { transform: translate(0,0); }
   }
 }
+@layer base {
+  /* Headings */
+  h1 {
+    @apply text-5xl md:text-6xl font-bold text-gold mb-6 leading-tight;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl font-semibold text-goldDark mb-5 leading-snug;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h3 {
+    @apply text-3xl md:text-4xl font-semibold text-amber mb-4 leading-snug;
+    font-family: 'PT Sans Caption', sans-serif;
+  }
+
+  h4 {
+    @apply text-2xl md:text-3xl font-medium text-textPrimary mb-3 leading-snug;
+    font-family: 'PT Sans Caption', sans-serif;
+  }
+
+  /* Parágrafos */
+  p {
+    @apply text-base md:text-lg text-textPrimary mb-4 leading-relaxed;
+    font-family: 'PT Sans Caption', sans-serif;
+  }
+
+  }
