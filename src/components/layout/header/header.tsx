@@ -1,7 +1,7 @@
 import { Logo } from "../../logo/logo";
 import { NavHeader } from "./nav/navheader";
 import { MenuHeader } from "./menu/menu";
-import { useToggle } from "@/components/hooks/usettogle";
+import { useToggle } from "@/hooks/usettogle";
 
 export function Header() {
   const Modal = useToggle();

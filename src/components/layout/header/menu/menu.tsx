@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Menu } from "lucide-react";
+import { BiMenu } from "react-icons/bi";
 
 type Props={
     open:boolean,
@@ -22,7 +22,7 @@ export function MenuHeader({open, openchange}:Props) {
     <Sheet open={open} onOpenChange={openchange}>
      
       <SheetTrigger asChild>
-        <Button> <Menu/> </Button>
+        <Button> <BiMenu /> </Button>
       </SheetTrigger>
 
       {/* Conteúdo do menu lateral */}
