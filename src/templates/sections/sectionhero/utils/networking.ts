@@ -1,25 +1,24 @@
-import { Instagram, Linkedin, Github, Mail, Phone } from "lucide-react";
+import { FaInstagram, FaLinkedin, FaGithub, FaEnvelope,  } from "react-icons/fa";
 
 export const networks = [
   {
-    icone: Instagram,
+    icone: FaInstagram,
     name: "Instagram",
     link: "https://www.instagram.com/giulianomaciel/",
   },
   {
-    icone: Linkedin,
+    icone: FaLinkedin,
     name: "LinkedIn",
     link: "https://www.linkedin.com/in/giulianomaciel/",
   },
   {
-    icone: Github,
+    icone: FaGithub,
     name: "GitHub",
     link: "https://github.com/Giuliano-Maciel-Lopes",
   },
   {
-    icone: Mail,
+    icone: FaEnvelope,
     name: "Email",
     link: "mailto:giulianomaciellopes@gmail.com",
-  },
-  
+  }
 ];

@@ -1,19 +1,22 @@
 import { motion } from "framer-motion";
 import { fadeInFromLeft } from "@/styles/animaçoes/animaçoes";
+import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 
 export function TextContentAbout() {
+  const { isAnimationEnabled } = useAnimationEnabled();
+
   return (
     <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false, amount: 0.2 }}
-      variants={fadeInFromLeft}
+      initial={isAnimationEnabled ? "hidden" : undefined}
+      whileInView={isAnimationEnabled ? "visible" : undefined}
+      viewport={isAnimationEnabled ? { once: false, amount: 0.5 } : undefined}
+      variants={isAnimationEnabled ? fadeInFromLeft : undefined}
       className="md:w-1/2 mt-10"
     >
-      <div className="flex gap-4">
-        <h2 className="text-white">olá, sou </h2>
-        <h2>Giuliano</h2>
-      </div>
+     <div className="flex flex-wrap gap-3">
+  <h2 className="text-white">olá, sou</h2>
+  <h2>Giuliano</h2>
+</div>
 
       <p className="text-gray-400">
         Sou conhecido pela minha calma e paciência, que me ajudam a enfrentar

@@ -6,10 +6,10 @@ export function RigthContet() {
   return (
     <motion.div
       className="md:w-1/2 w-full hidden md:flex flex-col justify-between items-center gap-4"
- initial="hidden"
-whileInView="visible"
-viewport={{ once: false, amount: 0.5 }}
-      variants={fadeInFromRight} 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.5 }}
+      variants={fadeInFromRight}
     >
       <div className="flex flex-col gap-4 w-full text-left">
         <h3>Desenvolvedor full stack</h3>
@@ -21,7 +21,7 @@ viewport={{ once: false, amount: 0.5 }}
           equipe quanto para o cliente final."
         </p>
       </div>
-      <div >
+      <div>
         <ArrowButton text="Sobre mim" href="#sobre" />
       </div>
     </motion.div>

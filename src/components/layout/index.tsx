@@ -10,7 +10,7 @@ export function Layout({children}:Props) {
       <Header />
 
       <main className="flex-1 flex flex-col items-center mt-20 md:mt-24">
-       <div className="w-full max-w-7xl ">{children}</div>
+       <div className="w-full  ">{children}</div>
       </main>
 
       

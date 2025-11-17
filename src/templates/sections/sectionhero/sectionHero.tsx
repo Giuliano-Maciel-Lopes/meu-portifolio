@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 export function SectionHero() {
   return (
-    <section className="relative mt-20 text-white overflow-hidden ">
-      {/* Fundo dourado estilo "sol" no canto superior esquerdo */}
+    <section className="relative mt-20 text-white  ">
+    
       <motion.div
         className="absolute top-0 left-0 w-[300px] h-[300px] rounded-full"
         style={{

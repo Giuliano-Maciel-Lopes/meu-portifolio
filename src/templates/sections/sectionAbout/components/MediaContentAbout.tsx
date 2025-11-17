@@ -5,22 +5,24 @@ import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 
 export function MediaContentAbout() {
   const { isAnimationEnabled } = useAnimationEnabled();
+
   return (
     <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false, amount: 0.2 }}
-      variants={fadeInFromRight}
+      initial={isAnimationEnabled ? "hidden" : false}
+      whileInView={isAnimationEnabled ? "visible" : undefined}
+      viewport={isAnimationEnabled ? { once: false, amount: 0.5 } : undefined}
+      variants={isAnimationEnabled ? fadeInFromRight : undefined}
       className="
         md:w-1/2 
-        flex 
+        md:flex 
         justify-center 
         items-center 
         p-4 
+        hidden
       "
     >
       <motion.div
-        whileHover={{ scale: 1.04 }}
+        whileHover={isAnimationEnabled ? { scale: 1.04 } : undefined}
         transition={{ type: "spring", stiffness: 200, damping: 15 }}
         className="
           rounded-full 

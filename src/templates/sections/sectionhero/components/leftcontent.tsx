@@ -2,15 +2,17 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { networks } from "../utils/networking";
 import { fadeInFromLeft } from "@/styles/animaçoes/animaçoes";
+import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 
 export function LeftContent() {
+  const {isAnimationEnabled} = useAnimationEnabled()
   return (
     <motion.div
       className="md:w-1/2 w-full flex flex-col items-start"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: false, amount: 0.5 }}
-      variants={fadeInFromLeft}
+      initial={ isAnimationEnabled ?"hidden":undefined}
+      whileInView={isAnimationEnabled ?"visible": undefined}
+      viewport={isAnimationEnabled? { once: false, amount: 0.5 }: undefined}
+      variants={isAnimationEnabled ? fadeInFromLeft : undefined}
     >
       <h1 className="text-6xl">Giuliano</h1>
       <h1 className="text-6xl">Maciel</h1>

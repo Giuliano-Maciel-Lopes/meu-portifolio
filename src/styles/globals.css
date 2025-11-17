@@ -3,14 +3,8 @@
 @tailwind utilities;
 
 
-@layer base {
- 
-
-  @keyframes shimmer {
-    0% { transform: translate(0, 0); }
-    50% { transform: translate(-50px, 50px); }
-    100% { transform: translate(0, 0); }
-  }
+html, body {
+  overflow-x: hidden;
 }
 
 @layer base {
@@ -46,5 +40,8 @@
   @layer base {
   html, body {
     @apply bg-black text-white;
+    
+    
+
   }
 }
