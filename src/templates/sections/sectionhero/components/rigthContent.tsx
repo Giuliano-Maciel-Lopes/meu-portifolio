@@ -1,11 +1,12 @@
 import { ArrowButton } from "@/components/arrow/arrow";
 import { motion } from "framer-motion";
 import { fadeInFromRight } from "@/styles/animaçoes/animaçoes";
+import { Button } from "@/components/ui/button";
 
 export function RigthContet() {
   return (
     <motion.div
-      className="md:w-1/2 w-full hidden md:flex flex-col justify-between items-center gap-4"
+      className="md:w-1/2 w-full hidden md:flex flex-col justify-between  gap-4"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: false, amount: 0.5 }}
@@ -21,9 +22,19 @@ export function RigthContet() {
           equipe quanto para o cliente final."
         </p>
       </div>
-      <div>
-        <ArrowButton text="Sobre mim" href="#sobre" />
+
+      <div className=" flex gap-4 ">
+          <Button variant="fancy" className="text-lg">
+        Entre em Contato
+      </Button>
+        <Button variant="fancy" className="text-lg">
+       Baixar cv
+      </Button>
       </div>
+   
+    <div className="w-full flex justify-center">
+  <ArrowButton text="Sobre mim" href="#sobre" />
+</div>
     </motion.div>
   );
 }

@@ -23,7 +23,7 @@ export function SectionSkills() {
   }));
 
   return (
-    <section className="flex bg-background py-20">
+    <section id="skills" className="flex bg-background py-20 scroll-mt-24">
       <motion.div
         className="container flex flex-col items-center"
         initial={isAnimationEnabled ? "hidden" : undefined}

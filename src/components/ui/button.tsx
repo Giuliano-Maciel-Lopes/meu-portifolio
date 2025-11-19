@@ -16,19 +16,21 @@ const buttonVariants = cva(
         ghost: "hover:bg-white/10 hover:text-amber",
         link: "text-amber underline-offset-4 hover:underline",
         icon: "text-amber text-white shadow hover:bg-gold",
-   goldSpecial: `
-  text-white
-  font-semibold
-  text-lg
-  px-10 py-6
-  rounded-3xl
-  bg-gradient-to-br from-[#D4A373] to-[#A67C52]
-  border border-border/40
-  hover:brightness-110
-  hover:-translate-y-1
-  
-  transition-all
+        fancy: `
+  relative overflow-hidden 
+  text-[14px] font-semibold
+  text-[#FFCCA4]
+  px-4 py-2 h-[40px]
+  rounded-[10px]
+  flex items-center justify-center
+  transition-all duration-300
+  shadow-[0_2px_6px_rgba(0,0,0,0.25),_0_1px_1px_rgba(255,255,255,0.15)_inset]
+  bg-[linear-gradient(135deg,#4E2F22,#6F4E37,#926F4B,#E7A97A,#E7A97A)]
+  bg-[length:250%_250%]
+  hover:bg-[position:100%_0]
+  backdrop-blur-[7px]
 `,
+
       },
       size: {
         default: "h-9 px-4 py-2 rounded-2xl",

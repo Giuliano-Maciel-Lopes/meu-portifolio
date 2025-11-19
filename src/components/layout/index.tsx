@@ -9,7 +9,7 @@ export function Layout({children}:Props) {
    <div className="min-h-screen  flex flex-col  text-white  bg-black ">
       <Header />
 
-      <main className="flex-1 flex flex-col items-center mt-20 md:mt-24">
+      <main className="flex-1 flex flex-col items-center pt-20 md:pt-24">
        <div className="w-full  ">{children}</div>
       </main>
 

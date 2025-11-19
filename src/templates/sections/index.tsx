@@ -1,6 +1,8 @@
 import { SectionAbout } from "./sectionAbout/sectionAbout";
 import { SectionHero } from "./sectionhero/sectionHero";
 import { SectionSkills } from "./sectionSkills/SectionSkills";
+import { SectionProjects } from "./sectionProjects/sectionProjects";
+import { SectionContact } from "./sectionContact/sectionContact";
 
 export function Sections() {
   return (
@@ -8,6 +10,8 @@ export function Sections() {
         <SectionHero/>
         <SectionAbout/>
         <SectionSkills/>
+        <SectionProjects/>
+        <SectionContact/>
       
     </div>
   );

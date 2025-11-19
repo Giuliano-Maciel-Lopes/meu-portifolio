@@ -3,7 +3,7 @@ import { TextContentAbout } from "./components/TextAbout";
 
 export function SectionAbout() {
   return (
-    <section className="">
+    <section id="about" className="scroll-mt-24">
       <div className=" container flex flex-col ">
 
         <h3 className="text-center">About</h3>

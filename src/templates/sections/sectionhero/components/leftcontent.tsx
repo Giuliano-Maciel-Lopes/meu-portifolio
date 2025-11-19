@@ -3,45 +3,54 @@ import { motion } from "framer-motion";
 import { networks } from "../utils/networking";
 import { fadeInFromLeft } from "@/styles/animaçoes/animaçoes";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
+import WorkTogetherCard from "./teste";
 
 export function LeftContent() {
-  const {isAnimationEnabled} = useAnimationEnabled()
+  const { isAnimationEnabled } = useAnimationEnabled();
+
   return (
     <motion.div
-      className="md:w-1/2 w-full flex flex-col items-start"
-      initial={ isAnimationEnabled ?"hidden":undefined}
-      whileInView={isAnimationEnabled ?"visible": undefined}
-      viewport={isAnimationEnabled? { once: false, amount: 0.5 }: undefined}
+      className="md:w-1/2 w-full flex flex-col justify-between items-start h-[400px]"
+      initial={isAnimationEnabled ? "hidden" : undefined}
+      whileInView={isAnimationEnabled ? "visible" : undefined}
+      viewport={isAnimationEnabled ? { once: false, amount: 0.5 } : undefined}
       variants={isAnimationEnabled ? fadeInFromLeft : undefined}
     >
-      <h1 className="text-6xl">Giuliano</h1>
-      <h1 className="text-6xl">Maciel</h1>
+      <div>
+        <h1 className="text-6xl">Giuliano</h1>
+        <h1 className="text-6xl">Maciel</h1>
 
-      <motion.div
-        className="h-[5px] bg-yellow-500 mt-4 rounded-full"
-        initial={{ width: 0 }}
-        animate={{ width: "170px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      />
+        <motion.div
+          className="h-[5px] bg-yellow-500 mt-4 rounded-full"
+          initial={{ width: 0 }}
+          animate={{ width: "170px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        />
+      </div>
 
-      <div className="flex gap-4 mt-48">
-        {networks.map((network) => (
-          <Button
-            key={network.name}
-            variant="icon"
-            className="group border border-white/30 rounded-full p-3 transition-all duration-300 hover:border-amber hover:shadow-[0_0_15px_rgba(255,200,87,0.6)]"
-            asChild
-          >
-            <a
-              href={network.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center"
+      <div className=" flex flex-col gap-4">
+        <Button variant="fancy" className="text-lg md:hidden">
+          Baixar cv
+        </Button>
+        <div className="flex gap-4">
+          {networks.map((network) => (
+            <Button
+              key={network.name}
+              variant="icon"
+              className="group border border-white/30 rounded-full p-3 transition-all duration-300 hover:border-amber hover:shadow-[0_0_15px_rgba(255,200,87,0.6)]"
+              asChild
             >
-              <network.icone className="w-5 h-5 text-white transition-all duration-300 group-hover:text-amber group-hover:scale-110" />
-            </a>
-          </Button>
-        ))}
+              <a
+                href={network.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center"
+              >
+                <network.icone className="w-5 h-5 text-white transition-all duration-300 group-hover:text-amber group-hover:scale-110" />
+              </a>
+            </Button>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
