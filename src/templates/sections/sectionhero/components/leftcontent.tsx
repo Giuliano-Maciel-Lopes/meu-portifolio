@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { networks } from "../utils/networking";
 import { fadeInFromLeft } from "@/styles/animaçoes/animaçoes";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
-import WorkTogetherCard from "./teste";
 
 export function LeftContent() {
   const { isAnimationEnabled } = useAnimationEnabled();
@@ -11,6 +10,7 @@ export function LeftContent() {
   return (
     <motion.div
       className="md:w-1/2 w-full flex flex-col justify-between items-start h-[400px]"
+      key={isAnimationEnabled ? "anim" : "no-anim"}
       initial={isAnimationEnabled ? "hidden" : undefined}
       whileInView={isAnimationEnabled ? "visible" : undefined}
       viewport={isAnimationEnabled ? { once: false, amount: 0.5 } : undefined}

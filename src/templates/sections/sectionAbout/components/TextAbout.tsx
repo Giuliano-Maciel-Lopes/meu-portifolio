@@ -7,6 +7,7 @@ export function TextContentAbout() {
 
   return (
     <motion.div
+      key={isAnimationEnabled ? "anim" : "no-anim"}
       initial={isAnimationEnabled ? "hidden" : undefined}
       whileInView={isAnimationEnabled ? "visible" : undefined}
       viewport={isAnimationEnabled ? { once: false, amount: 0.5 } : undefined}

@@ -6,7 +6,7 @@ import { SectionContact } from "./sectionContact/sectionContact";
 
 export function Sections() {
   return (
-    <div className="flex flex-col gap-20 ">
+    <div className="flex flex-col gap-28 ">
         <SectionHero/>
         <SectionAbout/>
         <SectionSkills/>

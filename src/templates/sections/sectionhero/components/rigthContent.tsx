@@ -14,9 +14,9 @@ export function RigthContet() {
     >
       <div className="flex flex-col gap-4 w-full text-left">
         <h3>Desenvolvedor full stack</h3>
-        <span className="text-sm text-gray-700">-Resumo </span>
+        <span className="text-sm text-gray-400">-Resumo </span>
 
-        <p className="text-gray-500">
+        <p className="text-gray-100">
           "Sou Full Stack Developer que vai além do código. Transformo soluções
           técnicas em experiências significativas, entregando valor tanto para a
           equipe quanto para o cliente final."
