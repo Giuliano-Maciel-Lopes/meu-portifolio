@@ -3,6 +3,7 @@ import { SectionHero } from "./sectionhero/sectionHero";
 import { SectionSkills } from "./sectionSkills/SectionSkills";
 import { SectionProjects } from "./sectionProjects/sectionProjects";
 import { SectionContact } from "./sectionContact/sectionContact";
+import { SectionExperience } from "./sectionExperience/sectionExprerience";
 
 export function Sections() {
   return (
@@ -11,8 +12,9 @@ export function Sections() {
         <SectionAbout/>
         <SectionSkills/>
         <SectionProjects/>
+         <SectionExperience/>
         <SectionContact/>
-      
+       
     </div>
   );
 }

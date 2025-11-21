@@ -1,11 +1,11 @@
-import React from "react";
+import React, { SVGProps } from "react";
 import { motion, Variants } from "framer-motion";
-
+import { itemVariants , containerVariants } from "@/styles/animaçoes/animaçoes";
 
 
 type SkillItem = {
   name: string;
-  Icon: React.ElementType;
+ Icon: React.ComponentType<SVGProps<SVGSVGElement>>
   description?: string;
   color: string;
 };
@@ -16,23 +16,10 @@ type BoxProps = {
   category: string | null;
 };
 
-
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.15 }, // intervalo de 15 em 15 
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
 export function BoxSkills({ items, category }: BoxProps) {
   return (
     <motion.div
-      key={category || "all"} // força recriação quando mudar categoria
+      key={category || "all"} 
       className="grid grid-cols-2 md:grid-cols-4 gap-6"
       variants={containerVariants}
       initial="hidden"
