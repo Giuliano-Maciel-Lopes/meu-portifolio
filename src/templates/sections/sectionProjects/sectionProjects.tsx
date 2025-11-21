@@ -5,7 +5,7 @@ import { once } from "events";
 
 export function SectionProjects() {
   return (
-    <section id="projects scroll-mt-24">
+    <section id="projects" className="scroll-mt-24">
       <div className="container">
         <h3 className="text-center mb-20"> Projetos Pessoais </h3>
         <div className="grid md:grid-cols-2">

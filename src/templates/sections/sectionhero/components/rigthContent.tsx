@@ -2,8 +2,10 @@ import { ArrowButton } from "@/components/arrow/arrow";
 import { motion } from "framer-motion";
 import { fadeInFromRight } from "@/styles/animaçoes/animaçoes";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/router";
 
 export function RigthContet() {
+  const router = useRouter()
   return (
     <motion.div
       className="md:w-1/2 w-full hidden md:flex flex-col justify-between  gap-4"
@@ -23,17 +25,28 @@ export function RigthContet() {
         </p>
       </div>
 
-      <div className=" flex gap-4 ">
-          <Button variant="fancy" className="text-lg">
-        Entre em Contato
-      </Button>
-        <Button variant="fancy" className="text-lg">
-       Baixar cv
-      </Button>
-      </div>
-   
+    <div className="flex gap-4">
+
+  <Button
+    onClick={() => {
+      const el = document.querySelector("#contact");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }}
+    variant="fancy"
+    className="text-lg"
+  >
+    Entre em Contato
+  </Button>
+
+ 
+  <a href="/giuliano.pdf" download>
+    <Button variant="fancy" className="text-lg">
+      Baixar CV
+    </Button>
+  </a>
+</div>
     <div className="w-full flex justify-center">
-  <ArrowButton text="Sobre mim" href="#sobre" />
+  <ArrowButton text="Sobre mim" href="#about" />
 </div>
     </motion.div>
   );

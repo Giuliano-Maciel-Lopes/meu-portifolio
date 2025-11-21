@@ -17,7 +17,7 @@ export function BoxExp({ experience }: Props) {
   return (
     <div
       
-      className=" min-h-[250px] rounded-lg p-4 max-w-md mx-auto 
+      className=" min-h-[270px] rounded-lg p-4 max-w-md mx-auto 
                 shadow-md hover:shadow-lg bg-card transition-shadow duration-300 border border-gold"
     >
       <div className="flex items-center gap-4 mb-3 pb-2 border-b border-gold">

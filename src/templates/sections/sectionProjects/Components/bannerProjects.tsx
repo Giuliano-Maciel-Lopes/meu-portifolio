@@ -28,6 +28,7 @@ export function BannerProjects({ project }: ProjectProps) {
   onClick={handleClick}
   className="
     w-full
+    md:min-h-[700px]
     md:max-w-[420px]
     lg:max-w-[500px]
     xl:max-w-[550px]

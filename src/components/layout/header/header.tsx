@@ -13,14 +13,15 @@ export function Header() {
         <Logo />
 
         {/* Menu desktop */}
-        <div className="hidden md:flex">
-          <NavHeader />
+        <div className="hidden md:flex gap-20">
+          <NavHeader className="flex gap-4" />
         </div>
 
         {/* Menu mobile */}
         <div className="flex md:hidden">
           <MenuHeader open={Modal.isOpen} openchange={Modal.toggle} />
         </div>
+        
       </div>
     </header>
   );

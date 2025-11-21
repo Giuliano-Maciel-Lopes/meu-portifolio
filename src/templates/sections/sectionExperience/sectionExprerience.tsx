@@ -21,7 +21,7 @@ export function SectionExperience() {
   ];
 
   return (
-    <section className="flex flex-col">
+    <section id="experienci" className="flex flex-col">
       <div className="container flex flex-col gap-10">
         <h3 className="text-center text-2xl font-bold mb-8">Experiências</h3>
 

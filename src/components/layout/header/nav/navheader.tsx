@@ -1,24 +1,38 @@
-import { nav } from "framer-motion/client";
+import { div, nav } from "framer-motion/client";
 import { Activelink } from "@/components/ActiveLink";
 
-export function NavHeader() {
+type Props = {
+  className?: string;
+};
+
+export function NavHeader({className}:Props) {
   const navItems = [
-    { name: "Início", href: "#inicio" },
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
-    { name: "Projetos", href: "#projects" },
     { name: "Skills", href: "#skills" },
+    { name: "Projetos", href: "#projects" },
+    { name: "Experiências", href: "#experienci" },
   ];
 
   return (
-    <nav className="">
-      <div className="flex gap-4">
-        {navItems.map((item) => (
-          <Activelink.content key={item.name} href={item.href}>
-            {item.name}
-          </Activelink.content>
-        ))}
-      </div>
+    <nav className={className}>
+
+      {navItems.map((item) => (
+        <div key={item.name} >
+          <Activelink.conatiner key={item.name} className="md:hidden">
+            <Activelink.content key={item.name} href={item.href}>
+              {item.name}
+            </Activelink.content>
+          </Activelink.conatiner>
+
+          <div className="md:block hidden gap-20">
+            <Activelink.content key={item.name} href={item.href}>
+              {item.name}
+            </Activelink.content>
+          </div>
+
+        </div>
+      ))}
     </nav>
   );
 }
