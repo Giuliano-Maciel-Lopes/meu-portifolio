@@ -1,7 +1,7 @@
 import { projects } from "./utils/projects";
 import { BannerProjects } from "./Components/bannerProjects";
 import { motion } from "framer-motion";
-import { once } from "events";
+
 
 export function SectionProjects() {
   return (

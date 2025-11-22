@@ -1,6 +1,6 @@
 import { useLoader } from "@react-three/fiber";
 import { OBJLoader, MTLLoader } from "three-stdlib";
-import * as THREE from "three";
+
 
 export function Venus3d() {
   const materials = useLoader(MTLLoader, "/models/jupiter.mtl");

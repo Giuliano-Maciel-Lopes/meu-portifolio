@@ -20,7 +20,7 @@ export const projects = [
     ],
     linkdVideo: "https://www.linkedin.com/posts/giulianomaciel_projeto-campeonato-fut7-full-stack-nextjs-activity-7381136866584137728-Eg01",
     linkdGitHub: "https://github.com/Giuliano-Maciel-Lopes/fut7-web",
-    linkSite: null,
+    linkSite: undefined,
   },
   {
     nameProject: "E-commerce de Padaria",
@@ -42,6 +42,6 @@ export const projects = [
     ],
     linkdVideo: "https://www.linkedin.com/posts/giulianomaciel_e-commerce-full-stack-de-padaria-finalizado-activity-7380449976331640832-6nM8",
     linkdGitHub: "https://github.com/Giuliano-Maciel-Lopes/web-padaria",
-    linkSite: null,
+    linkSite: undefined,
   },
 ];

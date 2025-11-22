@@ -1,5 +1,5 @@
 import React, { SVGProps } from "react";
-import { motion, Variants } from "framer-motion";
+import { motion,  } from "framer-motion";
 import { itemVariants , containerVariants } from "@/styles/animaçoes/animaçoes";
 
 

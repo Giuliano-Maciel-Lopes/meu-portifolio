@@ -8,6 +8,7 @@ import { containerVariants } from "@/styles/animaçoes/animaçoes";
 import { experienci, certificates } from "./utils/expert";
 import { BoxExp } from "./components/boxExp";
 import { BoxCertificate } from "./components/boxCerificate";
+import { JSX } from "react";
 
 
 
@@ -15,10 +16,10 @@ import { BoxCertificate } from "./components/boxCerificate";
 export function SectionExperience() {
   const [categorySelected, setCategorySelected] = useState<"certificados" | "experiencias">("certificados");
 
-  const buttonsFilters = [
-    { name: "Certificados", Icon: <FaMedal />, key: "certificados" },
-    { name: "Experiências", Icon: <FaIdCard />, key: "experiencias" },
-  ];
+const buttonsFilters: { name: string; Icon: JSX.Element; key: "certificados" | "experiencias" }[] = [
+  { name: "Certificados", Icon: <FaMedal />, key: "certificados" },
+  { name: "Experiências", Icon: <FaIdCard />, key: "experiencias" },
+];
 
   return (
     <section id="experienci" className="flex flex-col">
@@ -31,7 +32,7 @@ export function SectionExperience() {
             <Button
               key={btn.key}
               variant={categorySelected === btn.key ? "default" : "fancy"}
-              onClick={() => setCategorySelected(btn.key as any)}
+              onClick={() => setCategorySelected(btn.key )}
             >
               {btn.Icon} {btn.name}
             </Button>

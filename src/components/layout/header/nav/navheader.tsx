@@ -1,4 +1,4 @@
-import { div, nav } from "framer-motion/client";
+
 import { Activelink } from "@/components/ActiveLink";
 
 type Props = {

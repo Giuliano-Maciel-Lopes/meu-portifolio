@@ -2,10 +2,10 @@ import { ArrowButton } from "@/components/arrow/arrow";
 import { motion } from "framer-motion";
 import { fadeInFromRight } from "@/styles/animaçoes/animaçoes";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/router";
+
 
 export function RigthContet() {
-  const router = useRouter()
+  
   return (
     <motion.div
       className="md:w-1/2 w-full hidden md:flex flex-col justify-between  gap-4"
@@ -19,9 +19,9 @@ export function RigthContet() {
         <span className="text-sm text-gray-400">-Resumo </span>
 
         <p className="text-gray-100">
-          "Sou Full Stack Developer que vai além do código. Transformo soluções
+          Sou Full Stack Developer que vai além do código. Transformo soluções
           técnicas em experiências significativas, entregando valor tanto para a
-          equipe quanto para o cliente final."
+          equipe quanto para o cliente final.
         </p>
       </div>
 
