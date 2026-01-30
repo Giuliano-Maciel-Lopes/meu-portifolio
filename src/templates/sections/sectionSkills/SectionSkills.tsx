@@ -39,11 +39,7 @@ export function SectionSkills() {
               key={index}
               variant={categorySelected === category ? "default" : "ghost"}
               className="px-5 py-2 text-white border-4 border-gold rounded-full transition-all duration-200"
-              onClick={() =>
-                setCategorySelected(
-                  categorySelected === category ? null : category
-                )
-              }
+              onClick={() => setCategorySelected(category)}
             >
               {category}
             </Button>
