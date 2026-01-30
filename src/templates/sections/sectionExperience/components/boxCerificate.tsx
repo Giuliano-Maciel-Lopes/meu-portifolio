@@ -2,7 +2,7 @@
 interface PropsCertificate {
   name: string;
   institution: string;
-  link: string;
+  link?: string;
   description: string;
   imageUrl?: string;
 }
@@ -12,11 +12,16 @@ type Props = {
 };
 
 export function BoxCertificate({ certificate }: Props) {
+    const handleClick = () => {
+    if (certificate.link) {
+      window.open(certificate.link, "_blank");
+    }
+  };
   return (
     <div
       className=" min-h-[200px] rounded-lg p-4 max-w-md mx-auto 
                      shadow-md hover:shadow-lg bg-card transition-shadow duration-300 border border-gold cursor-pointer"
-      onClick={() => window.open(certificate.link, "_blank")}
+      onClick={handleClick}
     >
       <div className="flex gap-4 items-center mb-3 pb-2 border-b border-gold">
         <div className="flex-shrink-0 w-32 h-20 relative">

@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-
 type experienceProps = {
   name: string;
   tempo: string;
@@ -14,10 +13,13 @@ type Props = {
 };
 
 export function BoxExp({ experience }: Props) {
+  const descriptionPoints = experience.description
+    .split("\n")
+    .filter((line) => line.trim() !== "");
+
   return (
     <div
-      
-      className=" min-h-[270px] rounded-lg p-4 max-w-md mx-auto 
+      className=" min-h-[270px] rounded-lg p-4  
                 shadow-md hover:shadow-lg bg-card transition-shadow duration-300 border border-gold"
     >
       <div className="flex items-center gap-4 mb-3 pb-2 border-b border-gold">
@@ -39,9 +41,11 @@ export function BoxExp({ experience }: Props) {
         </div>
       </div>
 
-      <p className="text-gray-200 text-sm leading-relaxed tracking-wide">
-        {experience.description}
-      </p>
+      <ul className="list-disc list-inside text-gray-200 text-sm leading-relaxed tracking-wide space-y-1">
+        {descriptionPoints.map((point, idx) => (
+          <li key={idx}>{point.replace("-", "").trim()}</li>
+        ))}
+      </ul>
     </div>
   );
 }

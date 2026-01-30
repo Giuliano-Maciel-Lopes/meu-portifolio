@@ -6,9 +6,17 @@ export const experienci = [
     name: "Desenvolvedor Junior Full Stack",
     tempo: "Atuando ainda",
     empresa: "Pratique Fitness",
-    fotoUrl: "/Logo Giuliano.png",
-    description:
-      "Atualmente atuo como desenvolvedor júnior, trabalhando com MySQL, front-end e back-end emuito mais...",
+    fotoUrl: "/pratique.png",
+    description: `
+Atuei como desenvolvedor júnior full stack, realizando atividades de front-end e back-end:
+
+- Construção e manutenção de **projetos full stack** utilizando **Next.js, React, Ant Design, Bootstrap**.
+- Desenvolvimento de APIs em **JavaScript** e **PHP**, integração com bancos de dados **MySQL, SQL e Prisma ORM**.
+- Automação de processos e integração com ferramentas como **n8n** e **Unichat**.
+- Criação de dashboards e relatórios analíticos com dados provenientes do **BigQuery**.
+- Versionamento de código utilizando **Git**, com gerenciamento de branches, merges e workflows colaborativos.
+- Colaboração em equipe multidisciplinar, revisões de código e manutenção de sistemas legados.
+`,
   },
   {
     category: "experienci",
@@ -17,11 +25,18 @@ export const experienci = [
     empresa: "",
     fotoUrl: "/Logo Giuliano.png",
     description:
-      "Na aba 'Projetos' já temos 2 projetos full stack, além de vários outros privados e colaborativos entre outos .",
+      "Na aba 'Projetos' já temos 2 projetos full stack, além de vários outros privados e colaborativos entre muitos outos .",
   },
 ];
 
 export const certificates = [
+   {
+      imageUrl: "/certificado.png",
+    category: "certificate",
+    name: "sistema de informaçao",
+    institution: "Faculdade Unica",
+    description: "Em andamento... 3/8",
+  },
   {
       imageUrl: "/certificado.png",
     category: "certificate",

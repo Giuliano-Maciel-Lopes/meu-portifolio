@@ -1,7 +1,7 @@
 export const projects = [
   {
     nameProject: "Campeonato Fut7",
-    img: "/Logo Giuliano.png",
+    img: "/fut.png",
     description:
       "🏆 O Campeonato Fut7 é a plataforma Full Stack definitiva para gerenciar campeonatos de futebol society. Cada jogador pode ter seu próprio time, organizar grupos, gerenciar capitães, cadastrar fotos, acompanhar gols e resultados. Toda a estrutura de um campeonato profissional é contemplada: criação e gestão de grupos , controle de capitães, fotos de times e jogadores, cadastro e acompanhamento de gols feitos, visualização dinâmica da tabela de classificação, renderização em tempo real de resultados, convites e gerenciamento de participação. Além disso, oferece checkout e inscrições seguras via Stripe, dashboard administrativo completo, controle total do fluxo do campeonato, relatórios detalhados por time, jogador e campeonato, gestão de fotos e conteúdos do campeonato, e API REST para integração externa. É a experiência completa para jogadores, times e administradores, com backend robusto e performance máxima.",
     stack: [

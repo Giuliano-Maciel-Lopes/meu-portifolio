@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { FaGithub, FaPlay } from "react-icons/fa";
+import { useState } from "react";
 
 type Project = {
   nameProject: string;
@@ -17,18 +18,30 @@ type ProjectProps = {
 };
 
 export function BannerProjects({ project }: ProjectProps) {
+  const [isExpanded, setIsExpanded] = useState(false); 
+
   const handleClick = () => {
     if (project.linkSite) {
       window.open(project.linkSite, "_blank");
     }
   };
 
+  const toggleDescription = (e: React.MouseEvent) => {
+    e.stopPropagation(); 
+    setIsExpanded(!isExpanded);
+  };
+
+  const maxLength = 500;
+  const shouldTruncate = project.description.length > maxLength;
+  const displayedDescription = !isExpanded && shouldTruncate
+    ? project.description.slice(0, maxLength) + "..."
+    : project.description;
+
   return (
-   <div
-  onClick={handleClick}
-  className="
+    <div
+      onClick={handleClick}
+        className={`
     w-full
-    md:min-h-[700px]
     md:max-w-[420px]
     lg:max-w-[500px]
     xl:max-w-[550px]
@@ -38,9 +51,9 @@ export function BannerProjects({ project }: ProjectProps) {
     hover:-translate-y-1 
     transition-all cursor-pointer 
     bg-black/30
-  "
->
-
+    ${isExpanded ? "md:min-h-[750px]" : "md:min-h-[700px]"}
+  `}
+    >
       <div className="w-full h-[160px] overflow-hidden rounded-lg">
         <Image
           src={project.img}
@@ -56,7 +69,15 @@ export function BannerProjects({ project }: ProjectProps) {
       </h3>
 
       <p className="text-gray-300 mt-2 text-sm leading-relaxed">
-        {project.description}
+        {displayedDescription}
+        {shouldTruncate && (
+          <button
+            onClick={toggleDescription}
+            className="ml-1 text-yellow-400 underline text-xs"
+          >
+            {isExpanded ? "Ver menos" : "Ver mais"}
+          </button>
+        )}
       </p>
 
       <div className="flex gap-2 mt-4">

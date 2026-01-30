@@ -22,7 +22,9 @@ import {
   SiMysql,
   SiSqlite,
   SiPrisma,
-  SiInsomnia
+  SiInsomnia,
+  SiPhp,
+  SiMongodb
 } from "react-icons/si";
 
 export const categorys = [
@@ -38,9 +40,10 @@ export const skills = [
   { category: "Princípios e Linguagens", name: "JavaScript", img: SiJavascript, color: "#F7DF1E", description: "Linguagem base moderna." },
   { category: "Princípios e Linguagens", name: "TypeScript", img: SiTypescript, color: "#3178C6", description: "Tipagem estática e segurança." },
   { category: "Princípios e Linguagens", name: "SOLID", img: SiJavascript, color: "#F7DF1E", description: "Código modular e sustentável." },
-  { category: "Princípios e Linguagens", name: "TDD", img: SiVitest, color: "#3B82F6", description: "Desenvolvimento guiado por testes." },
+  { category: "Princípios e Linguagens", name: "TDD e DDD", img: SiVitest, color: "#3B82F6", description: "Desenvolvimento guiado por testes." },
   { category: "Princípios e Linguagens", name: "Testes", img: SiTestinglibrary, color: "#E34C26", description: "Testes unitários e E2E." },
   { category: "Princípios e Linguagens", name: "Clean Code", img: SiJavascript, color: "#F7DF1E", description: "Legibilidade, simplicidade e boas práticas." },
+  { category: "Princípios e Linguagens", name: "PHP Básico", img: SiPhp, color: "#8892BE", description: "Introdução a PHP." }, // ADICIONADO
 
   //  FRONT-END
   { category: "Front-end", name: "React", img: SiReact, color: "#61DAFB", description: "Componentização, hooks e SPA." },
@@ -62,13 +65,15 @@ export const skills = [
   { category: "Back-end", name: "SOLID", img: SiJavascript, color: "#F7DF1E", description: "Princípios de código limpo e modular." },
   { category: "Back-end", name: "TDD", img: SiVitest, color: "#3B82F6", description: "Desenvolvimento guiado por testes." },
   { category: "Back-end", name: "Testes", img: SiTestinglibrary, color: "#E34C26", description: "Testes unitários e E2E." },
+  { category: "Back-end", name: "DDD", img: SiNodedotjs, color: "#3C873A", description: "Arquitetura orientada a domínios." }, // ADICIONADO
 
   //  BANCO DE DADOS
   { category: "Bancos de Dados", name: "PostgreSQL", img: SiPostgresql, color: "#336791", description: "Banco relacional poderoso e performático." },
   { category: "Bancos de Dados", name: "MySQL", img: SiMysql, color: "#4479A1", description: "Banco relacional amplamente utilizado." },
   { category: "Bancos de Dados", name: "SQLite", img: SiSqlite, color: "#003B57", description: "Banco leve para pequenos projetos." },
   { category: "Bancos de Dados", name: "Prisma", img: SiPrisma, color: "#0C344B", description: "ORM moderno com migrações e tipagem forte." },
-
+  { category: "Bancos de Dados", name: "BigQuery", img: SiPostgresql, color: "#4285F4", description: "Banco de dados analítico cloud." }, // ADICIONADO
+ { category: "Bancos de Dados", name: "NoSQL", img:SiMongodb, color: "#47A248", description: "Banco não-relacional para dados semiestruturados." }, // ADICIONADO
   //  DEVOPS
   { category: "DevOps", name: "Git", img: SiGit, color: "#F05032", description: "Controle de versão." },
   { category: "DevOps", name: "GitHub", img: SiGithub, color: "#181717", description: "Hospedagem e colaboração de código." },
