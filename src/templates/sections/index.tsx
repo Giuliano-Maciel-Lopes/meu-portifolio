@@ -13,7 +13,6 @@ export function Sections() {
         <SectionSkills/>
         <SectionExperience/>
         <SectionProjects/>
-       
         <SectionContact/>
        
     </div>

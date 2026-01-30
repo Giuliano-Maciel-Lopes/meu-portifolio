@@ -1,16 +1,17 @@
-// SectionExperience.tsx
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaIdCard, FaMedal } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import { itemVariants } from "@/styles/animaçoes/animaçoes";
+import { itemVariants, fadeInFromLeft } from "@/styles/animaçoes/animaçoes";
 import { containerVariants } from "@/styles/animaçoes/animaçoes";
 import { experienci, certificates } from "./utils/expert";
 import { BoxExp } from "./components/boxExp";
 import { BoxCertificate } from "./components/boxCerificate";
 import { JSX } from "react";
+import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 
 export function SectionExperience() {
+  const { isAnimationEnabled } = useAnimationEnabled();
   const [categorySelected, setCategorySelected] = useState<
     "certificados" | "experiencias"
   >("experiencias");
@@ -41,25 +42,21 @@ export function SectionExperience() {
           ))}
         </div>
 
-        {categorySelected === "experiencias" && (
-          <motion.div
-            key={categorySelected}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-col gap-6"
-          >
-            {experienci.map((exp, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-               
-              >
-                <BoxExp experience={exp} />
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+      {categorySelected === "experiencias" && (
+  <div className="flex flex-col gap-6">
+    {experienci.map((exp, index) => (
+      <motion.div
+        key={index}
+        initial={isAnimationEnabled ? { x: -150, opacity: 0 } : undefined}
+        whileInView={isAnimationEnabled ? { x: 0, opacity: 1 } : undefined}
+        viewport={isAnimationEnabled ? { once: false, amount: 0.2 } : undefined}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        <BoxExp experience={exp} />
+      </motion.div>
+    ))}
+  </div>
+)}
 
         {categorySelected === "certificados" && (
           <motion.div
