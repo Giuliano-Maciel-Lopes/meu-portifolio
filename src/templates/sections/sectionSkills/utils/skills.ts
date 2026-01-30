@@ -61,11 +61,12 @@ export const skills = [
   { category: "Back-end", name: "Express", img: SiExpress, color: "#000000", description: "Framework rápido para APIs REST." },
   { category: "Back-end", name: "Fastify", img: SiFastify, color: "#20232A", description: "APIs de alta performance." },
   { category: "Back-end", name: "Docker", img: SiDocker, color: "#2496ED", description: "Containerização de aplicações." },
+  { category: "Back-end", name: "DDD", img: SiNodedotjs, color: "#3C873A", description: "Arquitetura orientada a domínios." },
   { category: "Back-end", name: "JWT Auth", img: SiNodedotjs, color: "#3C873A", description: "Autenticação segura com tokens HTTP-only." },
   { category: "Back-end", name: "SOLID", img: SiJavascript, color: "#F7DF1E", description: "Princípios de código limpo e modular." },
   { category: "Back-end", name: "TDD", img: SiVitest, color: "#3B82F6", description: "Desenvolvimento guiado por testes." },
   { category: "Back-end", name: "Testes", img: SiTestinglibrary, color: "#E34C26", description: "Testes unitários e E2E." },
-  { category: "Back-end", name: "DDD", img: SiNodedotjs, color: "#3C873A", description: "Arquitetura orientada a domínios." }, // ADICIONADO
+  // ADICIONADO
 
   //  BANCO DE DADOS
   { category: "Bancos de Dados", name: "PostgreSQL", img: SiPostgresql, color: "#336791", description: "Banco relacional poderoso e performático." },

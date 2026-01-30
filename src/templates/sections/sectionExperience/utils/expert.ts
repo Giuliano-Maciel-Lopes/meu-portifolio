@@ -1,5 +1,3 @@
-
-
 export const experienci = [
   {
     category: "experienci",
@@ -8,26 +6,33 @@ export const experienci = [
     empresa: "Pratique Fitness",
     fotoUrl: "/pratique.png",
     description: `
-Atuei como desenvolvedor júnior full stack, realizando atividades de front-end e back-end:
+Atuo como <span style="color:#FFD700; font-weight:bold;">Desenvolvedor Full Stack</span>, criando soluções inovadoras para aplicações web de alta performance.
 
-- Construção e manutenção de **projetos full stack** utilizando **Next.js, React, Ant Design, Bootstrap**.
-- Desenvolvimento de APIs em **JavaScript** e **PHP**, integração com bancos de dados **MySQL, SQL e Prisma ORM**.
-- Automação de processos e integração com ferramentas como **n8n** e **Unichat**.
-- Criação de dashboards e relatórios analíticos com dados provenientes do **BigQuery**.
-- Versionamento de código utilizando **Git**, com gerenciamento de branches, merges e workflows colaborativos.
-- Colaboração em equipe multidisciplinar, revisões de código e manutenção de sistemas legados.
+- Desenvolvimento e manutenção de projetos complexos <span style="color:#FFD700; font-weight:bold;">Full Stack</span>, desde o banco de dados, APIs até interfaces modernas e responsivas.
+- Construção de **APIs robustas** em <span style="color:#FFD700; font-weight:bold;">JavaScript</span> e <span style="color:#FFD700; font-weight:bold;">PHP</span>, com integração a bancos de dados <span style="color:#FFD700; font-weight:bold;">MySQL</span>, <span style="color:#FFD700; font-weight:bold;">SQL</span> e <span style="color:#FFD700; font-weight:bold;">Prisma ORM</span>.
+- Automação de processos e integração com ferramentas como <span style="color:#FFD700; font-weight:bold;">n8n</span> e <span style="color:#FFD700; font-weight:bold;">Unichat</span>, otimizando fluxos internos.
+- Criação de dashboards e relatórios analíticos avançados com dados provenientes do <span style="color:#FFD700; font-weight:bold;">BigQuery</span>, apoiando decisões estratégicas.
+- Versionamento e colaboração utilizando <span style="color:#FFD700; font-weight:bold;">Git</span>, implementando **branching, merges e workflows eficientes**.
+- Trabalho em equipe multidisciplinar e manutenção de sistemas legados, assegurando **alta qualidade e performance**.
 `,
   },
   {
     category: "experienci",
-    name: "Projetos pessoais Full Stack(provados e publicos )",
+    name: "Projetos pessoais Full Stack (privados, públicos/Freelancer)",
     tempo: "",
-    empresa: "",
+    empresa: "Freelancer",
     fotoUrl: "/Logo Giuliano.png",
-    description:
-      "Na aba 'Projetos' já temos 2 projetos full stack, além de vários outros privados e colaborativos entre muitos outos .",
+    description: `
+Desenvolvimento de + <span style="color:#FFD700; font-weight:bold;">20 projetos</span> aplicando boas práticas e soluções profissionais.
+
+- Projetos englobam **front-end e back-end**, integração com APIs, bancos de dados e deploy em produção.
+- Aplicação de **boas práticas de arquitetura, performance e escalabilidade** para garantir soluções de alta qualidade.
+- Exploração constante de novas abordagens, garantindo **inovação e aprendizado contínuo**.
+`,
   },
 ];
+
+
 
 export const certificates = [
    {
