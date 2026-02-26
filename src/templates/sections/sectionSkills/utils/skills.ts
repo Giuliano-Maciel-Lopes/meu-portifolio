@@ -1,3 +1,4 @@
+import { BsHeart } from "react-icons/bs";
 import {
   SiJavascript,
   SiTypescript,
@@ -24,8 +25,14 @@ import {
   SiPrisma,
   SiInsomnia,
   SiPhp,
-  SiMongodb
+  SiMongodb,
+  SiN8N,
+  SiWhatsapp,
+  SiOpenai,
+  SiHearth
 } from "react-icons/si";
+
+
 
 export const categorys = [
   "Front-end",
@@ -33,6 +40,7 @@ export const categorys = [
   "DevOps",
   "Bancos de Dados",
   "Princípios e Linguagens",
+  "Automações e IA"
 ];
 
 export const skills = [
@@ -84,4 +92,14 @@ export const skills = [
   { category: "DevOps", name: "Vitest", img: SiVitest, color: "#3B82F6", description: "Testes unitários e E2E." },
   { category: "DevOps", name: "Docker", img: SiDocker, color: "#2496ED", description: "Containerização de aplicações." },
   { category: "DevOps", name: "Insomnia", img: SiInsomnia, color: "#4000BF", description: "Testes de API com eficiência." },
+
+ 
+   // 🤖 AUTOMAÇÕES E IA
+  { category: "Automações e IA", name: "n8n", img: SiN8N, color: "#EA4B71", description: "Automação de workflows low-code... + Criação de Ia de atendimento" },
+  { category: "Automações e IA", name: "OpenAI API", img: SiOpenai, color: "#10A37F", description: "Integração com IA generativa." },
+  { category: "Automações e IA", name: "Prompts Engineering", img: SiOpenai, color: "#0EA5E9", description: "Criação de prompts estratégicos para IA." },
+  { category: "Automações e IA", name: "WhatsApp API", img: SiWhatsapp, color: "#25D366", description: "Integração com automações via WhatsApp. Waha , Unichat..." },
+  { category: "Automações e IA", name: "Lovable", img: BsHeart, color: "#EA4B71", description: "Desenvolvimento acelerado com IA para produtos digitais." },
+  
+
 ];

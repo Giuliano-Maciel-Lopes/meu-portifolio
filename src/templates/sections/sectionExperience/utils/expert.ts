@@ -14,6 +14,7 @@ Atuo como <span style="color:#FFD700; font-weight:bold;">Desenvolvedor Full Stac
 - Criação de dashboards e relatórios analíticos avançados com dados provenientes do <span style="color:#FFD700; font-weight:bold;">BigQuery</span>, apoiando decisões estratégicas.
 - Versionamento e colaboração utilizando <span style="color:#FFD700; font-weight:bold;">Git</span>, implementando **branching, merges e workflows eficientes**.
 - Trabalho em equipe multidisciplinar e manutenção de sistemas legados, assegurando **alta qualidade e performance**.
+- **Criação de IA de atendimento automatizado via WhatsApp utilizando n8n**, melhorando a comunicação e suporte aos clientes.
 `,
   },
   {
