@@ -17,8 +17,10 @@ export function LeftContent() {
       variants={isAnimationEnabled ? fadeInFromLeft : undefined}
     >
       <div>
-        <h1 className="text-6xl">Giuliano</h1>
-        <h1 className="text-6xl">Maciel</h1>
+        <h1 className="text-6xl tracking-tight">Giuliano</h1>
+        <h1 className="text-6xl tracking-tight bg-gradient-to-r from-amber via-gold to-goldDark bg-clip-text text-transparent">
+          Maciel
+        </h1>
 
         <motion.div
           className="h-[5px] bg-yellow-500 mt-4 rounded-full"

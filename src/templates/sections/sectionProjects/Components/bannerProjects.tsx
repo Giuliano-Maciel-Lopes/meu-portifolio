@@ -1,12 +1,14 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { FaGithub, FaPlay } from "react-icons/fa";
-import { useState } from "react";
+import { FaLock } from "react-icons/fa";
 
 type Project = {
   nameProject: string;
   img: string;
+  isPrivate?: boolean;
+  shortDescription: string;
   description: string;
+  features?: string[];
+  differential?: string;
   stack: string[];
   linkdVideo?: string;
   linkdGitHub?: string;
@@ -15,94 +17,85 @@ type Project = {
 
 type ProjectProps = {
   project: Project;
+  onClick: () => void;
 };
 
-export function BannerProjects({ project }: ProjectProps) {
-  const [isExpanded, setIsExpanded] = useState(false); 
-
-  const handleClick = () => {
-    if (project.linkSite) {
-      window.open(project.linkSite, "_blank");
-    }
-  };
-
-  const toggleDescription = (e: React.MouseEvent) => {
-    e.stopPropagation(); 
-    setIsExpanded(!isExpanded);
-  };
-
-  const maxLength = 500;
-  const shouldTruncate = project.description.length > maxLength;
-  const displayedDescription = !isExpanded && shouldTruncate
-    ? project.description.slice(0, maxLength) + "..."
-    : project.description;
-
+export function BannerProjects({ project, onClick }: ProjectProps) {
   return (
     <div
-      onClick={handleClick}
-        className={`
-    w-full
-    md:max-w-[420px]
-    lg:max-w-[500px]
-    xl:max-w-[550px]
-    border border-gold/50 
-    rounded-xl p-4 
-    shadow-lg hover:shadow-2xl 
-    hover:-translate-y-1 
-    transition-all cursor-pointer 
-    bg-black/30
-    ${isExpanded ? "md:min-h-[750px]" : "md:min-h-[700px]"}
-  `}
+      onClick={onClick}
+      className="
+        group
+        w-full h-full
+        flex flex-col
+        relative
+        border border-white/10
+        rounded-2xl
+        bg-[#0d0d0d]/80
+        backdrop-blur-sm
+        shadow-[0_4px_24px_rgba(0,0,0,0.5)]
+        hover:shadow-[0_12px_48px_rgba(212,163,115,0.15)]
+        hover:border-gold/35
+        hover:scale-[1.02]
+        hover:-translate-y-1
+        transition-all duration-300 ease-in-out
+        cursor-pointer
+        p-5
+      "
     >
-      <div className="w-full h-[160px] overflow-hidden rounded-lg">
-        <Image
-          src={project.img}
-          alt="Imagem do projeto"
-          width={500}
-          height={160}
-          className="w-full h-full object-cover rounded-lg hover:scale-105 transition-all"
-        />
+      {project.isPrivate && (
+        <div className="absolute top-3 right-3 z-10">
+          <div className="flex items-center gap-1 bg-zinc-800/90 text-white/50 text-[10px] font-bold px-2.5 py-0.5 rounded-full tracking-wide uppercase">
+            <FaLock className="w-2.5 h-2.5" />
+            Privado
+          </div>
+        </div>
+      )}
+
+      <div className="w-full h-[160px] overflow-hidden rounded-xl relative shrink-0">
+        {project.img ? (
+          <>
+            <Image
+              src={project.img}
+              alt={project.nameProject}
+              width={500}
+              height={160}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-xl">
+              <span className="text-white/90 text-xs font-medium bg-white/10 border border-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                Ver detalhes
+              </span>
+            </div>
+          </>
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 flex flex-col items-center justify-center gap-2 border border-white/5 rounded-xl group-hover:border-white/10 transition-colors">
+            <FaLock className="w-5 h-5 text-white/15" />
+            <span className="text-white/20 text-[10px] tracking-widest uppercase font-medium">
+              Projeto Privado
+            </span>
+            <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="text-white/60 text-xs font-medium bg-white/10 border border-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                Ver detalhes
+              </span>
+            </span>
+          </div>
+        )}
       </div>
 
-      <h3 className="mt-3 text-lg font-semibold border-b border-gold/50 pb-1">
+      <h3 className="mt-4 text-base font-bold border-b border-gold/20 pb-2 tracking-tight text-textPrimary leading-snug">
         {project.nameProject}
       </h3>
 
-      <p className="text-gray-300 mt-2 text-sm leading-relaxed">
-        {displayedDescription}
-        {shouldTruncate && (
-          <button
-            onClick={toggleDescription}
-            className="ml-1 text-yellow-400 underline text-xs"
-          >
-            {isExpanded ? "Ver menos" : "Ver mais"}
-          </button>
-        )}
+      <p className="text-gray-400 mt-2.5 text-sm leading-relaxed flex-1 mb-0 line-clamp-3">
+        {project.shortDescription}
       </p>
 
-      <div className="flex gap-2 mt-4">
-        {project.linkdGitHub && (
-          <Button variant="outline" className="text-xs px-2 py-1" asChild>
-            <a href={project.linkdGitHub} target="_blank">
-              <FaGithub className="mr-1" /> GitHub
-            </a>
-          </Button>
-        )}
-
-        {project.linkdVideo && (
-          <Button className="text-xs bg-blue-700 px-2 py-1" asChild>
-            <a href={project.linkdVideo} target="_blank">
-              <FaPlay className="mr-1" /> Vídeo
-            </a>
-          </Button>
-        )}
-      </div>
-
-      <div className="flex flex-wrap gap-1 mt-4">
+      <div className="flex flex-wrap items-center gap-1.5 mt-4">
         {project.stack.map((tech) => (
           <span
             key={tech}
-            className="text-sm border border-white/30 rounded-full px-2 py-0.5 text-gray-200"
+            className="text-[11px] border border-white/10 bg-white/[0.04] rounded-full px-2.5 py-0.5 text-gray-400 group-hover:border-gold/20 transition-colors duration-300"
           >
             {tech}
           </span>

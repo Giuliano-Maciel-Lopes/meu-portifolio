@@ -1,4 +1,4 @@
-import { BsHeart } from "react-icons/bs";
+import { BsHeart, BsRobot, BsChatDots } from "react-icons/bs";
 import {
   SiJavascript,
   SiTypescript,
@@ -100,6 +100,8 @@ export const skills = [
   { category: "Automações e IA", name: "Prompts Engineering", img: SiOpenai, color: "#0EA5E9", description: "Criação de prompts estratégicos para IA." },
   { category: "Automações e IA", name: "WhatsApp API", img: SiWhatsapp, color: "#25D366", description: "Integração com automações via WhatsApp. Waha , Unichat..." },
   { category: "Automações e IA", name: "Lovable", img: BsHeart, color: "#EA4B71", description: "Desenvolvimento acelerado com IA para produtos digitais." },
-  
+  { category: "Automações e IA", name: "Claude Code", img: BsRobot, color: "#D97757", description: "Assistente de IA da Anthropic para desenvolvimento de software." },
+  { category: "Automações e IA", name: "Chatwoot", img: BsChatDots, color: "#1F93FF", description: "Plataforma open-source de suporte ao cliente via múltiplos canais." },
+  { category: "Automações e IA", name: "IA Atendente", img: BsRobot, color: "#10A37F", description: "Criação de assistentes de IA para atendimento automático via WhatsApp." },
 
 ];

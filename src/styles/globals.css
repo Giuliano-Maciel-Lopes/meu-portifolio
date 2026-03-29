@@ -10,18 +10,20 @@ html, body {
 @layer base {
   /* Headings */
   h1 {
-    @apply text-5xl md:text-6xl font-bold text-gold mb-6 leading-tight;
+    @apply text-5xl md:text-6xl font-bold text-gold mb-6 leading-[1.1] tracking-tight;
     font-family: 'Inter', sans-serif;
   }
 
   h2 {
-    @apply text-4xl md:text-5xl font-semibold text-goldDark mb-5 leading-snug;
+    @apply text-4xl md:text-5xl font-semibold text-goldDark mb-5 leading-snug tracking-tight;
     font-family: 'Inter', sans-serif;
   }
 
   h3 {
     @apply text-3xl md:text-4xl font-semibold text-amber mb-4 leading-snug;
     font-family: 'PT Sans Caption', sans-serif;
+    letter-spacing: -0.01em;
+    text-shadow: 0 0 40px rgba(255, 200, 87, 0.12);
   }
 
   h4 {
@@ -40,8 +42,19 @@ html, body {
   @layer base {
   html, body {
     @apply bg-black text-white;
-    
-    
-
   }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.08);
+  border-radius: 99px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(212,163,115,0.25);
 }
