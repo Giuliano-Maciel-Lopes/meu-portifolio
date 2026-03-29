@@ -123,7 +123,7 @@ export const projects = [
       "Integração com API Oficial da Meta (WhatsApp)",
       "Dashboard com métricas de performance",
       "Análise de Conversão, CAC e ROI por campanha",
-      "+20 envios"
+      "+ de 10 disparos "
     ],
     differential:
       "Permite análise completa do funil de campanhas e tomada de decisão baseada em dados em tempo real.",

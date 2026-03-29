@@ -7,6 +7,7 @@ type experienceProps = {
   tempo: string;
   empresa: string;
   fotoUrl: string;
+  subFotoUrl?: string;
   description: string;
 };
 
@@ -15,43 +16,60 @@ type Props = {
 };
 
 export function BoxExp({ experience }: Props) {
-  const descriptionPoints = experience.description
-    .split("\n")
-    .filter((line) => line.trim() !== "");
-
   return (
-    <div
-      className=" min-h-[270px] rounded-lg p-4  
-                 shadow-md hover:shadow-lg bg-overlay transition-shadow duration-300 border border-gold"
-    >
-      <div className="flex items-center gap-4 mb-3 pb-2 border-b border-gold">
-        <Image
-          alt={experience.name}
-          src={experience.fotoUrl || "/placeholder.png"}
-          width={50}
-          height={50}
-          className="rounded-full border border-gray-300"
-        />
-        <div>
-          <h4 className="text-lg font-semibold text-yellow-500 tracking-wide">
+    <div className="group relative rounded-2xl border border-white/10 bg-[#0d0d0d]/80 backdrop-blur-sm shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:border-gold/30 hover:shadow-[0_8px_40px_rgba(212,163,115,0.1)] transition-all duration-300 p-6">
+      <div className="absolute left-0 top-6 bottom-6 w-[2px] rounded-full bg-gradient-to-b from-gold/60 via-amber/30 to-transparent" />
+
+      <div className="flex items-start justify-between gap-4 mb-5 pl-4">
+        <div className="flex-1">
+          <h4 className="text-base font-bold text-textPrimary tracking-tight leading-snug mb-1">
             {experience.name}
           </h4>
-          <p className="text-sm text-gray-200">
-            {experience.empresa && `Empresa: ${experience.empresa}`}{" "}
-            {experience.tempo && `| Tempo: ${experience.tempo}`}
-          </p>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-[11px] uppercase tracking-widest text-white/30 font-semibold">
+              {experience.empresa}
+            </span>
+            {experience.tempo && (
+              <>
+                <span className="text-white/15">·</span>
+                <span className="text-[11px] text-amber/70 font-medium">
+                  {experience.tempo}
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2 shrink-0">
+          <Image
+            alt={experience.empresa}
+            src={experience.fotoUrl || "/placeholder.png"}
+            width={44}
+            height={44}
+            className="rounded-full border border-white/10 object-cover"
+          />
+          {experience.subFotoUrl && (
+            <Image
+              alt={`${experience.empresa} sub`}
+              src={experience.subFotoUrl}
+              width={36}
+              height={36}
+              className="rounded-full border border-white/10 object-cover opacity-75"
+            />
+          )}
         </div>
       </div>
 
-   <div className="text-gray-200 text-sm leading-relaxed tracking-wide space-y-3">
+      <div className="pl-4 text-gray-400 text-sm leading-relaxed space-y-2">
         <ReactMarkdown
           rehypePlugins={[rehypeRaw]}
           components={{
-            ul: ({ children }) => (
-              <ul className="list-disc list-inside space-y-2">{children}</ul>
-            ),
+            ul: ({ children }) => <ul className="space-y-1.5 mt-2">{children}</ul>,
             li: ({ children }) => (
-              <li className="ml-2">{children}</li>
+              <li className="flex items-start gap-2 list-none">
+                <span className="text-amber text-xs mt-0.5 shrink-0">▸</span>
+                <span>{children}</span>
+              </li>
             ),
           }}
         >

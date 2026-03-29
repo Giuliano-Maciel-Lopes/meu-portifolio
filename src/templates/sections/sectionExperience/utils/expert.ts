@@ -2,10 +2,13 @@ export const experienci = [
   {
     category: "experienci",
     name: "Desenvolvedor Junior Full Stack",
-    tempo: "Atuando ainda",
+    tempo: "Atuando",
     empresa: "Pratique Fitness",
-    fotoUrl: "/pratique.png",
+    fotoUrl: "/tecace.png",
+    subFotoUrl: "/pratique.png",
     description: `
+- <span style="color:#FFD700; font-weight:bold; font-size:1.05em;">Manutenção em +150 unidades internacionais</span>
+
 Atuo como <span style="color:#FFD700; font-weight:bold;">Desenvolvedor Full Stack</span>, criando soluções inovadoras para aplicações web de alta performance.
 
 - Desenvolvimento e manutenção de projetos complexos <span style="color:#FFD700; font-weight:bold;">Full Stack</span>, desde o banco de dados, APIs até interfaces modernas e responsivas.
