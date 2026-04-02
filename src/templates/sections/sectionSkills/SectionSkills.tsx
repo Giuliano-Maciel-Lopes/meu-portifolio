@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { categorys, skills } from "./utils/skills";
-import { Button } from "@/components/ui/button";
-import {  BoxSkills  } from "./components/boxSkills";
+import { BoxSkills } from "./components/boxSkills";
 import { motion } from "framer-motion";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 import { fadeInFromBottom } from "@/styles/animaçoes/animaçoes";
+
 export function SectionSkills() {
-  const [categorySelected, setCategorySelected] = useState<string | null>(
-    "Front-end"
-  );
+  const [categorySelected, setCategorySelected] = useState<string | null>("Front-end");
   const { isAnimationEnabled } = useAnimationEnabled();
 
   const filteredSkills = skills.filter(
@@ -33,21 +31,26 @@ export function SectionSkills() {
       >
         <h3 className="text-center">Skills</h3>
 
-        <div className="mt-16 flex flex-wrap justify-center gap-4">
+        <div className="mt-16 flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full p-1 flex-wrap justify-center">
           {categorys.map((category, index) => (
-            <Button
+            <button
               key={index}
-              variant={categorySelected === category ? "default" : "ghost"}
-              className="px-5 py-2 text-white border-4 border-gold rounded-full transition-all duration-200"
               onClick={() => setCategorySelected(category)}
+              className={`
+                px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap
+                ${categorySelected === category
+                  ? "bg-amber/90 text-black"
+                  : "text-white/40 hover:text-white/70"
+                }
+              `}
             >
               {category}
-            </Button>
+            </button>
           ))}
         </div>
 
         <div className="mt-20">
-          <BoxSkills  category={categorySelected} items={skillsToShow} />
+          <BoxSkills category={categorySelected} items={skillsToShow} />
         </div>
       </motion.div>
     </section>
