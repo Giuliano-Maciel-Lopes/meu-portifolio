@@ -17,6 +17,11 @@ export function LeftContent() {
       variants={isAnimationEnabled ? fadeInFromLeft : undefined}
     >
       <div>
+        <span className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-white/40 font-semibold mb-4">
+          <span className="w-5 h-[1px] bg-amber/50 inline-block" />
+          Full Stack Developer
+        </span>
+
         <h1 className="text-6xl tracking-tight">Giuliano</h1>
         <h1 className="text-6xl tracking-tight bg-gradient-to-r from-amber via-gold to-goldDark bg-clip-text text-transparent">
           Maciel
@@ -30,7 +35,7 @@ export function LeftContent() {
         />
       </div>
 
-      <div className=" flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         <Button variant="fancy" className="text-lg md:hidden">
           Baixar cv
         </Button>

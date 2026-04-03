@@ -55,6 +55,15 @@ html, body {
   background: rgba(255,255,255,0.08);
   border-radius: 99px;
 }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+.animate-twinkle {
+  animation: twinkle ease-in-out infinite;
+}
+
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(212,163,115,0.25);
 }
