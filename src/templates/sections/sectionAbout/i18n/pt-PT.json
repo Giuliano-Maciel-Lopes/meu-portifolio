@@ -1,0 +1,16 @@
+{
+  "who_label": "Quem sou eu",
+  "greeting": "olá, sou",
+  "description": "Programador Full Stack a atuar no mercado com foco em automações com IA, arquitetura de software e desenvolvimento web completo. Gosto de resolver problemas reais — desde a base de dados à interface, com código limpo, bem estruturado e que faça sentido para quem o utiliza.",
+  "bullets": [
+    "A atuar no mercado como programador Full Stack",
+    "Front-end moderno e Back-end robusto",
+    "Automações com IA — n8n, WhatsApp API e envios em massa",
+    "Arquitetura limpa, SOLID e código escalável"
+  ],
+  "highlights": [
+    { "value": "+20", "label": "Projetos entregues" },
+    { "value": "FS", "label": "Front + Back-end" },
+    { "value": "IA", "label": "Automações reais" }
+  ]
+}

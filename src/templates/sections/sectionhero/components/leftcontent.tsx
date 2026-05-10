@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { networks } from "../utils/networking";
 import { fadeInFromLeft } from "@/styles/animaçoes/animaçoes";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
+import { useTranslation } from "react-i18next";
 
 export function LeftContent() {
   const { isAnimationEnabled } = useAnimationEnabled();
+  const { t } = useTranslation("hero");
 
   return (
     <motion.div
@@ -19,7 +21,7 @@ export function LeftContent() {
       <div>
         <span className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-white/40 font-semibold mb-4">
           <span className="w-5 h-[1px] bg-amber/50 inline-block" />
-          Full Stack Developer
+          {t("developer_label")}
         </span>
 
         <h1 className="text-6xl tracking-tight">Giuliano</h1>
@@ -37,7 +39,7 @@ export function LeftContent() {
 
       <div className="flex flex-col gap-4">
         <Button variant="fancy" className="text-lg md:hidden">
-          Baixar cv
+          {t("cta_cv")}
         </Button>
         <div className="flex gap-4">
           {networks.map((network) => (

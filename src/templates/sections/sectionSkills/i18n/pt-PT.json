@@ -1,0 +1,11 @@
+{
+  "title": "Skills",
+  "categories": {
+    "Front-end": "Front-end",
+    "Back-end": "Back-end",
+    "DevOps": "DevOps",
+    "Bancos de Dados": "Bases de Dados",
+    "Princípios e Linguagens": "Princípios e Linguagens",
+    "Automações e IA": "Automações e IA"
+  }
+}

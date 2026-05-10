@@ -1,27 +1,17 @@
 import Image from "next/image";
 import { FaGithub, FaPlay, FaExternalLinkAlt, FaTimes, FaLock } from "react-icons/fa";
 import { useEffect } from "react";
-
-type Project = {
-  nameProject: string;
-  img: string;
-  isPrivate?: boolean;
-  shortDescription: string;
-  description: string;
-  features?: string[];
-  differential?: string;
-  stack: string[];
-  linkdVideo?: string;
-  linkdGitHub?: string;
-  linkSite?: string;
-};
+import { useTranslation } from "react-i18next";
+import type { MergedProject } from "../sectionProjects";
 
 type Props = {
-  project: Project;
+  project: MergedProject;
   onClose: () => void;
 };
 
 export function ProjectModal({ project, onClose }: Props) {
+  const { t } = useTranslation("projects");
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -61,7 +51,7 @@ export function ProjectModal({ project, onClose }: Props) {
             <div className="w-full h-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 flex flex-col items-center justify-center gap-2">
               <FaLock className="w-6 h-6 text-white/10" />
               <span className="text-white/15 text-[11px] tracking-widest uppercase font-medium">
-                Projeto Privado
+                {t("private_project")}
               </span>
             </div>
           )}
@@ -72,7 +62,7 @@ export function ProjectModal({ project, onClose }: Props) {
           <div className="px-6 pb-6 pt-2 border-r border-white/5 flex flex-col gap-5">
             <div>
               <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-2.5">
-                Tecnologias
+                {t("modal.technologies")}
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {project.stack.map((tech) => (
@@ -95,7 +85,8 @@ export function ProjectModal({ project, onClose }: Props) {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 text-xs bg-amber/90 hover:bg-amber text-black font-bold px-3 py-2 rounded-lg transition-colors"
                   >
-                    <FaExternalLinkAlt className="w-3 h-3" /> Ver projeto
+                    <FaExternalLinkAlt className="w-3 h-3" />
+                    {t("modal.view_site")}
                   </a>
                 )}
                 {project.linkdGitHub && (
@@ -115,7 +106,8 @@ export function ProjectModal({ project, onClose }: Props) {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 text-xs bg-blue-700/70 hover:bg-blue-600 text-white px-3 py-2 rounded-lg border border-blue-500/20 transition-colors"
                   >
-                    <FaPlay className="w-3 h-3" /> Ver vídeo
+                    <FaPlay className="w-3 h-3" />
+                    {t("modal.view_video")}
                   </a>
                 )}
               </div>
@@ -129,7 +121,7 @@ export function ProjectModal({ project, onClose }: Props) {
               </h3>
               {project.isPrivate && (
                 <span className="flex items-center gap-1 bg-zinc-800/90 text-white/50 text-[10px] font-bold px-2.5 py-0.5 rounded-full tracking-wide uppercase shrink-0">
-                  <FaLock className="w-2 h-2" /> Privado
+                  <FaLock className="w-2 h-2" /> {t("private_badge")}
                 </span>
               )}
             </div>
@@ -141,7 +133,7 @@ export function ProjectModal({ project, onClose }: Props) {
             {project.features && project.features.length > 0 && (
               <div>
                 <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-2.5">
-                  Funcionalidades
+                  {t("modal.features_title")}
                 </p>
                 <ul className="space-y-1.5">
                   {project.features.map((f, i) => (
@@ -157,7 +149,7 @@ export function ProjectModal({ project, onClose }: Props) {
             {project.differential && (
               <div className="border-l-2 border-gold/30 pl-3 py-0.5">
                 <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">
-                  Diferencial
+                  {t("modal.differential_title")}
                 </p>
                 <p className="text-sm text-gray-300 mb-0 leading-relaxed">
                   {project.differential}

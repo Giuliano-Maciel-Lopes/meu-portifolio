@@ -1,0 +1,79 @@
+{
+  "title": "Proyectos",
+  "title_highlight": "Personales",
+  "subtitle": "Haz clic en un proyecto para ver más detalles",
+  "github_link": "Ver todos los proyectos en GitHub",
+  "private_badge": "Privado",
+  "private_project": "Proyecto Privado",
+  "view_details": "Ver detalles",
+  "modal": {
+    "technologies": "Tecnologías",
+    "features_title": "Funcionalidades",
+    "differential_title": "Diferencial",
+    "view_site": "Ver proyecto",
+    "view_video": "Ver video"
+  },
+  "items": [
+    {
+      "name": "Campeonato Fut7",
+      "short_description": "Plataforma Full Stack para gestionar campeonatos de fútbol 7 con equipos, grupos, resultados en tiempo real y checkout vía Stripe.",
+      "description": "Plataforma completa para gestionar campeonatos de fútbol 7 de principio a fin. Cada jugador puede tener su propio equipo, organizar grupos, gestionar capitanes y seguir toda la evolución del campeonato en tiempo real.",
+      "features": [
+        "Equipos y grupos organizados por campeonato",
+        "Registro de capitanes, fotos y jugadores",
+        "Seguimiento de goles y resultados en tiempo real",
+        "Tabla de clasificación dinámica",
+        "Invitaciones y gestión de participación",
+        "Checkout e inscripciones seguras vía Stripe",
+        "Panel de administración completo",
+        "Informes por equipo, jugador y campeonato",
+        "API REST para integración externa"
+      ],
+      "differential": "Experiencia completa para jugadores, equipos y administradores, con backend robusto y máximo rendimiento."
+    },
+    {
+      "name": "E-commerce de Panadería",
+      "short_description": "E-commerce Full Stack para panadería con gestión de inventario, pagos vía Stripe, seguimiento de entregas e informes automatizados.",
+      "description": "Plataforma de ventas online completa para panadería, con productos, fotos e inventario gestionables. Sistema de entregas con seguimiento y automatización de informes vía Cron Jobs.",
+      "features": [
+        "Catálogo de productos con fotos y control de inventario",
+        "Pagos seguros vía Stripe",
+        "Sistema de entrega con seguimiento por repartidor",
+        "Informes automatizados: diarios, semanales, mensuales y anuales",
+        "Panel de administración completo",
+        "Gestión de productos destacados para aumentar la conversión",
+        "Historial completo de pedidos"
+      ],
+      "differential": "Experiencia de compra completa con automatización de informes y seguimiento de entregas en tiempo real."
+    },
+    {
+      "name": "IA de Atención para Equipos de Fitness",
+      "short_description": "Asistente de ventas inteligente vía WhatsApp con soporte multilingüe, audio y automatización de atención para equipos de fitness.",
+      "description": "Asistente de ventas inteligente integrado con WhatsApp para equipos de fitness. Responde automáticamente en múltiples idiomas utilizando su propia base de datos para respuestas contextualizadas.",
+      "features": [
+        "Atención automática vía WhatsApp",
+        "Respuestas basadas en base de datos",
+        "Soporte multilingüe",
+        "Envío y recepción de audio (speech-to-text y text-to-speech)",
+        "Automatización de atención con fallback humano",
+        "Integración con Chatwoot, WAHA y n8n vía webhooks"
+      ],
+      "differential": "El sistema reemplaza gran parte de la atención humana, manteniendo eficiencia y escala operacional."
+    },
+    {
+      "name": "Envío Masivo y Dashboards de Conversión",
+      "short_description": "Automatización de campañas masivas vía WhatsApp con segmentación por etiquetas, API de Meta y dashboard de métricas (CAC, ROI, conversión).",
+      "description": "Sistema de automatización de campañas masivas enfocado en conversión vía WhatsApp. Integración con la API Oficial de Meta y dashboard completo para análisis de resultados.",
+      "features": [
+        "Envío masivo de mensajes vía WhatsApp",
+        "Segmentación por etiquetas",
+        "Automatización de campañas vía n8n",
+        "Integración con API Oficial de Meta (WhatsApp)",
+        "Dashboard con métricas de rendimiento",
+        "Análisis de Conversión, CAC y ROI por campaña",
+        "+ de 10 envíos"
+      ],
+      "differential": "Permite el análisis completo del embudo de campañas y la toma de decisiones basada en datos en tiempo real."
+    }
+  ]
+}

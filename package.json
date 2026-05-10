@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "i18n:build": "tsx scripts/aggregate-i18n.ts",
+    "dev": "npm run i18n:build && next dev",
+    "build": "npm run i18n:build && next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -18,10 +19,13 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",
+    "i18next": "^23.16.8",
     "lucide-react": "^0.552.0",
     "next": "15.5.9",
+    "next-i18next": "^14.0.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-i18next": "^13.5.0",
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "rehype-raw": "^7.0.0",
@@ -39,6 +43,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

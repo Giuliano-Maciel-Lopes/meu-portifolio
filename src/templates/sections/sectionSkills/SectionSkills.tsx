@@ -4,10 +4,12 @@ import { BoxSkills } from "./components/boxSkills";
 import { motion } from "framer-motion";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 import { fadeInFromBottom } from "@/styles/animaçoes/animaçoes";
+import { useTranslation } from "react-i18next";
 
 export function SectionSkills() {
   const [categorySelected, setCategorySelected] = useState<string | null>("Front-end");
   const { isAnimationEnabled } = useAnimationEnabled();
+  const { t } = useTranslation("skills");
 
   const filteredSkills = skills.filter(
     (skill) => skill.category === categorySelected
@@ -29,7 +31,7 @@ export function SectionSkills() {
         viewport={isAnimationEnabled ? { once: false, amount: 0.4 } : undefined}
         variants={isAnimationEnabled ? fadeInFromBottom : undefined}
       >
-        <h3 className="text-center">Skills</h3>
+        <h3 className="text-center">{t("title")}</h3>
 
         <div className="mt-16 flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full p-1 flex-wrap justify-center">
           {categorys.map((category, index) => (
@@ -44,7 +46,7 @@ export function SectionSkills() {
                 }
               `}
             >
-              {category}
+              {t(`categories.${category}`, category)}
             </button>
           ))}
         </div>

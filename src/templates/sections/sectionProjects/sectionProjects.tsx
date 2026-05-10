@@ -4,31 +4,64 @@ import { BannerProjects } from "./Components/bannerProjects";
 import { ProjectModal } from "./Components/ProjectModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const CARDS_PER_PAGE = 4;
 
-type Project = (typeof projects)[number];
+type StaticProject = (typeof projects)[number];
+
+type TranslatedProjectItem = {
+  name: string;
+  short_description: string;
+  description: string;
+  features: string[];
+  differential: string;
+};
+
+export type MergedProject = Omit<StaticProject, "nameProject" | "shortDescription" | "description" | "features" | "differential"> & {
+  nameProject: string;
+  shortDescription: string;
+  description: string;
+  features?: string[];
+  differential?: string;
+};
 
 export function SectionProjects() {
   const [page, setPage] = useState(0);
-  const [selected, setSelected] = useState<Project | null>(null);
+  const [selected, setSelected] = useState<MergedProject | null>(null);
+  const { t } = useTranslation("projects");
 
-  const totalPages = Math.ceil(projects.length / CARDS_PER_PAGE);
+  const translatedItems = t("items", { returnObjects: true }) as TranslatedProjectItem[];
+
+  const mergedProjects: MergedProject[] = projects.map((p, i) => {
+    const ti = translatedItems[i];
+    if (!ti) return p;
+    return {
+      ...p,
+      nameProject: ti.name,
+      shortDescription: ti.short_description,
+      description: ti.description,
+      features: ti.features,
+      differential: ti.differential,
+    };
+  });
+
+  const totalPages = Math.ceil(mergedProjects.length / CARDS_PER_PAGE);
   const start = page * CARDS_PER_PAGE;
-  const visible = projects.slice(start, start + CARDS_PER_PAGE);
+  const visible = mergedProjects.slice(start, start + CARDS_PER_PAGE);
 
   return (
     <section id="projects" className="scroll-mt-24">
       <div className="container grid gap-8">
         <div className="text-center space-y-2">
           <h3 className="text-center text-3xl font-bold tracking-tight">
-            Projetos{" "}
+            {t("title")}{" "}
             <span className="bg-gradient-to-r from-amber to-gold bg-clip-text text-transparent">
-              Pessoais
+              {t("title_highlight")}
             </span>
           </h3>
           <p className="text-textSecondary text-sm tracking-widest uppercase mb-0">
-            Clique em um projeto para ver mais detalhes
+            {t("subtitle")}
           </p>
         </div>
 
@@ -55,17 +88,10 @@ export function SectionProjects() {
                 key={start + index}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  ease: "easeOut",
-                }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
                 className="h-full"
               >
-                <BannerProjects
-                  project={project}
-                  onClick={() => setSelected(project)}
-                />
+                <BannerProjects project={project} onClick={() => setSelected(project)} />
               </motion.div>
             ))}
           </motion.div>
@@ -87,9 +113,7 @@ export function SectionProjects() {
                   key={i}
                   onClick={() => setPage(i)}
                   className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                    i === page
-                      ? "bg-amber w-5"
-                      : "bg-white/20 hover:bg-white/40"
+                    i === page ? "bg-amber w-5" : "bg-white/20 hover:bg-white/40"
                   }`}
                 />
               ))}
@@ -113,10 +137,8 @@ export function SectionProjects() {
             className="flex items-center gap-2 text-sm text-textSecondary hover:text-amber transition-colors duration-200 group"
           >
             <FaGithub className="w-4 h-4 group-hover:text-amber transition-colors" />
-            Ver todos os projetos no GitHub
-            <span className="group-hover:translate-x-1 transition-transform duration-200 inline-block">
-              →
-            </span>
+            {t("github_link")}
+            <span className="group-hover:translate-x-1 transition-transform duration-200 inline-block">→</span>
           </a>
         </div>
       </div>
@@ -129,10 +151,7 @@ export function SectionProjects() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <ProjectModal
-              project={selected}
-              onClose={() => setSelected(null)}
-            />
+            <ProjectModal project={selected} onClose={() => setSelected(null)} />
           </motion.div>
         )}
       </AnimatePresence>

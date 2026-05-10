@@ -1,5 +1,7 @@
 import Head from "next/head";
 import { Sections } from "@/templates/sections";
+import { GetStaticProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export default function Home() {
   return (
@@ -59,44 +61,12 @@ export default function Home() {
                 "https://www.linkedin.com/in/giulianomaciel",
               ],
               knowsAbout: [
-                "JavaScript",
-                "TypeScript",
-                "PHP",
-                "SOLID",
-                "Clean Code",
-                "TDD",
-                "DDD",
-                "React",
-                "Next.js",
-                "Redux",
-                "TailwindCSS",
-                "HTML5",
-                "CSS3",
-                "Framer Motion",
-                "React Query",
-                "React Hook Form",
-                "Node.js",
-                "Express",
-                "Fastify",
-                "Docker",
-                "JWT Auth",
-                "PostgreSQL",
-                "MySQL",
-                "SQLite",
-                "Prisma ORM",
-                "BigQuery",
-                "NoSQL",
-                "MongoDB",
-                "Git",
-                "GitHub",
-                "Figma",
-                "n8n",
-                "OpenAI API",
-                "Prompt Engineering",
-                "WhatsApp API",
-                "Chatwoot",
-                "WAHA",
-                "IA de Atendimento",
+                "JavaScript","TypeScript","PHP","SOLID","Clean Code","TDD","DDD",
+                "React","Next.js","Redux","TailwindCSS","HTML5","CSS3","Framer Motion",
+                "React Query","React Hook Form","Node.js","Express","Fastify","Docker",
+                "JWT Auth","PostgreSQL","MySQL","SQLite","Prisma ORM","BigQuery","NoSQL",
+                "MongoDB","Git","GitHub","Figma","n8n","OpenAI API","Prompt Engineering",
+                "WhatsApp API","Chatwoot","WAHA","IA de Atendimento",
               ],
             }),
           }}
@@ -108,3 +78,20 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? "pt-BR", [
+        "hero",
+        "about",
+        "skills",
+        "experience",
+        "projects",
+        "contact",
+        "whatsapp",
+        "nav",
+      ])),
+    },
+  };
+};

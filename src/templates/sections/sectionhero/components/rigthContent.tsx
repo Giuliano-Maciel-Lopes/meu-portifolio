@@ -3,14 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { fadeInFromRight } from "@/styles/animaçoes/animaçoes";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-const roles = [
-  "Full Stack Developer",
-  "Automações com IA & n8n",
-  "APIs REST & Integrações",
-  "Processos que alavancam negócios",
-];
+import { useTranslation } from "react-i18next";
 
 export function RigthContet() {
+  const { t } = useTranslation("hero");
+  const roles = t("roles", { returnObjects: true }) as string[];
   const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
@@ -18,7 +15,7 @@ export function RigthContet() {
       setRoleIndex((prev) => (prev + 1) % roles.length);
     }, 2500);
     return () => clearInterval(interval);
-  }, []);
+  }, [roles.length]);
 
   return (
     <motion.div
@@ -45,10 +42,8 @@ export function RigthContet() {
         </div>
 
         <p className="text-gray-300 text-base leading-relaxed">
-          Desenvolvo soluções web e automações com IA que simplificam processos
-          e alavancam negócios de verdade — não só código, mas resultado.
+          {t("description")}
         </p>
-
       </div>
 
       <div className="flex gap-4">
@@ -60,18 +55,18 @@ export function RigthContet() {
           variant="fancy"
           className="text-lg"
         >
-          Entre em Contato
+          {t("cta_contact")}
         </Button>
 
-        <a href="/giuliano.pdf" download>
+        <a href="/giulianoo.pdf" download>
           <Button variant="fancy" className="text-lg">
-            Baixar CV
+            {t("cta_cv")}
           </Button>
         </a>
       </div>
 
       <div className="w-full flex justify-center">
-        <ArrowButton text="Sobre mim" href="#about" />
+        <ArrowButton text={t("about_link") as string} href="#about" />
       </div>
     </motion.div>
   );

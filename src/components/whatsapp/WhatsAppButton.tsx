@@ -1,13 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { FaWhatsapp, FaTimes } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const WA_NUMBER = "5531986776676";
-const WA_MESSAGE = encodeURIComponent("Olá Giuliano! Vi seu portfólio e quero conversar 🚀");
-const WA_LINK = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
 
 export function WhatsAppButton() {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation("whatsapp");
+
+  const waLink = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(t("wa_message") as string)}`;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
@@ -20,18 +22,18 @@ export function WhatsAppButton() {
             transition={{ duration: 0.2 }}
             className="bg-[#111] border border-white/10 rounded-2xl p-4 shadow-[0_8px_32px_rgba(0,0,0,0.6)] w-64"
           >
-            <p className="text-sm text-white font-semibold mb-1">Vamos conversar? 👋</p>
+            <p className="text-sm text-white font-semibold mb-1">{t("chat_title")}</p>
             <p className="text-xs text-white/50 mb-3 leading-relaxed">
-              Me manda uma mensagem no WhatsApp — respondo rápido!
+              {t("chat_description")}
             </p>
             <a
-              href={WA_LINK}
+              href={waLink}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white text-sm font-bold py-2 rounded-xl transition-colors duration-200"
             >
               <FaWhatsapp className="w-4 h-4" />
-              Abrir WhatsApp
+              {t("open_whatsapp")}
             </a>
           </motion.div>
         )}

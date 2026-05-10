@@ -1,0 +1,17 @@
+{
+  "title": "Vamos",
+  "title_highlight": "trabalhar juntos",
+  "subtitle": "Responderei o mais breve possível",
+  "description": "Tem um projeto em mente ou quer conversar sobre uma oportunidade? Me manda uma mensagem — respondo rápido.",
+  "form": {
+    "name_label": "Nome",
+    "name_placeholder": "Seu nome",
+    "email_label": "Email",
+    "email_placeholder": "seu@email.com",
+    "subject_label": "Assunto",
+    "subject_placeholder": "Sobre o que você quer conversar?",
+    "message_label": "Mensagem",
+    "message_placeholder": "Descreva seu projeto ou deixe seu telefone para um contato mais rápido.",
+    "submit": "Enviar mensagem →"
+  }
+}

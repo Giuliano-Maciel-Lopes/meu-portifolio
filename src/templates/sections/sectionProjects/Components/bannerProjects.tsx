@@ -1,26 +1,16 @@
 import Image from "next/image";
 import { FaLock } from "react-icons/fa";
-
-type Project = {
-  nameProject: string;
-  img: string;
-  isPrivate?: boolean;
-  shortDescription: string;
-  description: string;
-  features?: string[];
-  differential?: string;
-  stack: string[];
-  linkdVideo?: string;
-  linkdGitHub?: string;
-  linkSite?: string;
-};
+import { useTranslation } from "react-i18next";
+import type { MergedProject } from "../sectionProjects";
 
 type ProjectProps = {
-  project: Project;
+  project: MergedProject;
   onClick: () => void;
 };
 
 export function BannerProjects({ project, onClick }: ProjectProps) {
+  const { t } = useTranslation("projects");
+
   return (
     <div
       onClick={onClick}
@@ -47,7 +37,7 @@ export function BannerProjects({ project, onClick }: ProjectProps) {
         <div className="absolute top-3 right-3 z-10">
           <div className="flex items-center gap-1 bg-zinc-800/90 text-white/50 text-[10px] font-bold px-2.5 py-0.5 rounded-full tracking-wide uppercase">
             <FaLock className="w-2.5 h-2.5" />
-            Privado
+            {t("private_badge")}
           </div>
         </div>
       )}
@@ -64,7 +54,7 @@ export function BannerProjects({ project, onClick }: ProjectProps) {
             />
             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-xl">
               <span className="text-white/90 text-xs font-medium bg-white/10 border border-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                Ver detalhes
+                {t("view_details")}
               </span>
             </div>
           </>
@@ -72,11 +62,11 @@ export function BannerProjects({ project, onClick }: ProjectProps) {
           <div className="w-full h-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 flex flex-col items-center justify-center gap-2 border border-white/5 rounded-xl group-hover:border-white/10 transition-colors">
             <FaLock className="w-5 h-5 text-white/15" />
             <span className="text-white/20 text-[10px] tracking-widest uppercase font-medium">
-              Projeto Privado
+              {t("private_project")}
             </span>
             <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <span className="text-white/60 text-xs font-medium bg-white/10 border border-white/15 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                Ver detalhes
+                {t("view_details")}
               </span>
             </span>
           </div>

@@ -1,24 +1,26 @@
 import { useState } from "react";
 import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 export function SectionContact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const { t } = useTranslation("contact");
 
   return (
     <section id="contact" className="scroll-mt-24 mb-16">
       <div className="container">
         <div className="text-center space-y-2 mb-12">
           <h3 className="text-3xl font-bold tracking-tight">
-            Vamos{" "}
+            {t("title")}{" "}
             <span className="bg-gradient-to-r from-amber to-gold bg-clip-text text-transparent">
-              trabalhar juntos
+              {t("title_highlight")}
             </span>
           </h3>
           <p className="text-textSecondary text-sm tracking-widest uppercase mb-0">
-            Responderei o mais breve possível
+            {t("subtitle")}
           </p>
         </div>
 
@@ -26,8 +28,7 @@ export function SectionContact() {
           <div className="flex flex-col gap-6 justify-center">
             <div>
               <p className="text-gray-400 text-sm leading-relaxed mb-0">
-                Tem um projeto em mente ou quer conversar sobre uma oportunidade?
-                Me manda uma mensagem — respondo rápido.
+                {t("description")}
               </p>
             </div>
 
@@ -77,12 +78,12 @@ export function SectionContact() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[11px] uppercase tracking-widest text-white/40 font-semibold">
-                    Nome
+                    {t("form.name_label")}
                   </label>
                   <input
                     type="text"
                     name="name"
-                    placeholder="Seu nome"
+                    placeholder={t("form.name_placeholder") as string}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
@@ -92,12 +93,12 @@ export function SectionContact() {
 
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[11px] uppercase tracking-widest text-white/40 font-semibold">
-                    Email
+                    {t("form.email_label")}
                   </label>
                   <input
                     type="email"
                     name="email"
-                    placeholder="seu@email.com"
+                    placeholder={t("form.email_placeholder") as string}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -108,12 +109,12 @@ export function SectionContact() {
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[11px] uppercase tracking-widest text-white/40 font-semibold">
-                  Assunto
+                  {t("form.subject_label")}
                 </label>
                 <input
                   type="text"
                   name="subject"
-                  placeholder="Sobre o que você quer conversar?"
+                  placeholder={t("form.subject_placeholder") as string}
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   required
@@ -123,11 +124,11 @@ export function SectionContact() {
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-[11px] uppercase tracking-widest text-white/40 font-semibold">
-                  Mensagem
+                  {t("form.message_label")}
                 </label>
                 <textarea
                   name="message"
-                  placeholder="Descreva seu projeto ou deixe seu telefone para um contato mais rápido."
+                  placeholder={t("form.message_placeholder") as string}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
@@ -139,7 +140,7 @@ export function SectionContact() {
                 type="submit"
                 className="mt-1 w-full h-10 rounded-lg bg-gradient-to-r from-amber to-gold text-black text-sm font-bold tracking-wide hover:opacity-90 hover:scale-[1.01] transition-all duration-200"
               >
-                Enviar mensagem →
+                {t("form.submit")}
               </button>
             </form>
           </div>

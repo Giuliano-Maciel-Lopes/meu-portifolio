@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# i18n generated (agregado por scripts/aggregate-i18n.ts)
+/public/locales
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

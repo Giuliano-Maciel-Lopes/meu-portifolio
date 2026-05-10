@@ -1,0 +1,79 @@
+{
+  "title": "Personal",
+  "title_highlight": "Projects",
+  "subtitle": "Click on a project to see more details",
+  "github_link": "See all projects on GitHub",
+  "private_badge": "Private",
+  "private_project": "Private Project",
+  "view_details": "View details",
+  "modal": {
+    "technologies": "Technologies",
+    "features_title": "Features",
+    "differential_title": "Differentiator",
+    "view_site": "View project",
+    "view_video": "Watch video"
+  },
+  "items": [
+    {
+      "name": "Fut7 Championship",
+      "short_description": "Full Stack platform to manage 7-a-side football tournaments with teams, groups, real-time results, and Stripe checkout.",
+      "description": "Complete platform to manage 7-a-side football tournaments from start to finish. Each player can have their own team, organize groups, manage captains, and track the full tournament progress in real time.",
+      "features": [
+        "Teams and groups organized by tournament",
+        "Captain, photo, and player registration",
+        "Real-time goal and result tracking",
+        "Dynamic standings table",
+        "Invitations and participation management",
+        "Secure checkout and sign-ups via Stripe",
+        "Full admin dashboard",
+        "Reports by team, player, and tournament",
+        "REST API for external integration"
+      ],
+      "differential": "Complete experience for players, teams, and administrators, with a robust backend and maximum performance."
+    },
+    {
+      "name": "Bakery E-commerce",
+      "short_description": "Full Stack e-commerce for a bakery with inventory management, Stripe payments, delivery tracking, and automated reports.",
+      "description": "Complete online sales platform for a bakery, with manageable products, photos, and stock. Delivery system with tracking and automated report generation via Cron Jobs.",
+      "features": [
+        "Product catalog with photos and stock control",
+        "Secure payments via Stripe",
+        "Delivery system with courier tracking",
+        "Automated reports: daily, weekly, monthly, and annual",
+        "Full admin dashboard",
+        "Featured product management to boost conversion",
+        "Complete order history"
+      ],
+      "differential": "Complete shopping experience with automated report generation and real-time delivery tracking."
+    },
+    {
+      "name": "Fitness Equipment AI Customer Service",
+      "short_description": "Intelligent sales assistant via WhatsApp with multilingual support, audio, and automated customer service for fitness equipment.",
+      "description": "Intelligent sales assistant integrated with WhatsApp for fitness equipment. Responds automatically in multiple languages using its own database for contextualized answers.",
+      "features": [
+        "Automated customer service via WhatsApp",
+        "Database-driven responses",
+        "Multilingual support",
+        "Audio sending and receiving (speech-to-text and text-to-speech)",
+        "Automated service with human fallback",
+        "Integration with Chatwoot, WAHA, and n8n via webhooks"
+      ],
+      "differential": "The system replaces a large portion of human customer service, maintaining efficiency and operational scale."
+    },
+    {
+      "name": "Mass Messaging & Conversion Dashboards",
+      "short_description": "Automated mass campaign tool via WhatsApp with tag segmentation, Meta API, and metrics dashboard (CAC, ROI, conversion).",
+      "description": "Mass campaign automation system focused on conversion via WhatsApp. Integration with the Official Meta API and a full dashboard for result analysis.",
+      "features": [
+        "Mass message campaigns via WhatsApp",
+        "Tag-based segmentation",
+        "Campaign automation via n8n",
+        "Integration with Official Meta API (WhatsApp)",
+        "Dashboard with performance metrics",
+        "Conversion, CAC, and ROI analysis per campaign",
+        "10+ campaigns run"
+      ],
+      "differential": "Enables full funnel analysis and real-time data-driven decision making."
+    }
+  ]
+}

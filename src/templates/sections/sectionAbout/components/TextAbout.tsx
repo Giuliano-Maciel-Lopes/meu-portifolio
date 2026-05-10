@@ -1,23 +1,16 @@
 import { motion } from "framer-motion";
 import { fadeInFromLeft } from "@/styles/animaçoes/animaçoes";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
+import { useTranslation } from "react-i18next";
 
-const highlights = [
-  { value: "+20", label: "Projetos entregues" },
-  { value: "FS", label: "Front + Back-end" },
-  { value: "IA", label: "Automações reais" },
-];
-
-const bullets = [
-  "Atuo no mercado como desenvolvedor Full Stack",
-  "Front-end moderno e Back-end robusto",
-  "Automações com IA — n8n, WhatsApp API e disparos",
-  "Arquitetura limpa, SOLID e código que escala",
- 
-];
+type Highlight = { value: string; label: string };
 
 export function TextContentAbout() {
   const { isAnimationEnabled } = useAnimationEnabled();
+  const { t } = useTranslation("about");
+
+  const bullets = t("bullets", { returnObjects: true }) as string[];
+  const highlights = t("highlights", { returnObjects: true }) as Highlight[];
 
   return (
     <motion.div
@@ -31,10 +24,10 @@ export function TextContentAbout() {
       <div className="flex flex-col gap-1">
         <span className="flex items-center gap-2 text-[11px] uppercase tracking-widest text-white/40 font-semibold">
           <span className="w-5 h-[1px] bg-amber/50 inline-block" />
-          Quem sou eu
+          {t("who_label")}
         </span>
         <h2 className="text-white text-2xl font-bold mt-1">
-          olá, sou{" "}
+          {t("greeting")}{" "}
           <span className="bg-gradient-to-r from-amber to-gold bg-clip-text text-transparent">
             Giuliano
           </span>
@@ -42,10 +35,7 @@ export function TextContentAbout() {
       </div>
 
       <p className="text-gray-400 text-base leading-relaxed">
-        Desenvolvedor Full Stack atuando no mercado com foco em automações com IA,
-        arquitetura de software e desenvolvimento web completo. Gosto de resolver
-        problemas reais — do banco de dados à interface, com código limpo,
-        bem estruturado e que faz sentido para quem usa.
+        {t("description")}
       </p>
 
       <ul className="flex flex-col gap-2">

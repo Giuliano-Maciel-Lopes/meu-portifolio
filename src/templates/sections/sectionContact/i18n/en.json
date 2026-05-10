@@ -1,0 +1,17 @@
+{
+  "title": "Let's",
+  "title_highlight": "work together",
+  "subtitle": "I'll reply as soon as possible",
+  "description": "Have a project in mind or want to talk about an opportunity? Send me a message — I reply fast.",
+  "form": {
+    "name_label": "Name",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "email_placeholder": "your@email.com",
+    "subject_label": "Subject",
+    "subject_placeholder": "What do you want to talk about?",
+    "message_label": "Message",
+    "message_placeholder": "Describe your project or leave your phone number for a quicker response.",
+    "submit": "Send message →"
+  }
+}
