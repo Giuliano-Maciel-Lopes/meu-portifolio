@@ -23,6 +23,8 @@ Portfólio pessoal de Giuliano Maciel — Desenvolvedor Full Stack. Single-page 
 | Merge de classes | clsx + tailwind-merge via `cn()` | — |
 | Ícones | react-icons + lucide-react | ^5.5.0 / ^0.552.0 |
 | Markdown | react-markdown + rehype-raw | ^10.1.0 / ^7.0.0 |
+| i18n | next-i18next + react-i18next | — |
+| Bandeiras | country-flag-icons | — |
 | Formulário | formsubmit.co (HTML nativo, sem JS) | — |
 | Deploy | Vercel (https://giulianomaciel.vercel.app) | — |
 
@@ -37,6 +39,19 @@ meu-portifolio/
 │   ├── giulianoo.pdf              # Currículo para download
 │   ├── certificado.png            # Imagem de certificado padrão
 │   ├── pratique.png / padaria.png # Fotos de projetos
+│   ├── locales/                   # Arquivos de tradução (next-i18next)
+│   │   ├── pt-BR/                 # Português Brasil (default)
+│   │   │   ├── nav.json
+│   │   │   ├── hero.json
+│   │   │   ├── about.json
+│   │   │   ├── skills.json
+│   │   │   ├── experience.json
+│   │   │   ├── projects.json
+│   │   │   ├── contact.json
+│   │   │   └── whatsapp.json
+│   │   ├── en/                    # Inglês
+│   │   ├── es/                    # Espanhol
+│   │   └── pt-PT/                 # Português Portugal
 │   └── models/                    # Modelo 3D do planeta Venus
 │       ├── jupiter.obj
 │       ├── jupiter.mtl
@@ -70,6 +85,8 @@ meu-portifolio/
 │   │       │   └── utils/projects.ts   # Array de projetos
 │   │       └── sectionContact/
 │   │           └── sectionContact.tsx
+│   ├── i18n/
+│   │   └── instance.ts            # Instância singleton do i18next (usada pelo _app.tsx)
 │   ├── components/
 │   │   ├── layout/
 │   │   │   ├── index.tsx          # export function Layout
@@ -77,6 +94,8 @@ meu-portifolio/
 │   │   │       ├── header.tsx     # export function Header
 │   │   │       ├── nav/navheader.tsx
 │   │   │       └── menu/menu.tsx  # Mobile menu
+│   │   ├── LanguageSwitcher/
+│   │   │   └── LanguageSwitcher.tsx  # Dropdown de troca de idioma com bandeiras
 │   │   ├── ActiveLink/
 │   │   │   ├── activelink.tsx     # ActiveLinkContent
 │   │   │   ├── activelink-border.tsx
@@ -101,7 +120,8 @@ meu-portifolio/
 │       └── settings.local.json
 ├── tailwind.config.ts
 ├── tsconfig.json                  # paths: "@/*" → "./src/*"
-├── next.config.ts                 # reactStrictMode: true (mínimo)
+├── next.config.ts                 # reactStrictMode + i18n routing (locales: pt-BR/en/es/pt-PT)
+├── next-i18next.config.js         # Configuração do next-i18next (namespaces, localePath)
 ├── components.json                # shadcn config (style: new-york, rsc: false)
 ├── eslint.config.mjs
 └── postcss.config.mjs
@@ -286,6 +306,49 @@ O Button em `src/components/ui/button.tsx` tem variantes configuradas com CVA. U
 - `size`: `default`, `sm`, `lg`, `icon`
 - `asChild`: usa `Slot` do Radix para polimorfismo (ex: `<Button asChild><a href="...">`)
 
+### Internacionalização (i18n)
+
+O projeto usa **`next-i18next`** + **`react-i18next`** com o sistema de i18n nativo do Next.js.
+
+**4 locales:** `pt-BR` (default), `en`, `es`, `pt-PT`
+
+**9 namespaces** (um arquivo por seção): `nav`, `hero`, `about`, `skills`, `experience`, `projects`, `contact`, `whatsapp`
+
+**Arquivos de tradução:** `public/locales/{locale}/{namespace}.json`
+
+**Como usar traduções em componentes:**
+
+```tsx
+import { useTranslation } from "react-i18next";
+
+export function LeftContent() {
+  const { t } = useTranslation("hero");  // namespace = nome do arquivo JSON
+
+  return <span>{t("developer_label")}</span>;
+}
+```
+
+Para arrays de strings, usar `t("key", { returnObjects: true }) as string[]`.
+
+**Como adicionar texto novo:**
+
+1. Adicionar a chave em todos os 4 arquivos do namespace (`pt-BR`, `en`, `es`, `pt-PT`)
+2. Usar `t("chave")` no componente — nunca string hardcoded em português
+
+**`getStaticProps` é obrigatório** em toda página que usa tradução — já configurado em `src/pages/index.tsx`:
+
+```ts
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? "pt-BR", [
+      "hero", "about", "skills", "experience", "projects", "contact", "whatsapp", "nav",
+    ])),
+  },
+});
+```
+
+**Troca de idioma:** `LanguageSwitcher` em `src/components/LanguageSwitcher/LanguageSwitcher.tsx` — usa `router.push` com `{ locale }` para navegar e `country-flag-icons` para as bandeiras. Já integrado no header.
+
 ---
 
 ## Comandos Essenciais
@@ -314,7 +377,7 @@ npm run lint      # ESLint
 
 5. **Nunca criar API routes** (`src/pages/api/`). O portfólio não tem backend. O formulário de contato usa `formsubmit.co` diretamente via `action` HTML.
 
-6. **Nunca usar `getServerSideProps` ou `getStaticProps`.** Todas as páginas são estáticas e não buscam dados externos em build time. Todo conteúdo vem dos arrays em `utils/`.
+6. **Nunca usar `getServerSideProps`.** O portfólio é estático. `getStaticProps` é permitido e **obrigatório** na `index.tsx` para carregar as traduções via `serverSideTranslations`. Não adicionar `getStaticProps` em outras páginas sem necessidade real.
 
 7. **Nunca instalar novas bibliotecas de ícones.** O projeto já tem `react-icons` (FaXxx, SiXxx, BsXxx) e `lucide-react`. Verificar se o ícone existe nessas libs antes de instalar qualquer coisa.
 
@@ -336,10 +399,13 @@ npm run lint      # ESLint
 
 6. **Checar se a animação será mostrada em mobile** — se sim, ela precisa passar pelo hook `useAnimationEnabled()`.
 
+7. **Qualquer novo texto visível ao usuário deve ser traduzido.** Adicionar a chave nos 4 arquivos de locale (`pt-BR`, `en`, `es`, `pt-PT`) no namespace correspondente à seção, e usar `t("chave")` no componente.
+
 ---
 
 ## MODIFICAÇOES 
-todo modificaçoes novas add aqui para contexto 
+
+- **Multilanguagem (i18n):** sistema `next-i18next` + `react-i18next` com 4 locales (`pt-BR`, `en`, `es`, `pt-PT`) e 9 namespaces. Arquivos de tradução em `public/locales/`. `LanguageSwitcher` com bandeiras no header. `getStaticProps` na `index.tsx` carrega todas as traduções via `serverSideTranslations`.
 
 ## Contexto de Portfólio
 
