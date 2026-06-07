@@ -6,6 +6,8 @@
   "private_badge": "Private",
   "private_project": "Private Project",
   "view_details": "View details",
+  "portfolio_label": "Portfolio",
+  "delivered_label": "projects delivered",
   "modal": {
     "technologies": "Technologies",
     "features_title": "Features",
@@ -14,6 +16,28 @@
     "view_video": "Watch video"
   },
   "items": [
+    {
+      "name": "Pet Adoption",
+      "short_description": "REST API built with NestJS, DDD, and Clean Architecture to manage the complete pet adoption lifecycle, with secure authentication, Domain Events, and extensive automated test coverage.",
+      "description": "Backend developed with a focus on scalability, code quality, and enterprise architecture. The application follows Domain-Driven Design (DDD) and Clean Architecture principles, keeping the domain fully decoupled from infrastructure. It includes JWT RS256 authentication via HTTP-Only Cookies, policy-based authorization, Domain Events for business rule communication, and a robust automated testing strategy.",
+      "features": [
+        "Shelter unit registration and management",
+        "Pet management with image upload via Multer",
+        "Complete adoption flow with multiple statuses",
+        "Candidate system with policy-driven business validations",
+        "JWT RS256 authentication via HTTP-Only Cookies",
+        "Role-based authorization (ADMIN and ADOPTER)",
+        "Policy Runner for centralized authorization rules",
+        "Domain Events for traceability and business rule decoupling",
+        "Typed environment variable validation using Zod",
+        "Decoupled repositories through contracts and interfaces",
+        "95 automated unit tests",
+        "91 automated End-to-End (E2E) tests",
+        "Isolated database schema for safe E2E test execution",
+        "Architecture designed for long-term scalability and maintainability"
+      ],
+      "differential": "Project built using strategic and tactical DDD, Clean Architecture, and Domain Events, keeping business rules independent of NestJS, Prisma, or any infrastructure technology. Features 95 unit tests and 91 E2E automated tests, ensuring high reliability and ease of evolution."
+    },
     {
       "name": "Fut7 Championship",
       "short_description": "Full Stack platform to manage 7-a-side football tournaments with teams, groups, real-time results, and Stripe checkout.",

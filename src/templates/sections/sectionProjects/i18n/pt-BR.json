@@ -6,6 +6,8 @@
   "private_badge": "Privado",
   "private_project": "Projeto Privado",
   "view_details": "Ver detalhes",
+  "portfolio_label": "Portfólio",
+  "delivered_label": "projetos entregues",
   "modal": {
     "technologies": "Tecnologias",
     "features_title": "Funcionalidades",
@@ -14,6 +16,28 @@
     "view_video": "Ver vídeo"
   },
   "items": [
+    {
+      "name": "Adoção de Pets",
+      "short_description": "API REST construída com NestJS, DDD e Clean Architecture para gerenciar o ciclo completo de adoção de pets, com autenticação segura, Domain Events e ampla cobertura de testes automatizados.",
+      "description": "Backend desenvolvido com foco em escalabilidade, qualidade de código e arquitetura empresarial. A aplicação segue os princípios de Domain-Driven Design (DDD) e Clean Architecture, mantendo o domínio totalmente desacoplado da infraestrutura. Possui autenticação JWT RS256 via Cookies HTTP-Only, autorização baseada em policies, Domain Events para comunicação entre regras de negócio e uma estratégia robusta de testes automatizados.",
+      "features": [
+        "Cadastro e gestão de unidades de abrigo",
+        "Gerenciamento de pets com upload de imagens utilizando Multer",
+        "Fluxo completo de adoção com múltiplos status",
+        "Sistema de candidatos com validações de negócio por policies",
+        "Autenticação JWT RS256 utilizando Cookies HTTP-Only",
+        "Autorização baseada em roles (ADMIN e ADOPTER)",
+        "Policy Runner para centralização das regras de autorização",
+        "Domain Events para rastreabilidade e desacoplamento de regras de negócio",
+        "Validação tipada de variáveis de ambiente utilizando Zod",
+        "Repositories desacoplados através de contratos e interfaces",
+        "95 testes unitários automatizados",
+        "91 testes End-to-End (E2E) automatizados",
+        "Banco de dados isolado por schema para execução segura dos testes E2E",
+        "Arquitetura preparada para escalabilidade e manutenção de longo prazo"
+      ],
+      "differential": "Projeto desenvolvido utilizando DDD estratégico e tático, Clean Architecture e Domain Events, mantendo as regras de negócio independentes de NestJS, Prisma ou qualquer tecnologia de infraestrutura. Possui 95 testes unitários e 91 testes E2E automatizados, garantindo alta confiabilidade e facilidade de evolução."
+    },
     {
       "name": "Campeonato Fut7",
       "short_description": "Plataforma Full Stack para gerenciar campeonatos de futebol society com times, grupos, resultados em tempo real e checkout via Stripe.",

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Image from "next/image";
-import { FaLock, FaArrowRight } from "react-icons/fa";
+import { FaLock, FaArrowRight, FaStar } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 import type { MergedProject } from "../sectionProjects";
@@ -134,6 +134,12 @@ export function BannerProjects({ project, onClick, hero = false }: ProjectProps)
           >
             {categoryLabel}
           </span>
+          {project.featured && !hero && (
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2.5 py-[3px] rounded-full text-black font-inter" style={{ background: "#FFC857" }}>
+              <FaStar className="w-2.5 h-2.5" />
+              Destaque
+            </span>
+          )}
         </div>
         {project.isPrivate && (
           <span className="absolute top-3 right-3 z-[4] inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2.5 py-[3px] rounded-full text-white/70 bg-black/60 border border-white/10">

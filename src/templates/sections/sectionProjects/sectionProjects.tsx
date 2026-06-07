@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
+import { deriveCategoryLabel } from "./utils/projectTheme";
+import { cn } from "@/lib/utils";
 
 type StaticProject = (typeof projects)[number];
 
@@ -17,19 +19,25 @@ type TranslatedProjectItem = {
   differential: string;
 };
 
-export type MergedProject = Omit<
-  StaticProject,
-  "nameProject" | "shortDescription" | "description" | "features" | "differential"
-> & {
+export type MergedProject = StaticProject & {
   nameProject: string;
   shortDescription: string;
   description: string;
-  features?: string[];
-  differential?: string;
+  features: string[];
+  differential: string;
 };
+
+const FILTERS = [
+  { key: "all", label: "Todos", color: "#D4A373" },
+  { key: "Full Stack", label: "Full Stack", color: "#FFC857" },
+  { key: "Front-end", label: "Front-end", color: "#4FA9E8" },
+  { key: "Back-end", label: "Back-end", color: "#46C98A" },
+  { key: "Automações", label: "Automações", color: "#B07CE8" },
+];
 
 export function SectionProjects() {
   const [selected, setSelected] = useState<MergedProject | null>(null);
+  const [activeFilter, setActiveFilter] = useState<string>("all");
   const { t } = useTranslation("projects");
   const { isAnimationEnabled } = useAnimationEnabled();
 
@@ -37,19 +45,34 @@ export function SectionProjects() {
 
   const mergedProjects: MergedProject[] = projects.map((p, i) => {
     const ti = translatedItems[i];
-    if (!ti) return p;
     return {
       ...p,
-      nameProject: ti.name,
-      shortDescription: ti.short_description,
-      description: ti.description,
-      features: ti.features,
-      differential: ti.differential,
+      nameProject: ti?.name ?? "",
+      shortDescription: ti?.short_description ?? "",
+      description: ti?.description ?? "",
+      features: ti?.features ?? [],
+      differential: ti?.differential ?? "",
     };
   });
 
-  const hero = mergedProjects.find((p) => !!p.img) ?? null;
-  const rest = mergedProjects.filter((p) => p !== hero);
+  const heroProject = mergedProjects.find((p) => p.featured);
+  const hero = heroProject ?? mergedProjects.find((p) => !!p.img) ?? null;
+
+  const showHero = activeFilter === "all";
+  const featuredProjects = mergedProjects.filter((p) => p.featured);
+
+  const gridProjects = showHero
+    ? mergedProjects.filter((p) => !p.featured)
+    : [
+        ...featuredProjects,
+        ...mergedProjects.filter((p) => !p.featured && deriveCategoryLabel(p.stack) === activeFilter),
+      ];
+
+  const countFor = (key: string) =>
+    key === "all"
+      ? mergedProjects.length
+      : mergedProjects.filter((p) => deriveCategoryLabel(p.stack) === key).length;
+
 
   return (
     <section id="projects" className="scroll-mt-24 relative overflow-hidden bg-background py-20">
@@ -105,9 +128,40 @@ export function SectionProjects() {
           </div>
         </header>
 
+        {/* filtros de categoria */}
+        <div className="flex justify-center">
+          <div className="flex items-center gap-1 bg-white/[0.04] border border-white/10 rounded-full p-1 flex-wrap justify-center">
+            {FILTERS.map((f) => {
+              const count = countFor(f.key);
+              const isActive = activeFilter === f.key;
+              return (
+                <button
+                  key={f.key}
+                  onClick={() => setActiveFilter(f.key)}
+                  className={cn(
+                    "flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap",
+                    isActive ? "text-[#0B0B0B]" : "text-white/40 hover:text-white/70"
+                  )}
+                  style={isActive ? { background: f.color } : undefined}
+                >
+                  {f.label}
+                  <span
+                    className={cn(
+                      "text-xs font-bold leading-none",
+                      isActive ? "text-[#0B0B0B]" : "text-white/20"
+                    )}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {/* grid */}
         <div className="flex flex-col gap-5">
-          {hero && (
+          {showHero && hero && (
             <motion.div
               initial={isAnimationEnabled ? { opacity: 0, y: 24 } : undefined}
               whileInView={isAnimationEnabled ? { opacity: 1, y: 0 } : undefined}
@@ -118,20 +172,29 @@ export function SectionProjects() {
             </motion.div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {rest.map((project, index) => (
-              <motion.div
-                key={project.nameProject}
-                className="h-full"
-                initial={isAnimationEnabled ? { opacity: 0, y: 24 } : undefined}
-                whileInView={isAnimationEnabled ? { opacity: 1, y: 0 } : undefined}
-                viewport={isAnimationEnabled ? { once: true, amount: 0.05 } : undefined}
-                transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
-              >
-                <BannerProjects project={project} onClick={() => setSelected(project)} />
-              </motion.div>
-            ))}
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeFilter}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              {gridProjects.map((project, index) => (
+                <motion.div
+                  key={project.nameProject}
+                  className="h-full"
+                  initial={isAnimationEnabled ? { opacity: 0, y: 24 } : undefined}
+                  whileInView={isAnimationEnabled ? { opacity: 1, y: 0 } : undefined}
+                  viewport={isAnimationEnabled ? { once: true, amount: 0.05 } : undefined}
+                  transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+                >
+                  <BannerProjects project={project} onClick={() => setSelected(project)} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* link github */}

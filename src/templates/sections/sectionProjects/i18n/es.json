@@ -6,6 +6,8 @@
   "private_badge": "Privado",
   "private_project": "Proyecto Privado",
   "view_details": "Ver detalles",
+  "portfolio_label": "Portafolio",
+  "delivered_label": "proyectos entregados",
   "modal": {
     "technologies": "Tecnologías",
     "features_title": "Funcionalidades",
@@ -15,9 +17,31 @@
   },
   "items": [
     {
+      "name": "Adopción de Mascotas",
+      "short_description": "API REST construida con NestJS, DDD y Clean Architecture para gestionar el ciclo completo de adopción de mascotas, con autenticación segura, Domain Events y amplia cobertura de pruebas automatizadas.",
+      "description": "Backend desarrollado con foco en escalabilidad, calidad de código y arquitectura empresarial. La aplicación sigue los principios de DDD y Clean Architecture, manteniendo el dominio totalmente desacoplado de la infraestructura.",
+      "features": [
+        "Registro y gestión de unidades de albergue",
+        "Gestión de mascotas con carga de imágenes usando Multer",
+        "Flujo completo de adopción con múltiples estados",
+        "Sistema de candidatos con validaciones de negocio por policies",
+        "Autenticación JWT RS256 utilizando Cookies HTTP-Only",
+        "Autorización basada en roles (ADMIN y ADOPTER)",
+        "Policy Runner para centralización de reglas de autorización",
+        "Domain Events para trazabilidad y desacoplamiento de reglas de negocio",
+        "Validación tipada de variables de entorno utilizando Zod",
+        "Repositorios desacoplados a través de contratos e interfaces",
+        "95 pruebas unitarias automatizadas",
+        "91 pruebas End-to-End (E2E) automatizadas",
+        "Base de datos aislada por schema para ejecución segura de pruebas E2E",
+        "Arquitectura preparada para escalabilidad y mantenimiento a largo plazo"
+      ],
+      "differential": "Proyecto desarrollado utilizando DDD estratégico y táctico, Clean Architecture y Domain Events, manteniendo las reglas de negocio independientes de NestJS, Prisma o cualquier tecnología de infraestructura."
+    },
+    {
       "name": "Campeonato Fut7",
       "short_description": "Plataforma Full Stack para gestionar campeonatos de fútbol 7 con equipos, grupos, resultados en tiempo real y checkout vía Stripe.",
-      "description": "Plataforma completa para gestionar campeonatos de fútbol 7 de principio a fin. Cada jugador puede tener su propio equipo, organizar grupos, gestionar capitanes y seguir toda la evolución del campeonato en tiempo real.",
+      "description": "Plataforma completa para gestionar campeonatos de fútbol 7 de principio a fin.",
       "features": [
         "Equipos y grupos organizados por campeonato",
         "Registro de capitanes, fotos y jugadores",
@@ -34,7 +58,7 @@
     {
       "name": "E-commerce de Panadería",
       "short_description": "E-commerce Full Stack para panadería con gestión de inventario, pagos vía Stripe, seguimiento de entregas e informes automatizados.",
-      "description": "Plataforma de ventas online completa para panadería, con productos, fotos e inventario gestionables. Sistema de entregas con seguimiento y automatización de informes vía Cron Jobs.",
+      "description": "Plataforma de ventas online completa para panadería, con productos, fotos e inventario gestionables.",
       "features": [
         "Catálogo de productos con fotos y control de inventario",
         "Pagos seguros vía Stripe",
@@ -49,7 +73,7 @@
     {
       "name": "IA de Atención para Equipos de Fitness",
       "short_description": "Asistente de ventas inteligente vía WhatsApp con soporte multilingüe, audio y automatización de atención para equipos de fitness.",
-      "description": "Asistente de ventas inteligente integrado con WhatsApp para equipos de fitness. Responde automáticamente en múltiples idiomas utilizando su propia base de datos para respuestas contextualizadas.",
+      "description": "Asistente de ventas inteligente integrado con WhatsApp para equipos de fitness.",
       "features": [
         "Atención automática vía WhatsApp",
         "Respuestas basadas en base de datos",
@@ -62,8 +86,8 @@
     },
     {
       "name": "Envío Masivo y Dashboards de Conversión",
-      "short_description": "Automatización de campañas masivas vía WhatsApp con segmentación por etiquetas, API de Meta y dashboard de métricas (CAC, ROI, conversión).",
-      "description": "Sistema de automatización de campañas masivas enfocado en conversión vía WhatsApp. Integración con la API Oficial de Meta y dashboard completo para análisis de resultados.",
+      "short_description": "Automatización de campañas masivas vía WhatsApp con segmentación por etiquetas, API de Meta y dashboard de métricas.",
+      "description": "Sistema de automatización de campañas masivas enfocado en conversión vía WhatsApp.",
       "features": [
         "Envío masivo de mensajes vía WhatsApp",
         "Segmentación por etiquetas",
