@@ -7,7 +7,7 @@ import { fadeInFromBottom } from "@/styles/animaçoes/animaçoes";
 import { useTranslation } from "react-i18next";
 
 export function SectionSkills() {
-  const [categorySelected, setCategorySelected] = useState<string | null>("Front-end");
+  const [categorySelected, setCategorySelected] = useState<string | null>("Back-end");
   const { isAnimationEnabled } = useAnimationEnabled();
   const { t } = useTranslation("skills");
 

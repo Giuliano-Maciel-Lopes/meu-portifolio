@@ -19,6 +19,7 @@ import {
   SiNodedotjs,
   SiExpress,
   SiFastify,
+  SiNestjs,
   SiPostgresql,
   SiMysql,
   SiSqlite,
@@ -35,8 +36,8 @@ import {
 
 
 export const categorys = [
-  "Front-end",
   "Back-end",
+  "Front-end",
   "DevOps",
   "Bancos de Dados",
   "Princípios e Linguagens",
@@ -44,14 +45,18 @@ export const categorys = [
 ];
 
 export const skills = [
-  //  PRINCÍPIOS E LINGUAGENS
-  { category: "Princípios e Linguagens", name: "JavaScript", img: SiJavascript, color: "#F7DF1E", description: "Linguagem base moderna." },
-  { category: "Princípios e Linguagens", name: "TypeScript", img: SiTypescript, color: "#3178C6", description: "Tipagem estática e segurança." },
-  { category: "Princípios e Linguagens", name: "SOLID", img: SiJavascript, color: "#F7DF1E", description: "Código modular e sustentável." },
-  { category: "Princípios e Linguagens", name: "TDD e DDD", img: SiVitest, color: "#3B82F6", description: "Desenvolvimento guiado por testes." },
-  { category: "Princípios e Linguagens", name: "Testes", img: SiTestinglibrary, color: "#E34C26", description: "Testes unitários e E2E." },
-  { category: "Princípios e Linguagens", name: "Clean Code", img: SiJavascript, color: "#F7DF1E", description: "Legibilidade, simplicidade e boas práticas." },
-  { category: "Princípios e Linguagens", name: "PHP Básico", img: SiPhp, color: "#8892BE", description: "Introdução a PHP." }, // ADICIONADO
+  //  BACK-END
+  { category: "Back-end", name: "NestJS", img: SiNestjs, color: "#E0234E", description: "Framework Node.js para aplicações escaláveis e modulares." },
+  { category: "Back-end", name: "DDD", img: SiNodedotjs, color: "#3C873A", description: "Arquitetura orientada a domínios." },
+  { category: "Back-end", name: "Docker", img: SiDocker, color: "#2496ED", description: "Containerização de aplicações." },
+  { category: "Back-end", name: "Clean Architecture", img: SiNodedotjs, color: "#3C873A", description: "Separação de responsabilidades e independência de frameworks." },
+  { category: "Back-end", name: "Testes", img: SiTestinglibrary, color: "#E34C26", description: "Testes unitários e E2E." },
+  { category: "Back-end", name: "SOLID", img: SiJavascript, color: "#F7DF1E", description: "Princípios de código limpo e modular." },
+  { category: "Back-end", name: "Node.js", img: SiNodedotjs, color: "#3C873A", description: "Ambiente backend JavaScript." },
+  { category: "Back-end", name: "Express", img: SiExpress, color: "#000000", description: "Framework rápido para APIs REST." },
+  { category: "Back-end", name: "Fastify", img: SiFastify, color: "#20232A", description: "APIs de alta performance." },
+  { category: "Back-end", name: "JWT Auth", img: SiNodedotjs, color: "#3C873A", description: "Autenticação segura com tokens HTTP-only." },
+  { category: "Back-end", name: "TDD", img: SiVitest, color: "#3B82F6", description: "Desenvolvimento guiado por testes." },
 
   //  FRONT-END
   { category: "Front-end", name: "React", img: SiReact, color: "#61DAFB", description: "Componentização, hooks e SPA." },
@@ -64,17 +69,15 @@ export const skills = [
   { category: "Front-end", name: "React Query", img: SiReact, color: "#FF4154", description: "Gerenciamento de dados assíncronos." },
   { category: "Front-end", name: "React Hook Form", img: SiReact, color: "#FF8C00", description: "Formulários com validação simplificada." },
 
-  //  BACK-END
-  { category: "Back-end", name: "Node.js", img: SiNodedotjs, color: "#3C873A", description: "Ambiente backend JavaScript." },
-  { category: "Back-end", name: "Express", img: SiExpress, color: "#000000", description: "Framework rápido para APIs REST." },
-  { category: "Back-end", name: "Fastify", img: SiFastify, color: "#20232A", description: "APIs de alta performance." },
-  { category: "Back-end", name: "Docker", img: SiDocker, color: "#2496ED", description: "Containerização de aplicações." },
-  { category: "Back-end", name: "DDD", img: SiNodedotjs, color: "#3C873A", description: "Arquitetura orientada a domínios." },
-  { category: "Back-end", name: "JWT Auth", img: SiNodedotjs, color: "#3C873A", description: "Autenticação segura com tokens HTTP-only." },
-  { category: "Back-end", name: "SOLID", img: SiJavascript, color: "#F7DF1E", description: "Princípios de código limpo e modular." },
-  { category: "Back-end", name: "TDD", img: SiVitest, color: "#3B82F6", description: "Desenvolvimento guiado por testes." },
-  { category: "Back-end", name: "Testes", img: SiTestinglibrary, color: "#E34C26", description: "Testes unitários e E2E." },
-  // ADICIONADO
+  //  PRINCÍPIOS E LINGUAGENS
+  { category: "Princípios e Linguagens", name: "JavaScript", img: SiJavascript, color: "#F7DF1E", description: "Linguagem base moderna." },
+  { category: "Princípios e Linguagens", name: "TypeScript", img: SiTypescript, color: "#3178C6", description: "Tipagem estática e segurança." },
+  { category: "Princípios e Linguagens", name: "SOLID", img: SiJavascript, color: "#F7DF1E", description: "Código modular e sustentável." },
+  { category: "Princípios e Linguagens", name: "TDD e DDD", img: SiVitest, color: "#3B82F6", description: "Desenvolvimento guiado por testes." },
+  { category: "Princípios e Linguagens", name: "Testes", img: SiTestinglibrary, color: "#E34C26", description: "Testes unitários e E2E." },
+  { category: "Princípios e Linguagens", name: "Clean Code", img: SiJavascript, color: "#F7DF1E", description: "Legibilidade, simplicidade e boas práticas." },
+  { category: "Princípios e Linguagens", name: "Clean Architecture", img: SiJavascript, color: "#F7DF1E", description: "Separação de responsabilidades e independência de frameworks." },
+  { category: "Princípios e Linguagens", name: "PHP Básico", img: SiPhp, color: "#8892BE", description: "Introdução a PHP." },
 
   //  BANCO DE DADOS
   { category: "Bancos de Dados", name: "PostgreSQL", img: SiPostgresql, color: "#336791", description: "Banco relacional poderoso e performático." },
