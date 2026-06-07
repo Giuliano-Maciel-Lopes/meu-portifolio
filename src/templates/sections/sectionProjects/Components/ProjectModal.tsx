@@ -3,6 +3,7 @@ import { FaGithub, FaPlay, FaExternalLinkAlt, FaTimes, FaLock } from "react-icon
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import type { MergedProject } from "../sectionProjects";
+import { deriveAccent, deriveCategoryLabel } from "../utils/projectTheme";
 
 type Props = {
   project: MergedProject;
@@ -11,134 +12,142 @@ type Props = {
 
 export function ProjectModal({ project, onClose }: Props) {
   const { t } = useTranslation("projects");
+  const accent = deriveAccent(project.stack);
+  const categoryLabel = deriveCategoryLabel(project.stack);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", handleKey);
-    return () => document.removeEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
   }, [onClose]);
 
   const hasLinks = project.linkdGitHub || project.linkdVideo || project.linkSite;
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ background: "rgba(0,0,0,0.82)", backdropFilter: "blur(8px)" }}
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl bg-[#0d0d0d] border border-white/10 rounded-2xl shadow-[0_32px_100px_rgba(0,0,0,0.9)] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
+        className="relative w-full flex flex-col overflow-hidden"
+        style={{
+          maxWidth: "760px",
+          maxHeight: "90vh",
+          background: "#0b0b0b",
+          border: `1px solid ${accent}40`,
+          borderRadius: "22px",
+          boxShadow: `0 40px 120px rgba(0,0,0,0.8), 0 0 60px -20px ${accent}55`,
+        }}
       >
+        {/* botão fechar */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-7 h-7 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/40 hover:text-white hover:border-white/25 transition-all"
+          aria-label="Fechar"
+          className="absolute top-3.5 right-3.5 z-20 w-8 h-8 grid place-items-center rounded-full text-white/60 hover:text-white transition-colors"
+          style={{ background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,.14)" }}
         >
-          <FaTimes className="w-3 h-3" />
+          <FaTimes className="w-3.5 h-3.5" />
         </button>
 
-        <div className="w-full h-[180px] overflow-hidden relative">
+        {/* header com imagem */}
+        <div className="relative h-[200px] shrink-0 overflow-hidden bg-[#0a0a0a]">
           {project.img ? (
             <Image
               src={project.img}
               alt={project.nameProject}
-              width={900}
-              height={180}
+              width={760}
+              height={200}
               className="w-full h-full object-cover"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 flex flex-col items-center justify-center gap-2">
-              <FaLock className="w-6 h-6 text-white/10" />
-              <span className="text-white/15 text-[11px] tracking-widest uppercase font-medium">
+            <div
+              className="w-full h-full flex flex-col items-center justify-center gap-2"
+              style={{
+                background:
+                  "repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 14px, rgba(255,255,255,0) 14px 28px), #101010",
+              }}
+            >
+              <FaLock className="w-5 h-5" style={{ color: `${accent}44` }} />
+              <span
+                className="text-[11px] tracking-widest uppercase font-medium"
+                style={{ color: `${accent}66` }}
+              >
                 {t("private_project")}
               </span>
             </div>
           )}
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0d0d0d] to-transparent" />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-0 -mt-4">
-          <div className="px-6 pb-6 pt-2 border-r border-white/5 flex flex-col gap-5">
-            <div>
-              <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-2.5">
-                {t("modal.technologies")}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-[11px] border border-white/10 bg-white/[0.04] rounded-full px-2.5 py-0.5 text-gray-400"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {hasLinks && (
-              <div className="flex flex-col gap-2 mt-auto">
-                {project.linkSite && (
-                  <a
-                    href={project.linkSite}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 text-xs bg-amber/90 hover:bg-amber text-black font-bold px-3 py-2 rounded-lg transition-colors"
-                  >
-                    <FaExternalLinkAlt className="w-3 h-3" />
-                    {t("modal.view_site")}
-                  </a>
-                )}
-                {project.linkdGitHub && (
-                  <a
-                    href={project.linkdGitHub}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 text-xs border border-white/15 hover:border-gold/50 text-white/60 hover:text-amber px-3 py-2 rounded-lg transition-colors"
-                  >
-                    <FaGithub className="w-3.5 h-3.5" /> GitHub
-                  </a>
-                )}
-                {project.linkdVideo && (
-                  <a
-                    href={project.linkdVideo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 text-xs bg-blue-700/70 hover:bg-blue-600 text-white px-3 py-2 rounded-lg border border-blue-500/20 transition-colors"
-                  >
-                    <FaPlay className="w-3 h-3" />
-                    {t("modal.view_video")}
-                  </a>
-                )}
-              </div>
+          {/* gradiente overlay */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(to top, #0b0b0b 4%, ${accent}1A 70%)`,
+            }}
+          />
+          {/* badges */}
+          <div className="absolute left-6 bottom-4 right-14 flex items-center gap-2 flex-wrap">
+            <span
+              className="text-[11px] font-bold uppercase tracking-[.09em] px-3 py-1 rounded-full text-black font-inter"
+              style={{ background: accent }}
+            >
+              {categoryLabel}
+            </span>
+            {project.isPrivate && (
+              <span
+                className="inline-flex items-center gap-1 text-[11px] text-white/80 px-2.5 py-1 rounded-full border border-white/10"
+                style={{ background: "rgba(0,0,0,0.5)" }}
+              >
+                <FaLock className="w-2.5 h-2.5" />
+                {t("private_badge")}
+              </span>
             )}
           </div>
+        </div>
 
-          <div className="px-6 pb-6 pt-3 flex flex-col gap-4 max-h-[420px] overflow-y-auto custom-scrollbar">
-            <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="text-lg font-bold tracking-tight text-textPrimary mb-0 leading-tight">
-                {project.nameProject}
-              </h3>
-              {project.isPrivate && (
-                <span className="flex items-center gap-1 bg-zinc-800/90 text-white/50 text-[10px] font-bold px-2.5 py-0.5 rounded-full tracking-wide uppercase shrink-0">
-                  <FaLock className="w-2 h-2" /> {t("private_badge")}
-                </span>
-              )}
-            </div>
+        {/* corpo com scroll */}
+        <div className="overflow-y-auto custom-scrollbar flex flex-col gap-5 p-6 pb-7">
+          <h3
+            className="mb-0 leading-tight"
+            style={{
+              fontSize: "23px",
+              fontWeight: 700,
+              color: "#f0f0f0",
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            {project.nameProject}
+          </h3>
 
-            <p className="text-gray-400 text-sm leading-relaxed mb-0">
-              {project.description}
-            </p>
+          <p className="mb-0" style={{ color: "#a6a6a6", fontSize: "14.5px", lineHeight: 1.6 }}>
+            {project.description}
+          </p>
 
+          <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-5">
             {project.features && project.features.length > 0 && (
               <div>
-                <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-2.5">
+                <p
+                  className="text-[10.5px] uppercase tracking-[.14em] font-bold mb-2.5"
+                  style={{ color: "#6a6a6a" }}
+                >
                   {t("modal.features_title")}
                 </p>
-                <ul className="space-y-1.5">
+                <ul className="flex flex-col gap-2">
                   {project.features.map((f, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
-                      <span className="text-amber shrink-0 mt-0.5 text-xs">▸</span>
+                    <li
+                      key={i}
+                      className="flex gap-2 text-[13.5px] leading-[1.45]"
+                      style={{ color: "#a8a8a8" }}
+                    >
+                      <span className="shrink-0 mt-0.5 text-xs" style={{ color: accent }}>
+                        ▸
+                      </span>
                       {f}
                     </li>
                   ))}
@@ -146,17 +155,91 @@ export function ProjectModal({ project, onClose }: Props) {
               </div>
             )}
 
-            {project.differential && (
-              <div className="border-l-2 border-gold/30 pl-3 py-0.5">
-                <p className="text-[10px] uppercase tracking-widest text-white/30 mb-1">
-                  {t("modal.differential_title")}
-                </p>
-                <p className="text-sm text-gray-300 mb-0 leading-relaxed">
-                  {project.differential}
-                </p>
+            <div>
+              <p
+                className="text-[10.5px] uppercase tracking-[.14em] font-bold mb-2.5"
+                style={{ color: "#6a6a6a" }}
+              >
+                {t("modal.technologies")}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {project.stack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-[11px] rounded-full px-2.5 py-[2px]"
+                    style={{
+                      border: `1px solid ${accent}55`,
+                      background: `${accent}18`,
+                      color: `${accent}DD`,
+                    }}
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
-            )}
+            </div>
           </div>
+
+          {project.differential && (
+            <div className="py-0.5 pl-3.5" style={{ borderLeft: `2px solid ${accent}` }}>
+              <p
+                className="text-[10.5px] uppercase tracking-[.14em] mb-1.5 font-bold"
+                style={{ color: "#6a6a6a" }}
+              >
+                {t("modal.differential_title")}
+              </p>
+              <p className="text-[14px] mb-0 leading-[1.55]" style={{ color: "#cfcfcf" }}>
+                {project.differential}
+              </p>
+            </div>
+          )}
+
+          {hasLinks ? (
+            <div className="flex flex-wrap gap-2.5 pt-1">
+              {project.linkSite && (
+                <a
+                  href={project.linkSite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[13px] font-bold px-4 py-2 rounded-[10px] text-black no-underline"
+                  style={{ background: accent }}
+                >
+                  <FaExternalLinkAlt className="w-3 h-3" />
+                  {t("modal.view_site")}
+                </a>
+              )}
+              {project.linkdVideo && (
+                <a
+                  href={project.linkdVideo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[13px] font-semibold px-4 py-2 rounded-[10px] text-white/80 no-underline border border-white/15"
+                  style={{ background: "rgba(255,255,255,.03)" }}
+                >
+                  <FaPlay className="w-3 h-3" />
+                  {t("modal.view_video")}
+                </a>
+              )}
+              {project.linkdGitHub && (
+                <a
+                  href={project.linkdGitHub}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[13px] font-semibold px-4 py-2 rounded-[10px] text-white/80 no-underline border border-white/15"
+                  style={{ background: "rgba(255,255,255,.03)" }}
+                >
+                  <FaGithub className="w-3.5 h-3.5" />
+                  GitHub
+                </a>
+              )}
+            </div>
+          ) : (
+            <p className="text-[12.5px] italic mb-0" style={{ color: "#6a6a6a" }}>
+              {project.isPrivate
+                ? "Projeto privado — sem links públicos."
+                : "Em breve."}
+            </p>
+          )}
         </div>
       </div>
     </div>
