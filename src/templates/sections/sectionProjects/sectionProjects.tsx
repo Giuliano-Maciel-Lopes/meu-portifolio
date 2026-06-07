@@ -5,7 +5,6 @@ import { ProjectModal } from "./Components/ProjectModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import { BlackHoleEntrance } from "@/components/BlackHoleEntrance";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 
 type StaticProject = (typeof projects)[number];
@@ -54,6 +53,13 @@ export function SectionProjects() {
 
   return (
     <section id="projects" className="scroll-mt-24 relative overflow-hidden bg-background py-20">
+      {/* sombra de entrada no topo */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
+        style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.55), transparent)" }}
+      />
+
       {/* aurora de fundo */}
       <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
         <div
@@ -72,7 +78,7 @@ export function SectionProjects() {
         />
       </div>
 
-      <BlackHoleEntrance className="container flex flex-col gap-10">
+      <div className="container flex flex-col gap-10 relative z-20">
         {/* cabeçalho */}
         <header className="text-center flex flex-col items-center gap-3">
           <h3 className="text-center">
@@ -103,10 +109,10 @@ export function SectionProjects() {
         <div className="flex flex-col gap-5">
           {hero && (
             <motion.div
-              initial={isAnimationEnabled ? { opacity: 0, y: 20 } : undefined}
+              initial={isAnimationEnabled ? { opacity: 0, y: 24 } : undefined}
               whileInView={isAnimationEnabled ? { opacity: 1, y: 0 } : undefined}
-              viewport={isAnimationEnabled ? { once: true, amount: 0.15 } : undefined}
-              transition={{ duration: 0.55, ease: "easeOut" }}
+              viewport={isAnimationEnabled ? { once: true, amount: 0.1 } : undefined}
+              transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <BannerProjects project={hero} hero onClick={() => setSelected(hero)} />
             </motion.div>
@@ -117,10 +123,10 @@ export function SectionProjects() {
               <motion.div
                 key={project.nameProject}
                 className="h-full"
-                initial={isAnimationEnabled ? { opacity: 0, y: 20, scale: 0.985 } : undefined}
-                whileInView={isAnimationEnabled ? { opacity: 1, y: 0, scale: 1 } : undefined}
-                viewport={isAnimationEnabled ? { once: true, amount: 0.1 } : undefined}
-                transition={{ duration: 0.5, delay: index * 0.055, ease: "easeOut" }}
+                initial={isAnimationEnabled ? { opacity: 0, y: 24 } : undefined}
+                whileInView={isAnimationEnabled ? { opacity: 1, y: 0 } : undefined}
+                viewport={isAnimationEnabled ? { once: true, amount: 0.05 } : undefined}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
               >
                 <BannerProjects project={project} onClick={() => setSelected(project)} />
               </motion.div>
@@ -141,7 +147,7 @@ export function SectionProjects() {
             <span className="group-hover:translate-x-1 transition-transform duration-200 inline-block">→</span>
           </a>
         </div>
-      </BlackHoleEntrance>
+      </div>
 
       <AnimatePresence>
         {selected && (

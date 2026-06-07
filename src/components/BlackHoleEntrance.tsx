@@ -11,6 +11,7 @@ export function BlackHoleEntrance({ children, className }: Props) {
 
   return (
     <motion.div
+      key={String(isAnimationEnabled)}
       className={className}
       initial={isAnimationEnabled ? { opacity: 0, scale: 0.88, filter: "blur(18px)", y: 50 } : undefined}
       whileInView={isAnimationEnabled ? { opacity: 1, scale: 1, filter: "blur(0px)", y: 0 } : undefined}

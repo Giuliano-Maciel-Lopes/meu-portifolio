@@ -30,16 +30,14 @@ export function SectionHero() {
 </div>
 
      
-      <motion.div
-        className="absolute top-0 left-0 w-[300px] h-[300px] rounded-full z-10"
+      <div
+        className="hidden md:block absolute top-0 left-0 w-[300px] h-[300px] rounded-full z-10 pointer-events-none"
         style={{
           background:
             "radial-gradient(circle, #ffd700, #bfa058, transparent 70%)",
           filter: "blur(120px)",
           opacity: 0.4,
         }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
       />
 
       <div className="container flex md:flex-row flex-col gap-8 relative z-20">

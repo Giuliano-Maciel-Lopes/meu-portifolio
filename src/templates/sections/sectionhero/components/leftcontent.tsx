@@ -31,9 +31,9 @@ export function LeftContent() {
 
         <motion.div
           className="h-[5px] bg-yellow-500 mt-4 rounded-full"
-          initial={{ width: 0 }}
+          initial={{ width: isAnimationEnabled ? 0 : "170px" }}
           animate={{ width: "170px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={isAnimationEnabled ? { duration: 0.8, ease: "easeOut" } : { duration: 0 }}
         />
       </div>
 

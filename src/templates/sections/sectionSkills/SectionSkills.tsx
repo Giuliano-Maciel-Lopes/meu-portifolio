@@ -25,10 +25,11 @@ export function SectionSkills() {
   return (
     <section id="skills" className="flex bg-background py-20 scroll-mt-24">
       <motion.div
+        key={String(isAnimationEnabled)}
         className="container flex flex-col items-center"
         initial={isAnimationEnabled ? "hidden" : undefined}
         whileInView={isAnimationEnabled ? "visible" : undefined}
-        viewport={isAnimationEnabled ? { once: false, amount: 0.4 } : undefined}
+        viewport={isAnimationEnabled ? { once: false, amount: 0.15 } : undefined}
         variants={isAnimationEnabled ? fadeInFromBottom : undefined}
       >
         <h3 className="text-center">{t("title")}</h3>

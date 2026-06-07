@@ -70,7 +70,7 @@ export function SectionExperience() {
         </div>
 
         {categorySelected === "experiencias" && (
-          <div className="flex flex-col gap-5">
+          <div key={String(isAnimationEnabled)} className="flex flex-col gap-5">
             {mergedExp.map((exp, index) => (
               <motion.div
                 key={index}
