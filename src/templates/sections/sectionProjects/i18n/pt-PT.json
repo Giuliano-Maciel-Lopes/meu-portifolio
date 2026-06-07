@@ -98,6 +98,40 @@
         "+ de 10 envios"
       ],
       "differential": "Permite análise completa do funil de campanhas e tomada de decisão baseada em dados em tempo real."
+    },
+    {
+      "name": "Portfólio Dev",
+      "short_description": "Portfólio pessoal construído com Next.js, Three.js e Framer Motion — cena 3D, animações fluidas, internacionalização em 4 idiomas e design totalmente responsivo.",
+      "description": "Portfólio desenvolvido para apresentar projectos, competências e experiência profissional de forma impactante. Conta com cena 3D renderizada em WebGL via React Three Fiber, animações com Framer Motion, internacionalização para 4 idiomas e componentes UI com shadcn/ui e Tailwind CSS.",
+      "features": [
+        "Cena 3D com modelo do planeta Vénus via React Three Fiber",
+        "Animações fluidas com Framer Motion, desactivadas em mobile",
+        "Internacionalização completa em 4 idiomas",
+        "Design responsivo com Tailwind CSS",
+        "Componentes UI com shadcn/ui e Radix UI",
+        "SEO com meta tags, Open Graph, Twitter Card e JSON-LD",
+        "Cabeçalho fixo com navegação suave por âncoras",
+        "Secções: Hero, Sobre, Skills, Experiência, Projectos e Contacto"
+      ],
+      "differential": "Projecto que é simultaneamente montra e código de produção — cada detalhe foi pensado para demonstrar domínio de performance, animações, arquitectura front-end e experiência do utilizador."
+    },
+    {
+      "name": "Concept Club Landing Page",
+      "short_description": "Landing page premium desenvolvida para um ginásio de alto padrão, com foco na experiência do utilizador, identidade visual sofisticada e implementação fiel ao design proposto.",
+      "description": "Projecto Front-End desenvolvido para a Concept Club, um ginásio premium localizado no Píer Oporto, em Santa Catarina. A proposta foi criar uma experiência digital alinhada com o posicionamento da marca, transmitindo exclusividade, sofisticação e alto padrão visual. Seguindo um direcionamento de design previamente definido, foi desenvolvida uma landing page moderna, elegante e minimalista, priorizando usabilidade, performance e consistência visual.",
+      "features": [
+        "Landing page institucional de alto padrão",
+        "Layout responsivo para desktop, tablet e mobile",
+        "Experiência visual alinhada ao público premium",
+        "Implementação fiel ao design proposto",
+        "Componentização da interface",
+        "Animações subtis para melhorar a experiência do utilizador",
+        "Optimização de performance e carregamento",
+        "Navegação intuitiva com foco na usabilidade",
+        "Design clean e minimalista",
+        "Fluxo de contacto integrado à jornada do utilizador"
+      ],
+      "differential": "Projecto focado na construção de uma experiência digital premium, priorizando identidade visual, usabilidade e consistência de marca. O principal desafio foi transformar um conceito de exclusividade e sofisticação numa interface elegante, responsiva e alinhada ao posicionamento do ginásio."
     }
   ]
 }

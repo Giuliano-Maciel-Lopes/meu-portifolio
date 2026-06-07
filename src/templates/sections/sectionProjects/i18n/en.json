@@ -98,6 +98,40 @@
         "10+ campaigns run"
       ],
       "differential": "Enables full funnel analysis and real-time data-driven decision making."
+    },
+    {
+      "name": "Dev Portfolio",
+      "short_description": "Personal portfolio built with Next.js, Three.js, and Framer Motion — 3D scene, fluid animations, 4-language i18n, and fully responsive design.",
+      "description": "Portfolio developed to showcase projects, skills, and professional experience in an impactful way. Features a 3D scene rendered in WebGL via React Three Fiber, Framer Motion animations, full internationalization in 4 languages (PT-BR, EN, ES, PT-PT), and UI components built with shadcn/ui and Tailwind CSS.",
+      "features": [
+        "3D scene with Venus planet model via React Three Fiber",
+        "Fluid animations with Framer Motion, disabled on mobile",
+        "Full internationalization in 4 languages",
+        "Responsive design with Tailwind CSS",
+        "UI components with shadcn/ui and Radix UI",
+        "SEO with meta tags, Open Graph, Twitter Card, and JSON-LD",
+        "Fixed header with smooth anchor navigation",
+        "Sections: Hero, About, Skills, Experience, Projects, and Contact"
+      ],
+      "differential": "A project that is both a showcase and production-quality code — every detail was crafted to demonstrate mastery of performance, animations, front-end architecture, and user experience."
+    },
+    {
+      "name": "Concept Club Landing Page",
+      "short_description": "Premium landing page developed for a high-end gym, focused on user experience, sophisticated visual identity, and faithful implementation of the proposed design.",
+      "description": "Front-End project developed for Concept Club, a premium gym located at Píer Oporto in Santa Catarina. The goal was to create a digital experience aligned with the brand's positioning, conveying exclusivity, sophistication, and premium visual standards. Following a predefined design direction, a modern, elegant, and minimalist landing page was built, prioritizing usability, performance, and visual consistency.",
+      "features": [
+        "High-end institutional landing page",
+        "Responsive layout for desktop, tablet, and mobile",
+        "Visual experience aligned with the premium audience",
+        "Faithful implementation of the proposed design",
+        "Interface componentization",
+        "Subtle animations to enhance user experience",
+        "Performance and loading optimization",
+        "Intuitive navigation with a focus on usability",
+        "Clean and minimalist design",
+        "Contact flow integrated into the user journey"
+      ],
+      "differential": "Project focused on building a premium digital experience, prioritizing visual identity, usability, and brand consistency. The main challenge was translating a concept of exclusivity and sophistication into an elegant, responsive interface aligned with the gym's positioning."
     }
   ]
 }
