@@ -17,6 +17,7 @@
   },
   "items": [
     {
+      "key": "pets",
       "name": "Adoção de Pets",
       "short_description": "API REST construída com NestJS, DDD e Clean Architecture para gerenciar o ciclo completo de adoção de pets, com autenticação segura, Domain Events e ampla cobertura de testes automatizados.",
       "description": "Backend desenvolvido com foco em escalabilidade, qualidade de código e arquitetura empresarial. A aplicação segue os princípios de Domain-Driven Design (DDD) e Clean Architecture, mantendo o domínio totalmente desacoplado da infraestrutura. Possui autenticação JWT RS256 via Cookies HTTP-Only, autorização baseada em policies, Domain Events para comunicação entre regras de negócio e uma estratégia robusta de testes automatizados.",
@@ -39,6 +40,27 @@
       "differential": "Projeto desenvolvido utilizando DDD estratégico e tático, Clean Architecture e Domain Events, mantendo as regras de negócio independentes de NestJS, Prisma ou qualquer tecnologia de infraestrutura. Possui 95 testes unitários e 91 testes E2E automatizados, garantindo alta confiabilidade e facilidade de evolução."
     },
     {
+      "key": "pratique",
+      "name": "Pratique Fitness",
+      "short_description": "Plataforma Fullstack multinacional para rede com 170+ academias — web e aplicativo mobile (iOS e Android), múltiplos idiomas e países, IA de atendimento integrada e dashboards.",
+      "description": "Entrei no projeto em andamento e atuo desde outubro de 2025 em uma plataforma enterprise real, utilizada por uma rede multinacional de 170+ academias. O sistema roda tanto na web quanto no aplicativo mobile (iOS e Android), com suporte a múltiplos idiomas e países. Minha atuação envolveu novas rotas de API, novas páginas, refatorações, manutenção geral e contribuições técnicas em praticamente todas as áreas, incluindo a criação de chats de IA de atendimento dentro do próprio app.",
+      "features": [
+        "Rede multinacional com 170+ academias",
+        "Web e aplicativo mobile (iOS e Android)",
+        "Múltiplos idiomas e países",
+        "IA de atendimento com chat em quase todas as abas do app",
+        "Módulo de treino e suporte a professores",
+        "Gamificação: pontos e recompensas por check-in e treinos",
+        "Sistema de afiliados com links rastreáveis",
+        "Checkout e pagamentos",
+        "Novas rotas de API, páginas e refatorações",
+        "Dashboards de métricas e performance",
+        "Manutenção geral da plataforma"
+      ],
+      "differential": "Projeto enterprise multinacional em produção contínua, com 170+ academias ativas. Atuo desde outubro de 2025 sobre uma base de código existente, com contribuições técnicas em praticamente todas as áreas do app — desde treino e gamificação até IA de atendimento e dashboards."
+    },
+    {
+      "key": "fut7",
       "name": "Campeonato Fut7",
       "short_description": "Plataforma Full Stack para gerenciar campeonatos de futebol society com times, grupos, resultados em tempo real e checkout via Stripe.",
       "description": "Plataforma completa para gerenciar campeonatos de futebol society do início ao fim. Cada jogador pode ter seu próprio time, organizar grupos, gerenciar capitães e acompanhar toda a evolução do campeonato em tempo real.",
@@ -56,6 +78,7 @@
       "differential": "Experiência completa para jogadores, times e administradores, com backend robusto e performance máxima."
     },
     {
+      "key": "padaria",
       "name": "E-commerce de Padaria",
       "short_description": "E-commerce Full Stack para padaria com gestão de estoque, pagamentos via Stripe, rastreamento de entregas e relatórios automatizados.",
       "description": "Plataforma de vendas online completa para padaria, com produtos, fotos e estoque gerenciáveis. Sistema de entregas com rastreamento e automação de relatórios via Cron Jobs.",
@@ -71,6 +94,7 @@
       "differential": "Experiência de compra completa com automação de relatórios e rastreamento de entregas em tempo real."
     },
     {
+      "key": "ia-atendimento",
       "name": "IA de Atendimento de Equipamentos Fitness",
       "short_description": "Assistente de vendas inteligente via WhatsApp com suporte multilíngue, áudio e automação de atendimento para equipamentos fitness.",
       "description": "Assistente de vendas inteligente integrado ao WhatsApp para equipamentos fitness. Responde automaticamente em múltiplos idiomas utilizando base de dados própria para respostas contextualizadas.",
@@ -85,6 +109,7 @@
       "differential": "Sistema substitui grande parte do atendimento humano, mantendo eficiência e escala operacional."
     },
     {
+      "key": "disparos",
       "name": "Disparos de Mensagens e Dashboards de Conversão",
       "short_description": "Automação de campanhas em massa via WhatsApp com segmentação por tags, API da Meta e dashboard de métricas (CAC, ROI, conversão).",
       "description": "Sistema de automação de campanhas em massa com foco em conversão via WhatsApp. Integração com a API Oficial da Meta e dashboard completo para análise de resultados.",
@@ -100,6 +125,7 @@
       "differential": "Permite análise completa do funil de campanhas e tomada de decisão baseada em dados em tempo real."
     },
     {
+      "key": "portfolio",
       "name": "Portfólio Dev",
       "short_description": "Portfólio pessoal construído com Next.js, Three.js e Framer Motion — cena 3D, animações fluidas, internacionalização em 4 idiomas e design totalmente responsivo.",
       "description": "Portfólio desenvolvido para apresentar projetos, habilidades e experiência profissional de forma impactante. Conta com cena 3D renderizada em WebGL via React Three Fiber, animações com Framer Motion, internacionalização para 4 idiomas (PT-BR, EN, ES, PT-PT) e componentes UI construídos com shadcn/ui e Tailwind CSS.",
@@ -116,6 +142,7 @@
       "differential": "Projeto que é ao mesmo tempo vitrine e código de produção — cada detalhe foi pensado para demonstrar domínio de performance, animações, arquitetura front-end e experiência do usuário."
     },
     {
+      "key": "concept-club",
       "name": "Concept Club Landing Page",
       "short_description": "Landing page premium desenvolvida para uma academia de alto padrão, com foco em experiência do usuário, identidade visual sofisticada e implementação fiel ao design proposto.",
       "description": "Projeto Front-End desenvolvido para a Concept Club, uma academia premium localizada no Píer Oporto, em Santa Catarina. A proposta foi criar uma experiência digital alinhada ao posicionamento da marca, transmitindo exclusividade, sofisticação e alto padrão visual. Seguindo um direcionamento de design previamente definido, desenvolvi uma landing page moderna, elegante e minimalista, priorizando usabilidade, performance e consistência visual.",

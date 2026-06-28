@@ -1,7 +1,23 @@
-export const projects = [
+export type ProjectCategory = "Full Stack" | "Front-end" | "Back-end" | "Automações";
+
+type ProjectData = {
+  id: string;
+  featured: boolean;
+  category: ProjectCategory;
+  imgs: string[];
+  isPrivate: boolean;
+  stack: string[];
+  linkdVideo: string | undefined;
+  linkdGitHub: string | undefined;
+  linkSite: string | undefined;
+};
+
+export const projects: ProjectData[] = [
   {
+    id: "pets",
     featured: true,
-    img: "/pets.png",
+    category: "Back-end",
+    imgs: ["/pets.png"],
     isPrivate: false,
     stack: [
       "NestJS",
@@ -24,8 +40,35 @@ export const projects = [
     linkSite: undefined,
   },
   {
+    id: "pratique",
+    featured: true,
+    category: "Full Stack",
+    imgs: ["/pratique/paginical.png", "/pratique/chat_pratique.png", "/pratique/game_pratique.png", "/pratique/logopratique.svg"],
+    isPrivate: false,
+    stack: [
+      "Fullstack",
+      "Next.js",
+      "Prisma",
+      "MySQL",
+      "JavaScript",
+      "TypeScript",
+      "PHP",
+      "Redux",
+      "Chatwoot",
+      "IA de Atendimento",
+      "BigQuery",
+      "n8n",
+      "Docker",
+    ],
+    linkdVideo: undefined,
+    linkdGitHub: undefined,
+    linkSite: "https://app.pratiqueemcasa.com.br/",
+  },
+  {
+    id: "fut7",
     featured: false,
-    img: "/fut.png",
+    category: "Full Stack",
+    imgs: ["/fut.png"],
     isPrivate: false,
     stack: [
       "Fullstack",
@@ -47,8 +90,10 @@ export const projects = [
     linkSite: undefined,
   },
   {
+    id: "padaria",
     featured: false,
-    img: "/padaria.png",
+    category: "Full Stack",
+    imgs: ["/padaria.png"],
     isPrivate: false,
     stack: [
       "Fullstack",
@@ -69,8 +114,10 @@ export const projects = [
     linkSite: undefined,
   },
   {
+    id: "ia-atendimento",
     featured: false,
-    img: "/project_ia.png",
+    category: "Automações",
+    imgs: ["/project_ia.png"],
     isPrivate: true,
     stack: [
       "n8n",
@@ -87,8 +134,10 @@ export const projects = [
     linkSite: undefined,
   },
   {
+    id: "disparos",
     featured: false,
-    img: "/project_disparo.png",
+    category: "Automações",
+    imgs: ["/project_disparo.png"],
     isPrivate: true,
     stack: [
       "n8n",
@@ -102,8 +151,10 @@ export const projects = [
     linkSite: undefined,
   },
   {
+    id: "portfolio",
     featured: false,
-    img: "/Captura de tela 2026-06-07 010715.png",
+    category: "Front-end",
+    imgs: ["/Logo Giuliano.png"],
     isPrivate: false,
     stack: [
       "Next.js",
@@ -121,8 +172,10 @@ export const projects = [
     linkSite: "https://giulianomaciel.vercel.app/",
   },
   {
+    id: "concept-club",
     featured: false,
-    img: "/concept-club.png",
+    category: "Front-end",
+    imgs: ["/concept-club.png"],
     isPrivate: true,
     stack: [
       "React",

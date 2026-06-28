@@ -12,8 +12,8 @@ export function Sections() {
         <SectionHero/>
         <SectionAbout/>
         <SectionSkills/>
-        <SectionExperience/>
         <SectionProjects/>
+        <SectionExperience/>
         <SectionContact/>
         <WhatsAppButton/>
     </div>

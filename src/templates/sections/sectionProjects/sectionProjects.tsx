@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { projects } from "./utils/projects";
+import type { ProjectCategory } from "./utils/projects";
 import { BannerProjects } from "./Components/bannerProjects";
 import { ProjectModal } from "./Components/ProjectModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
-import { deriveCategoryLabel } from "./utils/projectTheme";
 import { cn } from "@/lib/utils";
 
 type StaticProject = (typeof projects)[number];
 
 type TranslatedProjectItem = {
+  key: string;
   name: string;
   short_description: string;
   description: string;
@@ -27,24 +28,30 @@ export type MergedProject = StaticProject & {
   differential: string;
 };
 
+const CATEGORY_COLOR: Record<ProjectCategory, string> = {
+  "Full Stack": "#FFC857",
+  "Front-end": "#4FA9E8",
+  "Back-end": "#46C98A",
+  "Automações": "#B07CE8",
+};
+
+const CATEGORY_ORDER: ProjectCategory[] = ["Full Stack", "Front-end", "Back-end", "Automações"];
+
 const FILTERS = [
-  { key: "all", label: "Todos", color: "#D4A373" },
-  { key: "Full Stack", label: "Full Stack", color: "#FFC857" },
-  { key: "Front-end", label: "Front-end", color: "#4FA9E8" },
-  { key: "Back-end", label: "Back-end", color: "#46C98A" },
-  { key: "Automações", label: "Automações", color: "#B07CE8" },
+  { key: "all" as const, label: "Todos", color: "#D4A373" },
+  ...CATEGORY_ORDER.map((cat) => ({ key: cat, label: cat, color: CATEGORY_COLOR[cat] })),
 ];
 
 export function SectionProjects() {
   const [selected, setSelected] = useState<MergedProject | null>(null);
-  const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [activeFilter, setActiveFilter] = useState<"all" | ProjectCategory>("all");
   const { t } = useTranslation("projects");
   const { isAnimationEnabled } = useAnimationEnabled();
 
   const translatedItems = t("items", { returnObjects: true }) as TranslatedProjectItem[];
 
-  const mergedProjects: MergedProject[] = projects.map((p, i) => {
-    const ti = translatedItems[i];
+  const mergedProjects: MergedProject[] = projects.map((p) => {
+    const ti = translatedItems.find((item) => item.key === p.id);
     return {
       ...p,
       nameProject: ti?.name ?? "",
@@ -55,23 +62,39 @@ export function SectionProjects() {
     };
   });
 
-  const heroProject = mergedProjects.find((p) => p.featured);
-  const hero = heroProject ?? mergedProjects.find((p) => !!p.img) ?? null;
+  const DESKTOP_LIMIT = 7;
+  const MOBILE_LIMIT = 4;
 
+  const [showAll, setShowAll] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    setShowAll(false);
+  }, [activeFilter]);
+
+  const hero = mergedProjects[0] ?? null;
   const showHero = activeFilter === "all";
-  const featuredProjects = mergedProjects.filter((p) => p.featured);
 
-  const gridProjects = showHero
-    ? mergedProjects.filter((p) => !p.featured)
-    : [
-        ...featuredProjects,
-        ...mergedProjects.filter((p) => !p.featured && deriveCategoryLabel(p.stack) === activeFilter),
-      ];
+  const allGridProjects = showHero
+    ? mergedProjects.slice(1)
+    : mergedProjects.filter((p) => p.category === activeFilter);
 
-  const countFor = (key: string) =>
+  const limit = isMobile ? MOBILE_LIMIT : DESKTOP_LIMIT;
+  const gridLimit = showHero ? limit - 1 : limit;
+  const gridProjects = showAll ? allGridProjects : allGridProjects.slice(0, gridLimit);
+  const hasMore = !showAll && allGridProjects.length > gridProjects.length;
+
+  const countFor = (key: "all" | ProjectCategory) =>
     key === "all"
       ? mergedProjects.length
-      : mergedProjects.filter((p) => deriveCategoryLabel(p.stack) === key).length;
+      : mergedProjects.filter((p) => p.category === key).length;
 
 
   return (
@@ -196,6 +219,21 @@ export function SectionProjects() {
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* ver mais / ver menos */}
+        {(hasMore || showAll) && (
+          <div className="flex justify-center">
+            <button
+              onClick={() => setShowAll((prev) => !prev)}
+              className="flex items-center gap-2 text-sm text-textSecondary hover:text-amber transition-all duration-200 group border border-white/10 hover:border-amber/30 px-6 py-2.5 rounded-full"
+            >
+              {showAll ? "Ver menos" : "Ver mais projetos"}
+              <span className={`transition-transform duration-200 inline-block ${showAll ? "group-hover:-translate-y-0.5" : "group-hover:translate-y-0.5"}`}>
+                {showAll ? "↑" : "↓"}
+              </span>
+            </button>
+          </div>
+        )}
 
         {/* link github */}
         <div className="flex justify-center">

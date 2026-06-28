@@ -17,6 +17,7 @@
   },
   "items": [
     {
+      "key": "pets",
       "name": "Pet Adoption",
       "short_description": "REST API built with NestJS, DDD, and Clean Architecture to manage the complete pet adoption lifecycle, with secure authentication, Domain Events, and extensive automated test coverage.",
       "description": "Backend developed with a focus on scalability, code quality, and enterprise architecture. The application follows Domain-Driven Design (DDD) and Clean Architecture principles, keeping the domain fully decoupled from infrastructure. It includes JWT RS256 authentication via HTTP-Only Cookies, policy-based authorization, Domain Events for business rule communication, and a robust automated testing strategy.",
@@ -39,6 +40,27 @@
       "differential": "Project built using strategic and tactical DDD, Clean Architecture, and Domain Events, keeping business rules independent of NestJS, Prisma, or any infrastructure technology. Features 95 unit tests and 91 E2E automated tests, ensuring high reliability and ease of evolution."
     },
     {
+      "key": "pratique",
+      "name": "Pratique Fitness",
+      "short_description": "Multinational Fullstack platform for a network of 170+ gyms — web and mobile app (iOS and Android), multiple languages and countries, integrated AI customer service, and dashboards.",
+      "description": "I joined an ongoing project and have been working since October 2025 on a real enterprise platform used by a multinational network of 170+ gyms. The system runs on both web and mobile app (iOS and Android), with support for multiple languages and countries. My contributions involved new API routes, new pages, refactoring, general maintenance, and technical work across virtually all areas, including the creation of AI chat assistants integrated throughout the app.",
+      "features": [
+        "Multinational network with 170+ gyms",
+        "Web and mobile app (iOS and Android)",
+        "Multiple languages and countries",
+        "AI customer service chat across nearly all app tabs",
+        "Training module and trainer support",
+        "Gamification: points and rewards for check-ins and workouts",
+        "Affiliate system with trackable links",
+        "Checkout and payments",
+        "New API routes, pages, and refactoring",
+        "Performance and metrics dashboards",
+        "General platform maintenance"
+      ],
+      "differential": "A live enterprise platform used by a multinational network of 170+ active gyms. I have been contributing since October 2025 to an existing codebase, with technical involvement across virtually all areas of the app — from training and gamification to AI customer service and dashboards."
+    },
+    {
+      "key": "fut7",
       "name": "Fut7 Championship",
       "short_description": "Full Stack platform to manage 7-a-side football tournaments with teams, groups, real-time results, and Stripe checkout.",
       "description": "Complete platform to manage 7-a-side football tournaments from start to finish. Each player can have their own team, organize groups, manage captains, and track the full tournament progress in real time.",
@@ -56,6 +78,7 @@
       "differential": "Complete experience for players, teams, and administrators, with a robust backend and maximum performance."
     },
     {
+      "key": "padaria",
       "name": "Bakery E-commerce",
       "short_description": "Full Stack e-commerce for a bakery with inventory management, Stripe payments, delivery tracking, and automated reports.",
       "description": "Complete online sales platform for a bakery, with manageable products, photos, and stock. Delivery system with tracking and automated report generation via Cron Jobs.",
@@ -71,6 +94,7 @@
       "differential": "Complete shopping experience with automated report generation and real-time delivery tracking."
     },
     {
+      "key": "ia-atendimento",
       "name": "Fitness Equipment AI Customer Service",
       "short_description": "Intelligent sales assistant via WhatsApp with multilingual support, audio, and automated customer service for fitness equipment.",
       "description": "Intelligent sales assistant integrated with WhatsApp for fitness equipment. Responds automatically in multiple languages using its own database for contextualized answers.",
@@ -85,6 +109,7 @@
       "differential": "The system replaces a large portion of human customer service, maintaining efficiency and operational scale."
     },
     {
+      "key": "disparos",
       "name": "Mass Messaging & Conversion Dashboards",
       "short_description": "Automated mass campaign tool via WhatsApp with tag segmentation, Meta API, and metrics dashboard (CAC, ROI, conversion).",
       "description": "Mass campaign automation system focused on conversion via WhatsApp. Integration with the Official Meta API and a full dashboard for result analysis.",
@@ -100,6 +125,7 @@
       "differential": "Enables full funnel analysis and real-time data-driven decision making."
     },
     {
+      "key": "portfolio",
       "name": "Dev Portfolio",
       "short_description": "Personal portfolio built with Next.js, Three.js, and Framer Motion — 3D scene, fluid animations, 4-language i18n, and fully responsive design.",
       "description": "Portfolio developed to showcase projects, skills, and professional experience in an impactful way. Features a 3D scene rendered in WebGL via React Three Fiber, Framer Motion animations, full internationalization in 4 languages (PT-BR, EN, ES, PT-PT), and UI components built with shadcn/ui and Tailwind CSS.",
@@ -116,6 +142,7 @@
       "differential": "A project that is both a showcase and production-quality code — every detail was crafted to demonstrate mastery of performance, animations, front-end architecture, and user experience."
     },
     {
+      "key": "concept-club",
       "name": "Concept Club Landing Page",
       "short_description": "Premium landing page developed for a high-end gym, focused on user experience, sophisticated visual identity, and faithful implementation of the proposed design.",
       "description": "Front-End project developed for Concept Club, a premium gym located at Píer Oporto in Santa Catarina. The goal was to create a digital experience aligned with the brand's positioning, conveying exclusivity, sophistication, and premium visual standards. Following a predefined design direction, a modern, elegant, and minimalist landing page was built, prioritizing usability, performance, and visual consistency.",

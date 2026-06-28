@@ -4,7 +4,7 @@ import { FaLock, FaArrowRight, FaStar } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 import type { MergedProject } from "../sectionProjects";
-import { deriveAccent, deriveCategoryLabel } from "../utils/projectTheme";
+import { deriveAccent } from "../utils/projectTheme";
 
 type ProjectProps = {
   project: MergedProject;
@@ -16,8 +16,7 @@ export function BannerProjects({ project, onClick, hero = false }: ProjectProps)
   const { t } = useTranslation("projects");
   const { isAnimationEnabled } = useAnimationEnabled();
   const cardRef = useRef<HTMLElement>(null);
-  const accent = deriveAccent(project.stack);
-  const categoryLabel = deriveCategoryLabel(project.stack);
+  const accent = deriveAccent(project.category);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     if (!isAnimationEnabled || !cardRef.current) return;
@@ -92,10 +91,10 @@ export function BannerProjects({ project, onClick, hero = false }: ProjectProps)
           hero ? "md:w-[46%] min-h-[240px] h-full" : "h-[158px]"
         }`}
       >
-        {project.img ? (
+        {project.imgs.length > 0 ? (
           <>
             <Image
-              src={project.img}
+              src={project.imgs[0]}
               alt={project.nameProject}
               width={hero ? 600 : 500}
               height={hero ? 320 : 160}
@@ -132,9 +131,9 @@ export function BannerProjects({ project, onClick, hero = false }: ProjectProps)
             className="text-[10px] font-bold uppercase tracking-wide px-2.5 py-[3px] rounded-full text-black font-inter"
             style={{ background: accent }}
           >
-            {categoryLabel}
+            {project.category}
           </span>
-          {project.featured && !hero && (
+          {project.featured && (
             <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide px-2.5 py-[3px] rounded-full text-black font-inter" style={{ background: "#FFC857" }}>
               <FaStar className="w-2.5 h-2.5" />
               Destaque

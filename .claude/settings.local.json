@@ -11,7 +11,10 @@
       "Bash(npm list *)",
       "Bash(Get-Content *)",
       "WebSearch",
-      "Bash(identify \"/c/Users/mateu/Documents/projetos pessoais/meu-portifolio/public/models/textures/venmap.jpg\")"
+      "Bash(identify \"/c/Users/mateu/Documents/projetos pessoais/meu-portifolio/public/models/textures/venmap.jpg\")",
+      "Bash(git -C \"C:\\\\Users\\\\mateu\\\\Documents\\\\projetos pessoais\\\\meu-portifolio\" remote get-url origin)",
+      "Bash(powershell -Command \"\\(Get-Content 'public\\\\locales\\\\pt-BR\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\pt-BR\\\\projects.json' -Encoding utf8\")",
+      "Bash(powershell -Command \"\\(Get-Content 'public\\\\locales\\\\en\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\en\\\\projects.json' -Encoding utf8 ; \\(Get-Content 'public\\\\locales\\\\es\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\es\\\\projects.json' -Encoding utf8 ; \\(Get-Content 'public\\\\locales\\\\pt-PT\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\pt-PT\\\\projects.json' -Encoding utf8\")"
     ]
   }
 }

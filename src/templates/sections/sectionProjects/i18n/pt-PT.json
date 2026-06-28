@@ -17,6 +17,7 @@
   },
   "items": [
     {
+      "key": "pets",
       "name": "Adoção de Animais",
       "short_description": "API REST construída com NestJS, DDD e Clean Architecture para gerir o ciclo completo de adoção de animais, com autenticação segura, Domain Events e ampla cobertura de testes automatizados.",
       "description": "Backend desenvolvido com foco em escalabilidade, qualidade de código e arquitectura empresarial. A aplicação segue os princípios de DDD e Clean Architecture, mantendo o domínio totalmente desacoplado da infraestrutura.",
@@ -39,6 +40,27 @@
       "differential": "Projecto desenvolvido utilizando DDD estratégico e táctico, Clean Architecture e Domain Events, mantendo as regras de negócio independentes de NestJS, Prisma ou qualquer tecnologia de infraestrutura."
     },
     {
+      "key": "pratique",
+      "name": "Pratique Fitness",
+      "short_description": "Plataforma Fullstack multinacional para rede com 170+ ginásios — web e aplicação móvel (iOS e Android), múltiplos idiomas e países, IA de atendimento integrada e dashboards.",
+      "description": "Entrei no projecto em curso e trabalho desde outubro de 2025 numa plataforma enterprise real, utilizada por uma rede multinacional de 170+ ginásios. O sistema funciona tanto na web como na aplicação móvel (iOS e Android), com suporte a múltiplos idiomas e países. A minha contribuição envolveu novas rotas de API, novas páginas, refactorizações, manutenção geral e contribuições técnicas em praticamente todas as áreas, incluindo a criação de chats de IA de atendimento dentro da própria app.",
+      "features": [
+        "Rede multinacional com 170+ ginásios",
+        "Web e aplicação móvel (iOS e Android)",
+        "Múltiplos idiomas e países",
+        "IA de atendimento com chat em quase todos os separadores da app",
+        "Módulo de treino e suporte a professores",
+        "Gamificação: pontos e recompensas por check-in e treinos",
+        "Sistema de afiliados com ligações rastreáveis",
+        "Checkout e pagamentos",
+        "Novas rotas de API, páginas e refactorizações",
+        "Dashboards de métricas e desempenho",
+        "Manutenção geral da plataforma"
+      ],
+      "differential": "Projecto enterprise multinacional em produção contínua, com 170+ ginásios activos. Trabalho desde outubro de 2025 sobre uma base de código existente, com contribuições técnicas em praticamente todas as áreas da app — desde treino e gamificação até IA de atendimento e dashboards."
+    },
+    {
+      "key": "fut7",
       "name": "Campeonato Fut7",
       "short_description": "Plataforma Full Stack para gerir campeonatos de futebol de 7 com equipas, grupos, resultados em tempo real e checkout via Stripe.",
       "description": "Plataforma completa para gerir campeonatos de futebol de 7 do início ao fim.",
@@ -56,6 +78,7 @@
       "differential": "Experiência completa para jogadores, equipas e administradores, com backend robusto e desempenho máximo."
     },
     {
+      "key": "padaria",
       "name": "E-commerce de Padaria",
       "short_description": "E-commerce Full Stack para padaria com gestão de stock, pagamentos via Stripe, rastreamento de entregas e relatórios automatizados.",
       "description": "Plataforma de vendas online completa para padaria, com produtos, fotos e stock geríveis.",
@@ -71,6 +94,7 @@
       "differential": "Experiência de compra completa com automatização de relatórios e rastreamento de entregas em tempo real."
     },
     {
+      "key": "ia-atendimento",
       "name": "IA de Atendimento de Equipamentos de Fitness",
       "short_description": "Assistente de vendas inteligente via WhatsApp com suporte multilíngue, áudio e automatização de atendimento para equipamentos de fitness.",
       "description": "Assistente de vendas inteligente integrado com o WhatsApp para equipamentos de fitness.",
@@ -85,6 +109,7 @@
       "differential": "O sistema substitui grande parte do atendimento humano, mantendo eficiência e escala operacional."
     },
     {
+      "key": "disparos",
       "name": "Envios em Massa e Dashboards de Conversão",
       "short_description": "Automatização de campanhas em massa via WhatsApp com segmentação por tags, API da Meta e dashboard de métricas (CAC, ROI, conversão).",
       "description": "Sistema de automatização de campanhas em massa com foco em conversão via WhatsApp.",
@@ -100,6 +125,7 @@
       "differential": "Permite análise completa do funil de campanhas e tomada de decisão baseada em dados em tempo real."
     },
     {
+      "key": "portfolio",
       "name": "Portfólio Dev",
       "short_description": "Portfólio pessoal construído com Next.js, Three.js e Framer Motion — cena 3D, animações fluidas, internacionalização em 4 idiomas e design totalmente responsivo.",
       "description": "Portfólio desenvolvido para apresentar projectos, competências e experiência profissional de forma impactante. Conta com cena 3D renderizada em WebGL via React Three Fiber, animações com Framer Motion, internacionalização para 4 idiomas e componentes UI com shadcn/ui e Tailwind CSS.",
@@ -116,9 +142,10 @@
       "differential": "Projecto que é simultaneamente montra e código de produção — cada detalhe foi pensado para demonstrar domínio de performance, animações, arquitectura front-end e experiência do utilizador."
     },
     {
+      "key": "concept-club",
       "name": "Concept Club Landing Page",
       "short_description": "Landing page premium desenvolvida para um ginásio de alto padrão, com foco na experiência do utilizador, identidade visual sofisticada e implementação fiel ao design proposto.",
-      "description": "Projecto Front-End desenvolvido para a Concept Club, um ginásio premium localizado no Píer Oporto, em Santa Catarina. A proposta foi criar uma experiência digital alinhada com o posicionamento da marca, transmitindo exclusividade, sofisticação e alto padrão visual. Seguindo um direcionamento de design previamente definido, foi desenvolvida uma landing page moderna, elegante e minimalista, priorizando usabilidade, performance e consistência visual.",
+      "description": "Projecto Front-End desenvolvido para a Concept Club, um ginásio premium localizado no Píer Oporto, em Santa Catarina. A proposta foi criar uma experiência digital alinhada com o posicionamento da marca, transmitindo exclusividade, sofisticação e alto padrão visual.",
       "features": [
         "Landing page institucional de alto padrão",
         "Layout responsivo para desktop, tablet e mobile",
@@ -131,7 +158,7 @@
         "Design clean e minimalista",
         "Fluxo de contacto integrado à jornada do utilizador"
       ],
-      "differential": "Projecto focado na construção de uma experiência digital premium, priorizando identidade visual, usabilidade e consistência de marca. O principal desafio foi transformar um conceito de exclusividade e sofisticação numa interface elegante, responsiva e alinhada ao posicionamento do ginásio."
+      "differential": "Projecto focado na construção de uma experiência digital premium, priorizando identidade visual, usabilidade e consistência de marca."
     }
   ]
 }
