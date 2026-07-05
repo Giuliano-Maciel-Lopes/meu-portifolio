@@ -39,7 +39,7 @@ meu-portifolio/
 │   ├── giulianoo.pdf              # Currículo para download
 │   ├── certificado.png            # Imagem de certificado padrão
 │   ├── pratique.png / padaria.png # Fotos de projetos
-│   ├── locales/                   # Arquivos de tradução (next-i18next)
+│   ├── locales/                   # ⚠️ GERADO — nunca editar direto (ver seção i18n abaixo)
 │   │   ├── pt-BR/                 # Português Brasil (default)
 │   │   │   ├── nav.json
 │   │   │   ├── hero.json
@@ -78,11 +78,14 @@ meu-portifolio/
 │   │       ├── sectionExperience/
 │   │       │   ├── sectionExprerience.tsx  # (typo: Exprerience)
 │   │       │   ├── components/    # boxExp, boxCerificate
-│   │       │   └── utils/expert.ts     # Arrays experienci e certificates
+│   │       │   ├── utils/expert.ts     # Arrays experienci e certificates
+│   │       │   ├── utils/duration.ts   # Calcula tempo de atuação dinamicamente (sem data de fim)
+│   │       │   └── i18n/               # ⭐ FONTE real do namespace "experience" (pt-BR/en/es/pt-PT.json)
 │   │       ├── sectionProjects/
 │   │       │   ├── sectionProjects.tsx
 │   │       │   ├── Components/    # BannerProjects, ProjectModal (C maiúsculo)
-│   │       │   └── utils/projects.ts   # Array de projetos
+│   │       │   ├── utils/projects.ts   # Array de projetos
+│   │       │   └── i18n/               # ⭐ FONTE real do namespace "projects" (pt-BR/en/es/pt-PT.json)
 │   │       └── sectionContact/
 │   │           └── sectionContact.tsx
 │   ├── i18n/
@@ -314,7 +317,13 @@ O projeto usa **`next-i18next`** + **`react-i18next`** com o sistema de i18n nat
 
 **9 namespaces** (um arquivo por seção): `nav`, `hero`, `about`, `skills`, `experience`, `projects`, `contact`, `whatsapp`
 
-**Arquivos de tradução:** `public/locales/{locale}/{namespace}.json`
+**⚠️ CRÍTICO — `public/locales/{locale}/{namespace}.json` é ARQUIVO GERADO. Nunca editar direto ali.**
+
+A fonte real das traduções fica dentro de cada seção, em `src/templates/sections/{secao}/i18n/{locale}.json` (ex: `sectionExperience/i18n/pt-BR.json`, `sectionProjects/i18n/en.json`). O script `scripts/aggregate-i18n.ts` varre `src/templates/sections/**/i18n/` e `src/components/**/i18n/`, copiando cada arquivo para `public/locales/{locale}/{namespace}.json` — o namespace é derivado do nome da pasta da seção sem o prefixo `section` (ex: `sectionProjects` → `projects`).
+
+Esse script (`npm run i18n:build`) roda **automaticamente antes de `npm run dev` e `npm run build`** (ver `package.json`). Ou seja: qualquer edição feita direto em `public/locales/` é **silenciosamente sobrescrita** na próxima vez que o dev server for reiniciado ou o projeto for buildado. `public/locales` está inclusive no `.gitignore` (`/public/locales`) exatamente por ser artefato gerado — não é rastreado pelo git.
+
+**Regra prática:** para mudar qualquer texto traduzido, edite sempre `src/templates/sections/{secao}/i18n/{locale}.json`. Se quiser ver o resultado refletido em `public/locales` sem subir o dev server, rode `npm run i18n:build` manualmente.
 
 **Como usar traduções em componentes:**
 
@@ -332,7 +341,7 @@ Para arrays de strings, usar `t("key", { returnObjects: true }) as string[]`.
 
 **Como adicionar texto novo:**
 
-1. Adicionar a chave em todos os 4 arquivos do namespace (`pt-BR`, `en`, `es`, `pt-PT`)
+1. Adicionar a chave em todos os 4 arquivos-fonte do namespace, em `src/templates/sections/{secao}/i18n/{pt-BR,en,es,pt-PT}.json` — **nunca em `public/locales/`**
 2. Usar `t("chave")` no componente — nunca string hardcoded em português
 
 **`getStaticProps` é obrigatório** em toda página que usa tradução — já configurado em `src/pages/index.tsx`:
@@ -355,10 +364,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 
 ```bash
 npm install       # Instalar dependências
-npm run dev       # Servidor de desenvolvimento (porta 3000)
-npm run build     # Build de produção
+npm run dev       # roda i18n:build e sobe o servidor de desenvolvimento (porta 3000)
+npm run build     # roda i18n:build e gera o build de produção
 npm run start     # Servidor de produção
 npm run lint      # ESLint
+npm run i18n:build # Regenera public/locales a partir de src/templates/sections/*/i18n/ (roda sozinho antes de dev/build)
 ```
 
 **Sem suite de testes configurada.**
@@ -383,6 +393,8 @@ npm run lint      # ESLint
 
 8. **Nunca usar cores Tailwind nativas para a paleta principal** (ex: `yellow-500`, `orange-300`). Usar sempre os tokens `gold`, `goldDark`, `amber`, `textPrimary`, `textSecondary`, `background`, `card`.
 
+9. **Nunca editar arquivos dentro de `public/locales/` diretamente.** Esse diretório é gerado pelo script `scripts/aggregate-i18n.ts` (`npm run i18n:build`), que roda automaticamente antes de `npm run dev` e `npm run build` — qualquer edição direta ali é sobrescrita no próximo restart do servidor e nem é rastreada pelo git (está no `.gitignore`). A fonte real de cada namespace de tradução é `src/templates/sections/{secao}/i18n/{locale}.json`. Editar sempre lá.
+
 ---
 
 ## O que Fazer Antes de Qualquer Tarefa
@@ -405,7 +417,7 @@ npm run lint      # ESLint
 
 ## MODIFICAÇOES 
 
-- **Multilanguagem (i18n):** sistema `next-i18next` + `react-i18next` com 4 locales (`pt-BR`, `en`, `es`, `pt-PT`) e 9 namespaces. Arquivos de tradução em `public/locales/`. `LanguageSwitcher` com bandeiras no header. `getStaticProps` na `index.tsx` carrega todas as traduções via `serverSideTranslations`.
+- **Multilanguagem (i18n):** sistema `next-i18next` + `react-i18next` com 4 locales (`pt-BR`, `en`, `es`, `pt-PT`) e 9 namespaces. Fonte real das traduções em `src/templates/sections/{secao}/i18n/{locale}.json`; `public/locales/` é apenas o resultado gerado por `npm run i18n:build` (nunca editar direto lá — ver Regra de Ouro #9). `LanguageSwitcher` com bandeiras no header. `getStaticProps` na `index.tsx` carrega todas as traduções via `serverSideTranslations`.
 
 ## Contexto de Portfólio
 
