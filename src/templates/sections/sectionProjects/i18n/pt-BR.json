@@ -43,7 +43,7 @@
       "key": "pratique",
       "name": "Pratique Fitness",
       "short_description": "Plataforma Fullstack multinacional para rede com 170+ academias — web e aplicativo mobile (iOS e Android), múltiplos idiomas e países, IA de atendimento integrada e dashboards.",
-      "description": "Entrei no projeto em andamento e atuo desde outubro de 2025 em uma plataforma enterprise real, utilizada por uma rede multinacional de 170+ academias. O sistema roda tanto na web quanto no aplicativo mobile (iOS e Android), com suporte a múltiplos idiomas e países. Minha atuação envolveu novas rotas de API, novas páginas, refatorações, manutenção geral e contribuições técnicas em praticamente todas as áreas, incluindo a criação de chats de IA de atendimento dentro do próprio app.",
+      "description": "Entrei no projeto em andamento e atuo há {duration} em uma plataforma enterprise real, utilizada por uma rede multinacional de 170+ academias. O sistema roda tanto na web quanto no aplicativo mobile (iOS e Android), com suporte a múltiplos idiomas e países. Minha atuação envolveu novas rotas de API, novas páginas, refatorações, manutenção geral e contribuições técnicas em praticamente todas as áreas — criação e manutenção de chats de IA de atendimento, treino, agendamento e gamificação dentro do próprio app.",
       "features": [
         "Rede multinacional com 170+ academias",
         "Web e aplicativo mobile (iOS e Android)",
@@ -57,7 +57,7 @@
         "Dashboards de métricas e performance",
         "Manutenção geral da plataforma"
       ],
-      "differential": "Projeto enterprise multinacional em produção contínua, com 170+ academias ativas. Atuo desde outubro de 2025 sobre uma base de código existente, com contribuições técnicas em praticamente todas as áreas do app — desde treino e gamificação até IA de atendimento e dashboards."
+      "differential": "Projeto enterprise multinacional em produção contínua, com 170+ academias ativas. Atuo há {duration} sobre uma base de código existente, com contribuições técnicas em praticamente todas as áreas do app — desde treino, agendamento e gamificação até IA de atendimento e dashboards."
     },
     {
       "key": "fut7",

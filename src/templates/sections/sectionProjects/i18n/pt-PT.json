@@ -43,7 +43,7 @@
       "key": "pratique",
       "name": "Pratique Fitness",
       "short_description": "Plataforma Fullstack multinacional para rede com 170+ ginásios — web e aplicação móvel (iOS e Android), múltiplos idiomas e países, IA de atendimento integrada e dashboards.",
-      "description": "Entrei no projecto em curso e trabalho desde outubro de 2025 numa plataforma enterprise real, utilizada por uma rede multinacional de 170+ ginásios. O sistema funciona tanto na web como na aplicação móvel (iOS e Android), com suporte a múltiplos idiomas e países. A minha contribuição envolveu novas rotas de API, novas páginas, refactorizações, manutenção geral e contribuições técnicas em praticamente todas as áreas, incluindo a criação de chats de IA de atendimento dentro da própria app.",
+      "description": "Entrei no projecto em curso e trabalho há {duration} numa plataforma enterprise real, utilizada por uma rede multinacional de 170+ ginásios. O sistema funciona tanto na web como na aplicação móvel (iOS e Android), com suporte a múltiplos idiomas e países. A minha contribuição envolveu novas rotas de API, novas páginas, refactorizações, manutenção geral e contribuições técnicas em praticamente todas as áreas — criação e manutenção de chats de IA de atendimento, treino, marcações e gamificação dentro da própria app.",
       "features": [
         "Rede multinacional com 170+ ginásios",
         "Web e aplicação móvel (iOS e Android)",
@@ -57,7 +57,7 @@
         "Dashboards de métricas e desempenho",
         "Manutenção geral da plataforma"
       ],
-      "differential": "Projecto enterprise multinacional em produção contínua, com 170+ ginásios activos. Trabalho desde outubro de 2025 sobre uma base de código existente, com contribuições técnicas em praticamente todas as áreas da app — desde treino e gamificação até IA de atendimento e dashboards."
+      "differential": "Projecto enterprise multinacional em produção contínua, com 170+ ginásios activos. Trabalho há {duration} sobre uma base de código existente, com contribuições técnicas em praticamente todas as áreas da app — desde treino, marcações e gamificação até IA de atendimento e dashboards."
     },
     {
       "key": "fut7",

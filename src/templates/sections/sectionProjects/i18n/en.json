@@ -43,7 +43,7 @@
       "key": "pratique",
       "name": "Pratique Fitness",
       "short_description": "Multinational Fullstack platform for a network of 170+ gyms — web and mobile app (iOS and Android), multiple languages and countries, integrated AI customer service, and dashboards.",
-      "description": "I joined an ongoing project and have been working since October 2025 on a real enterprise platform used by a multinational network of 170+ gyms. The system runs on both web and mobile app (iOS and Android), with support for multiple languages and countries. My contributions involved new API routes, new pages, refactoring, general maintenance, and technical work across virtually all areas, including the creation of AI chat assistants integrated throughout the app.",
+      "description": "I joined an ongoing project and have been working for {duration} on a real enterprise platform used by a multinational network of 170+ gyms. The system runs on both web and mobile app (iOS and Android), with support for multiple languages and countries. My contributions involved new API routes, new pages, refactoring, general maintenance, and technical work across virtually all areas — creation and maintenance of AI customer service chats, workout, scheduling, and gamification modules within the app itself.",
       "features": [
         "Multinational network with 170+ gyms",
         "Web and mobile app (iOS and Android)",
@@ -57,7 +57,7 @@
         "Performance and metrics dashboards",
         "General platform maintenance"
       ],
-      "differential": "A live enterprise platform used by a multinational network of 170+ active gyms. I have been contributing since October 2025 to an existing codebase, with technical involvement across virtually all areas of the app — from training and gamification to AI customer service and dashboards."
+      "differential": "A live enterprise platform used by a multinational network of 170+ active gyms. I have been contributing for {duration} to an existing codebase, with technical involvement across virtually all areas of the app — from training, scheduling, and gamification to AI customer service and dashboards."
     },
     {
       "key": "fut7",

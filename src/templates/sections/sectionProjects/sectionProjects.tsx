@@ -8,6 +8,8 @@ import { FaGithub } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 import { cn } from "@/lib/utils";
+import { getWorkingDuration } from "@/templates/sections/sectionExperience/utils/duration";
+import { PRATIQUE_START_DATE } from "@/templates/sections/sectionExperience/utils/expert";
 
 type StaticProject = (typeof projects)[number];
 
@@ -45,20 +47,28 @@ const FILTERS = [
 export function SectionProjects() {
   const [selected, setSelected] = useState<MergedProject | null>(null);
   const [activeFilter, setActiveFilter] = useState<"all" | ProjectCategory>("all");
-  const { t } = useTranslation("projects");
+  const { t, i18n } = useTranslation("projects");
   const { isAnimationEnabled } = useAnimationEnabled();
 
   const translatedItems = t("items", { returnObjects: true }) as TranslatedProjectItem[];
 
   const mergedProjects: MergedProject[] = projects.map((p) => {
     const ti = translatedItems.find((item) => item.key === p.id);
+    const duration = p.id === "pratique" ? getWorkingDuration(PRATIQUE_START_DATE, i18n.language) : null;
+    const description = duration
+      ? (ti?.description ?? "").replace("{duration}", duration)
+      : ti?.description ?? "";
+    const differential = duration
+      ? (ti?.differential ?? "").replace("{duration}", duration)
+      : ti?.differential ?? "";
+
     return {
       ...p,
       nameProject: ti?.name ?? "",
       shortDescription: ti?.short_description ?? "",
-      description: ti?.description ?? "",
+      description,
       features: ti?.features ?? [],
-      differential: ti?.differential ?? "",
+      differential,
     };
   });
 

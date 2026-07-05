@@ -43,7 +43,7 @@
       "key": "pratique",
       "name": "Pratique Fitness",
       "short_description": "Plataforma Fullstack multinacional para una red de más de 170 gimnasios — web y aplicación móvil (iOS y Android), múltiples idiomas y países, IA de atención integrada y dashboards.",
-      "description": "Me uní al proyecto en curso y trabajo desde octubre de 2025 en una plataforma enterprise real, utilizada por una red multinacional de más de 170 gimnasios. El sistema funciona tanto en web como en la aplicación móvil (iOS y Android), con soporte para múltiples idiomas y países. Mi participación involucró nuevas rutas de API, nuevas páginas, refactorizaciones, mantenimiento general y contribuciones técnicas en prácticamente todas las áreas, incluyendo la creación de chats de IA de atención dentro de la propia app.",
+      "description": "Me uní al proyecto en curso y llevo {duration} trabajando en una plataforma enterprise real, utilizada por una red multinacional de más de 170 gimnasios. El sistema funciona tanto en web como en la aplicación móvil (iOS y Android), con soporte para múltiples idiomas y países. Mi participación involucró nuevas rutas de API, nuevas páginas, refactorizaciones, mantenimiento general y contribuciones técnicas en prácticamente todas las áreas — creación y mantenimiento de chats de IA de atención, entrenamiento, agendamiento y gamificación dentro de la propia app.",
       "features": [
         "Red multinacional con más de 170 gimnasios",
         "Web y aplicación móvil (iOS y Android)",
@@ -57,7 +57,7 @@
         "Dashboards de métricas y rendimiento",
         "Mantenimiento general de la plataforma"
       ],
-      "differential": "Proyecto enterprise multinacional en producción continua, con más de 170 gimnasios activos. Trabajo desde octubre de 2025 sobre una base de código existente, con contribuciones técnicas en prácticamente todas las áreas de la app — desde entrenamiento y gamificación hasta IA de atención y dashboards."
+      "differential": "Proyecto enterprise multinacional en producción continua, con más de 170 gimnasios activos. Llevo {duration} trabajando sobre una base de código existente, con contribuciones técnicas en prácticamente todas las áreas de la app — desde entrenamiento, agendamiento y gamificación hasta IA de atención y dashboards."
     },
     {
       "key": "fut7",
