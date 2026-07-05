@@ -2,7 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaIdCard, FaMedal } from "react-icons/fa";
 import { itemVariants, containerVariants } from "@/styles/animaçoes/animaçoes";
-import { experienci, certificates } from "./utils/expert";
+import { experienci, certificates, PRATIQUE_START_DATE, FREELANCE_START_DATE } from "./utils/expert";
+import { getWorkingDuration } from "./utils/duration";
 import { BoxExp } from "./components/boxExp";
 import { BoxCertificate } from "./components/boxCerificate";
 import { JSX } from "react";
@@ -12,18 +13,27 @@ import { useTranslation } from "react-i18next";
 type TranslatedExpItem = { name: string; tempo: string; description: string };
 type TranslatedCertItem = { name: string; institution: string; description: string };
 
+// Datas de início de cada atuação (ver utils/expert.ts) — nenhuma tem data final,
+// então o tempo exibido é calculado automaticamente e nunca precisa ser editado à mão.
+const START_DATES = [PRATIQUE_START_DATE, FREELANCE_START_DATE];
+
 export function SectionExperience() {
   const { isAnimationEnabled } = useAnimationEnabled();
-  const { t } = useTranslation("experience");
+  const { t, i18n } = useTranslation("experience");
   const [categorySelected, setCategorySelected] = useState<"certificados" | "experiencias">("experiencias");
 
   const translatedItems = t("items", { returnObjects: true }) as TranslatedExpItem[];
   const translatedCerts = t("certificates", { returnObjects: true }) as TranslatedCertItem[];
 
-  const mergedExp = experienci.map((exp, i) => ({
-    ...exp,
-    ...(translatedItems[i] ?? {}),
-  }));
+  const mergedExp = experienci.map((exp, i) => {
+    const translated = translatedItems[i] ?? {};
+    const startDate = START_DATES[i];
+    const tempo = startDate
+      ? t("duration_label", { duration: getWorkingDuration(startDate, i18n.language) })
+      : translated.tempo ?? exp.tempo;
+
+    return { ...exp, ...translated, tempo };
+  });
 
   const mergedCerts = certificates.map((cert, i) => ({
     ...cert,

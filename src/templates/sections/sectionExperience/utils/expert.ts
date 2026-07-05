@@ -1,3 +1,8 @@
+// Datas de início usadas para calcular o tempo de atuação automaticamente (ver utils/duration.ts).
+// Nenhuma das duas tem data final: ambas seguem em andamento até hoje.
+export const PRATIQUE_START_DATE = new Date(2025, 9, 1); // outubro/2025
+export const FREELANCE_START_DATE = new Date(2025, 0, 1); // janeiro/2025
+
 export const experienci = [
   {
     category: "experienci",
