@@ -27,6 +27,7 @@ import {
   SiInsomnia,
   SiPhp,
   SiMongodb,
+  SiSupabase,
   SiN8N,
   SiWhatsapp,
   SiOpenai,
@@ -86,6 +87,7 @@ export const skills = [
   { category: "Bancos de Dados", name: "Prisma", img: SiPrisma, color: "#0C344B", description: "ORM moderno com migrações e tipagem forte." },
   { category: "Bancos de Dados", name: "BigQuery", img: SiPostgresql, color: "#4285F4", description: "Banco de dados analítico cloud." }, // ADICIONADO
  { category: "Bancos de Dados", name: "NoSQL", img:SiMongodb, color: "#47A248", description: "Banco não-relacional para dados semiestruturados." }, // ADICIONADO
+  { category: "Bancos de Dados", name: "Supabase", img: SiSupabase, color: "#3ECF8E", description: "Backend-as-a-Service com PostgreSQL, autenticação e storage." },
   //  DEVOPS
   { category: "DevOps", name: "Git", img: SiGit, color: "#F05032", description: "Controle de versão." },
   { category: "DevOps", name: "GitHub", img: SiGithub, color: "#181717", description: "Hospedagem e colaboração de código." },
