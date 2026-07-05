@@ -405,13 +405,11 @@ npm run i18n:build # Regenera public/locales a partir de src/templates/sections/
 
 3. **Editar dados de conteúdo nos arquivos `utils/`**, nunca diretamente nos componentes.
 
-4. **Testar visualmente em mobile e desktop** — o layout usa `md:` como principal breakpoint. Muitas coisas são `hidden md:block` ou `flex-col md:flex-row`.
+4. **Usar TypeScript estrito** — `tsconfig.json` tem `"strict": true`. Nunca usar `any`. Tipar props com `type` explícito.
 
-5. **Usar TypeScript estrito** — `tsconfig.json` tem `"strict": true`. Nunca usar `any`. Tipar props com `type` explícito.
+5. **Checar se a animação será mostrada em mobile** — se sim, ela precisa passar pelo hook `useAnimationEnabled()`.
 
-6. **Checar se a animação será mostrada em mobile** — se sim, ela precisa passar pelo hook `useAnimationEnabled()`.
-
-7. **Qualquer novo texto visível ao usuário deve ser traduzido.** Adicionar a chave nos 4 arquivos de locale (`pt-BR`, `en`, `es`, `pt-PT`) no namespace correspondente à seção, e usar `t("chave")` no componente.
+6. **Qualquer novo texto visível ao usuário deve ser traduzido.** Adicionar a chave nos 4 arquivos de locale (`pt-BR`, `en`, `es`, `pt-PT`) no namespace correspondente à seção, e usar `t("chave")` no componente.
 
 ---
 

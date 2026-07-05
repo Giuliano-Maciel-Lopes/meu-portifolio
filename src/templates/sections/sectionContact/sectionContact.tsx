@@ -10,7 +10,7 @@ export function SectionContact() {
   const { t } = useTranslation("contact");
 
   return (
-    <section id="contact" className="scroll-mt-24 mb-16">
+    <section id="contact" className="scroll-mt-24 mb-16 md:pt-20">
       <div className="container">
         <div className="text-center space-y-2 mb-12">
           <h3 className="text-3xl font-bold tracking-tight">

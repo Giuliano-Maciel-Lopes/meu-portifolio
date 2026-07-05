@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export function SectionAbout() {
   return (
-    <section id="about" className="scroll-mt-24 relative overflow-hidden">
+    <section id="about" className="scroll-mt-24 relative overflow-hidden md:py-20">
       <div className="hidden md:block pointer-events-none">
         <motion.div
           className="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full"

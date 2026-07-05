@@ -46,7 +46,7 @@ export function SectionExperience() {
   ];
 
   return (
-    <section id="experienci" className="flex flex-col scroll-mt-24">
+    <section id="experienci" className="flex flex-col scroll-mt-24 md:py-20">
       <div className="container flex flex-col gap-10">
         <div className="text-center space-y-2">
           <h3 className="text-center text-3xl font-bold tracking-tight">
