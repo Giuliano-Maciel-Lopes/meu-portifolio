@@ -114,15 +114,15 @@
       "short_description": "Automated mass campaign tool via WhatsApp with tag segmentation, Meta API, and metrics dashboard (CAC, ROI, conversion).",
       "description": "Mass campaign automation system focused on conversion via WhatsApp. Integration with the Official Meta API and a full dashboard for result analysis.",
       "features": [
+        "70+ campaigns run",
+        "80+ messages sent via Meta (WhatsApp and Email) for reports and dashboards",
+        "100+ automations built in n8n: message sending triggered by webhook, cron, and other triggers",
         "Mass message campaigns via WhatsApp",
         "Tag-based segmentation",
         "Campaign automation via n8n",
         "Integration with Official Meta API (WhatsApp)",
         "Dashboard with performance metrics",
-        "Conversion, CAC, and ROI analysis per campaign",
-        "70+ campaigns run",
-        "80+ messages sent via Meta (WhatsApp and Email) for reports and dashboards",
-        "100+ automations built in n8n: message sending triggered by webhook, cron, and other triggers"
+        "Conversion, CAC, and ROI analysis per campaign"
       ],
       "differential": "Enables full funnel analysis and real-time data-driven decision making."
     },
@@ -130,12 +130,13 @@
       "key": "pratique-chat",
       "name": "Pratique Chat",
       "short_description": "In-house multichannel support platform, unifying WhatsApp (Meta API), Instagram, Facebook, and in-app chats into a single dashboard, with dedicated sales and cancellation AIs.",
-      "description": "Pratique Fitness' in-house support hub, with a customized frontend. It unifies 20+ customer communication channels — via the official Meta API (WhatsApp, Instagram, and Facebook) and the app's internal chats — into a single dashboard for support agents. It runs several specialized AIs working alongside the human team, including the sales AI 'Amanda', which talks to leads via text, audio, and images, applies re-engagement flows for inactive customers, and hands off to a human agent when needed. Already in production for the 170+ gym network and under constant evolution.",
+      "description": "Pratique Fitness' in-house support hub, with a customized frontend. It unifies 20+ customer communication channels — via the official Meta API (WhatsApp, Instagram, and Facebook), the chats linked directly to the Pratique app, and other channels — into a single dashboard for support agents. It runs several specialized AIs working alongside the human team, including the sales AI 'Paty', which talks to leads via text, audio, and images, applies re-engagement flows for inactive customers, and hands off to a human agent when needed. Already in production for the 170+ gym network and under constant evolution.",
       "features": [
         "20+ communication channels unified in one place: via API, WhatsApp, Instagram, Facebook, and more",
+        "Also connects the chats linked directly to the Pratique app",
         "Fully in-house, customized frontend for the entire support operation",
         "Agent, template, and contact management",
-        "Sales AI 'Amanda': chats via text, sends and interprets audio and photos, sells and cancels plans",
+        "Sales AI 'Paty': chats via text, sends and interprets audio and photos, sells and cancels plans",
         "Automatic handoff from AI to human agent when needed",
         "Re-engagement flow for inactive customers, with automatic link sending",
         "Lead classification and AI-generated sales report by affiliate",

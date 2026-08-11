@@ -114,15 +114,15 @@
       "short_description": "Automação de campanhas em massa via WhatsApp com segmentação por tags, API da Meta e dashboard de métricas (CAC, ROI, conversão).",
       "description": "Sistema de automação de campanhas em massa com foco em conversão via WhatsApp. Integração com a API Oficial da Meta e dashboard completo para análise de resultados.",
       "features": [
+        "+ de 70 disparos",
+        "+ de 80 disparos via Meta (WhatsApp e Email) para relatórios e dashboards",
+        "+ de 100 automações no n8n: envio de mensagens após webhook, cron e outros gatilhos",
         "Disparo de mensagens em massa via WhatsApp",
         "Segmentação por tags",
         "Automação de campanhas via n8n",
         "Integração com API Oficial da Meta (WhatsApp)",
         "Dashboard com métricas de performance",
-        "Análise de Conversão, CAC e ROI por campanha",
-        "+ de 70 disparos",
-        "+ de 80 disparos via Meta (WhatsApp e Email) para relatórios e dashboards",
-        "+ de 100 automações no n8n: envio de mensagens após webhook, cron e outros gatilhos"
+        "Análise de Conversão, CAC e ROI por campanha"
       ],
       "differential": "Permite análise completa do funil de campanhas e tomada de decisão baseada em dados em tempo real."
     },
@@ -130,12 +130,13 @@
       "key": "pratique-chat",
       "name": "Pratique Chat",
       "short_description": "Plataforma própria de atendimento multicanal, unificando WhatsApp (API Meta), Instagram, Facebook e os chats do app em um só painel, com IAs de vendas e cancelamento.",
-      "description": "Central de atendimento própria da rede Pratique Fitness, com frontend customizado. Unifica mais de 20 canais de comunicação com o cliente — via API oficial da Meta (WhatsApp, Instagram e Facebook) e os chats internos do aplicativo — em um único painel para os atendentes. Conta com múltiplas IAs especializadas atuando lado a lado com o time humano, incluindo a IA de vendas 'Amanda', que conversa com o lead por texto, áudio e imagem, aplica réguas de reengajamento para clientes inativos e transfere para um atendente humano quando necessário. Já está em uso pela rede de 170+ academias e segue em constante evolução.",
+      "description": "Central de atendimento própria da rede Pratique Fitness, com frontend customizado. Unifica mais de 20 canais de comunicação com o cliente — via API oficial da Meta (WhatsApp, Instagram e Facebook), os chats vinculados diretamente ao aplicativo Pratique e outros canais — em um único painel para os atendentes. Conta com múltiplas IAs especializadas atuando lado a lado com o time humano, incluindo a IA de vendas 'Paty', que conversa com o lead por texto, áudio e imagem, aplica réguas de reengajamento para clientes inativos e transfere para um atendente humano quando necessário. Já está em uso pela rede de 170+ academias e segue em constante evolução.",
       "features": [
         "+ de 20 canais de comunicação unificados em um só lugar: via API, WhatsApp, Instagram, Facebook e afins",
+        "Também conecta os chats vinculados diretamente ao aplicativo Pratique",
         "Frontend próprio e customizado para toda a operação de atendimento",
         "Criação e gestão de atendentes, templates e contatos",
-        "IA de vendas 'Amanda': conversa por texto, envia e interpreta áudio e fotos, vende e cancela planos",
+        "IA de vendas 'Paty': conversa por texto, envia e interpreta áudio e fotos, vende e cancela planos",
         "Transferência automática da IA para atendente humano quando necessário",
         "Régua de reengajamento para clientes inativos, com envio automático de links",
         "Classificação de leads e relatório de vendas por afiliado gerado pela IA",
