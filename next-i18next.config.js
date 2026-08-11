@@ -8,6 +8,6 @@ module.exports = {
   },
   localePath: path.resolve('./public/locales'),
   defaultNS: 'nav',
-  ns: ['nav', 'hero', 'about', 'skills', 'experience', 'projects', 'contact', 'whatsapp'],
+  ns: ['nav', 'hero', 'about', 'skills', 'experience', 'projects', 'contact', 'whatsapp', 'seo'],
   reloadOnPrerender: process.env.NODE_ENV === 'development',
 }

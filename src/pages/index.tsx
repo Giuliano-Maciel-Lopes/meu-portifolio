@@ -1,49 +1,67 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 import { Sections } from "@/templates/sections";
 import { GetStaticProps } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
+const SITE_URL = "https://giulianomaciel.vercel.app";
+const LOCALES = ["pt-BR", "en", "es", "pt-PT"] as const;
+const DEFAULT_LOCALE = "pt-BR";
+
+const OG_LOCALE: Record<(typeof LOCALES)[number], string> = {
+  "pt-BR": "pt_BR",
+  en: "en_US",
+  es: "es_ES",
+  "pt-PT": "pt_PT",
+};
+
+function localeUrl(locale: string) {
+  return locale === DEFAULT_LOCALE ? `${SITE_URL}/` : `${SITE_URL}/${locale}`;
+}
+
 export default function Home() {
+  const { t } = useTranslation("seo");
+  const router = useRouter();
+  const currentLocale = router.locale ?? DEFAULT_LOCALE;
+  const canonicalUrl = localeUrl(currentLocale);
+
   return (
     <>
       <Head>
-        <title>Giuliano Maciel | Desenvolvedor Full Stack</title>
-        <meta
-          name="description"
-          content="Portfólio de Giuliano Maciel — Desenvolvedor Full Stack especializado em Next.js, Node.js, React, TypeScript e automações com IA. Projetos reais, APIs robustas e interfaces modernas."
-        />
-        <meta
-          name="keywords"
-          content="desenvolvedor full stack, portfólio dev, programador full stack, dev full stack brasil, desenvolvedor web, Giuliano Maciel, Next.js, Node.js, React, TypeScript, JavaScript, TailwindCSS, Redux, HTML5, CSS3, Framer Motion, React Query, React Hook Form, Express, Fastify, Docker, JWT, DDD, SOLID, TDD, Clean Code, PHP, PostgreSQL, MySQL, SQLite, Prisma, BigQuery, NoSQL, MongoDB, Git, GitHub, Figma, ESLint, Prettier, Vitest, n8n, OpenAI API, WhatsApp API, Chatwoot, WAHA, automação IA, IA atendente WhatsApp, Prompt Engineering, portfólio programador, desenvolvedor junior full stack"
-        />
+        <title>{t("title")}</title>
+        <meta name="description" content={t("description")} />
+        <meta name="keywords" content={t("keywords")} />
         <meta name="author" content="Giuliano Maciel Lopes" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://giulianomaciel.vercel.app" />
+        <link rel="canonical" href={canonicalUrl} />
+
+        {LOCALES.map((locale) => (
+          <link
+            key={locale}
+            rel="alternate"
+            hrefLang={locale}
+            href={localeUrl(locale)}
+          />
+        ))}
+        <link rel="alternate" hrefLang="x-default" href={localeUrl(DEFAULT_LOCALE)} />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://giulianomaciel.vercel.app" />
-        <meta
-          property="og:title"
-          content="Giuliano Maciel | Desenvolvedor Full Stack"
-        />
-        <meta
-          property="og:description"
-          content="Portfólio de Giuliano Maciel — Desenvolvedor Full Stack especializado em Next.js, Node.js, React e automações com IA."
-        />
-        <meta property="og:image" content="https://giulianomaciel.vercel.app/og-image.png" />
-        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content={t("ogTitle")} />
+        <meta property="og:description" content={t("ogDescription")} />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:alt" content="Giuliano Maciel — Desenvolvedor Full Stack" />
+        <meta property="og:locale" content={OG_LOCALE[currentLocale as (typeof LOCALES)[number]] ?? OG_LOCALE["pt-BR"]} />
+        {LOCALES.filter((locale) => locale !== currentLocale).map((locale) => (
+          <meta key={locale} property="og:locale:alternate" content={OG_LOCALE[locale]} />
+        ))}
         <meta property="og:site_name" content="Giuliano Maciel | Dev Full Stack" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Giuliano Maciel | Desenvolvedor Full Stack"
-        />
-        <meta
-          name="twitter:description"
-          content="Portfólio de Giuliano Maciel — Desenvolvedor Full Stack especializado em Next.js, Node.js, React e automações com IA."
-        />
-        <meta name="twitter:image" content="https://giulianomaciel.vercel.app/og-image.png" />
+        <meta name="twitter:title" content={t("ogTitle")} />
+        <meta name="twitter:description" content={t("ogDescription")} />
+        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
 
         <script
           type="application/ld+json"
@@ -52,10 +70,16 @@ export default function Home() {
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Giuliano Maciel Lopes",
-              url: "https://giulianomaciel.vercel.app",
+              url: SITE_URL,
+              image: `${SITE_URL}/og-image.png`,
               jobTitle: "Desenvolvedor Full Stack",
-              description:
-                "Desenvolvedor Full Stack especializado em Next.js, Node.js, React, TypeScript e automações com IA.",
+              description: t("personDescription"),
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Ipatinga",
+                addressRegion: "MG",
+                addressCountry: "BR",
+              },
               sameAs: [
                 "https://github.com/Giuliano-Maciel-Lopes",
                 "https://www.linkedin.com/in/giulianomaciel",
@@ -91,6 +115,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         "contact",
         "whatsapp",
         "nav",
+        "seo",
       ])),
     },
   };

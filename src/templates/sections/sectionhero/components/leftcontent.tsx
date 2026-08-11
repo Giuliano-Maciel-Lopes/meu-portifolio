@@ -24,9 +24,11 @@ export function LeftContent() {
           {t("developer_label")}
         </span>
 
-        <h1 className="text-6xl tracking-tight">Giuliano</h1>
-        <h1 className="text-6xl tracking-tight bg-gradient-to-r from-amber via-gold to-goldDark bg-clip-text text-transparent">
-          Maciel
+        <h1 className="text-6xl tracking-tight">
+          Giuliano{" "}
+          <span className="bg-gradient-to-r from-amber via-gold to-goldDark bg-clip-text text-transparent">
+            Maciel
+          </span>
         </h1>
 
         <motion.div
