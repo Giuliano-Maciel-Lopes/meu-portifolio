@@ -14,7 +14,32 @@
       "Bash(identify \"/c/Users/mateu/Documents/projetos pessoais/meu-portifolio/public/models/textures/venmap.jpg\")",
       "Bash(git -C \"C:\\\\Users\\\\mateu\\\\Documents\\\\projetos pessoais\\\\meu-portifolio\" remote get-url origin)",
       "Bash(powershell -Command \"\\(Get-Content 'public\\\\locales\\\\pt-BR\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\pt-BR\\\\projects.json' -Encoding utf8\")",
-      "Bash(powershell -Command \"\\(Get-Content 'public\\\\locales\\\\en\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\en\\\\projects.json' -Encoding utf8 ; \\(Get-Content 'public\\\\locales\\\\es\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\es\\\\projects.json' -Encoding utf8 ; \\(Get-Content 'public\\\\locales\\\\pt-PT\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\pt-PT\\\\projects.json' -Encoding utf8\")"
+      "Bash(powershell -Command \"\\(Get-Content 'public\\\\locales\\\\en\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\en\\\\projects.json' -Encoding utf8 ; \\(Get-Content 'public\\\\locales\\\\es\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\es\\\\projects.json' -Encoding utf8 ; \\(Get-Content 'public\\\\locales\\\\pt-PT\\\\projects.json'\\) -replace '\\\\\"key\\\\\":', '\\\\\"id\\\\\":' | Set-Content 'public\\\\locales\\\\pt-PT\\\\projects.json' -Encoding utf8\")",
+      "Skill(run)",
+      "Bash(find .claude/skills -maxdepth 2)",
+      "Bash(grep -Hm1 '^description:' .claude/skills/*/SKILL.md)",
+      "Bash(timeout 60 bash -c 'until curl -sf http://localhost:3000 >/dev/null; do sleep 1; done')",
+      "Bash(chromium-cli --help)",
+      "Bash(chromium-cli --session skillsmobile)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s http://localhost:3002)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3002)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(pkill -f \"npm run dev\")",
+      "Bash(timeout 40 bash -c 'until curl -sf http://localhost:3000 >/dev/null; do sleep 1; done')",
+      "Bash(command -v chromium-cli)",
+      "Read(//c//**)",
+      "Bash(where chromium-cli *)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(netstat -ano)",
+      "Bash(taskkill *)",
+      "Bash(python3 -c \"import PIL; print\\('PIL ok'\\)\")",
+      "Bash(python -c \"import PIL; print\\('PIL ok'\\)\")",
+      "Bash(python3 -c \"import PIL\")",
+      "Bash(cp \"public/linkdingiu.png\" \"public/og-image.png\")",
+      "Bash(cp \"public/Logo Giuliano.png\" \"public/favicon.png\")",
+      "mcp__claude_ai_Supabase__list_projects",
+      "Bash(git commit -m ' *)"
     ]
   }
 }

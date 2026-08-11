@@ -143,6 +143,7 @@ export const projects: ProjectData[] = [
       "n8n",
       "Unnichat",
       "API Meta (WhatsApp)",
+      "API Meta (Email)",
       "BigQuery",
       "Banco de dados",
     ],

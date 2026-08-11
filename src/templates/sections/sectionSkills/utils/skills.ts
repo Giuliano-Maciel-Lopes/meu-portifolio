@@ -31,7 +31,8 @@ import {
   SiN8N,
   SiWhatsapp,
   SiOpenai,
-  SiHearth
+  SiHearth,
+  SiMeta
 } from "react-icons/si";
 
 
@@ -104,6 +105,7 @@ export const skills = [
   { category: "Automações e IA", name: "OpenAI API", img: SiOpenai, color: "#10A37F", description: "Integração com IA generativa." },
   { category: "Automações e IA", name: "Prompts Engineering", img: SiOpenai, color: "#0EA5E9", description: "Criação de prompts estratégicos para IA." },
   { category: "Automações e IA", name: "WhatsApp API", img: SiWhatsapp, color: "#25D366", description: "Integração com automações via WhatsApp. Waha , Unichat..." },
+  { category: "Automações e IA", name: "Meta", img: SiMeta, color: "#0668E1", description: "Integração com a API Oficial da Meta para disparos via WhatsApp e Email." },
   { category: "Automações e IA", name: "Lovable", img: BsHeart, color: "#EA4B71", description: "Desenvolvimento acelerado com IA para produtos digitais." },
   { category: "Automações e IA", name: "Claude Code", img: BsRobot, color: "#D97757", description: "Assistente de IA da Anthropic para desenvolvimento de software." },
   { category: "Automações e IA", name: "Chatwoot", img: BsChatDots, color: "#1F93FF", description: "Plataforma open-source de suporte ao cliente via múltiplos canais." },

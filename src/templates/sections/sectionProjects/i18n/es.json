@@ -120,7 +120,9 @@
         "Integración con API Oficial de Meta (WhatsApp)",
         "Dashboard con métricas de rendimiento",
         "Análisis de Conversión, CAC y ROI por campaña",
-        "+ de 10 envíos"
+        "+ de 70 envíos",
+        "+ de 80 envíos vía Meta (WhatsApp y Email) para informes y dashboards",
+        "+ de 100 automatizaciones en n8n: envío de mensajes tras webhook, cron y otros disparadores"
       ],
       "differential": "Permite el análisis completo del embudo de campañas y la toma de decisiones basada en datos en tiempo real."
     },
