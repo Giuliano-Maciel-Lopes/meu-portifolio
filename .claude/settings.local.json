@@ -39,7 +39,8 @@
       "Bash(cp \"public/linkdingiu.png\" \"public/og-image.png\")",
       "Bash(cp \"public/Logo Giuliano.png\" \"public/favicon.png\")",
       "mcp__claude_ai_Supabase__list_projects",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Read(//tmp/**)"
     ]
   }
 }

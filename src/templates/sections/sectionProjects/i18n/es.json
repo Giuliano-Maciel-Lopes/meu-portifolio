@@ -127,6 +127,24 @@
       "differential": "Permite el análisis completo del embudo de campañas y la toma de decisiones basada en datos en tiempo real."
     },
     {
+      "key": "pratique-chat",
+      "name": "Pratique Chat",
+      "short_description": "Plataforma propia de atención multicanal, que unifica WhatsApp (API de Meta), Instagram, Facebook y los chats de la app en un solo panel, con IAs de ventas y cancelación.",
+      "description": "Central de atención propia de la red Pratique Fitness, con un frontend personalizado. Unifica más de 20 canales de comunicación con el cliente — vía API oficial de Meta (WhatsApp, Instagram y Facebook) y los chats internos de la aplicación — en un único panel para los agentes. Cuenta con varias IAs especializadas trabajando junto al equipo humano, incluyendo la IA de ventas 'Amanda', que conversa con el lead por texto, audio e imagen, aplica secuencias de reenganche para clientes inactivos y transfiere a un agente humano cuando es necesario. Ya está en uso por la red de 170+ gimnasios y sigue en constante evolución.",
+      "features": [
+        "+ de 20 canales de comunicación unificados en un solo lugar: vía API, WhatsApp, Instagram, Facebook y afines",
+        "Frontend propio y personalizado para toda la operación de atención",
+        "Creación y gestión de agentes, plantillas y contactos",
+        "IA de ventas 'Amanda': conversa por texto, envía e interpreta audio y fotos, vende y cancela planes",
+        "Transferencia automática de la IA a un agente humano cuando es necesario",
+        "Secuencia de reenganche para clientes inactivos, con envío automático de enlaces",
+        "Clasificación de leads e informe de ventas por afiliado generado por la IA",
+        "Flujo dedicado de IA de cancelación",
+        "Mantenimiento continuo: creación de las IAs, configuración de los números en Meta y corrección de errores"
+      ],
+      "differential": "Plataforma propia y de propiedad exclusiva, evolucionada con IAs especializadas, secuencias automáticas y más de 20 canales de comunicación unificados, reduciendo drásticamente la necesidad de atención humana sin perder calidad. En uso activo por la red de 170+ gimnasios y en constante evolución."
+    },
+    {
       "key": "portfolio",
       "name": "Portafolio Dev",
       "short_description": "Portafolio personal construido con Next.js, Three.js y Framer Motion — escena 3D, animaciones fluidas, i18n en 4 idiomas y diseño totalmente responsive.",

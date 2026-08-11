@@ -127,6 +127,24 @@
       "differential": "Enables full funnel analysis and real-time data-driven decision making."
     },
     {
+      "key": "pratique-chat",
+      "name": "Pratique Chat",
+      "short_description": "In-house multichannel support platform, unifying WhatsApp (Meta API), Instagram, Facebook, and in-app chats into a single dashboard, with dedicated sales and cancellation AIs.",
+      "description": "Pratique Fitness' in-house support hub, with a customized frontend. It unifies 20+ customer communication channels — via the official Meta API (WhatsApp, Instagram, and Facebook) and the app's internal chats — into a single dashboard for support agents. It runs several specialized AIs working alongside the human team, including the sales AI 'Amanda', which talks to leads via text, audio, and images, applies re-engagement flows for inactive customers, and hands off to a human agent when needed. Already in production for the 170+ gym network and under constant evolution.",
+      "features": [
+        "20+ communication channels unified in one place: via API, WhatsApp, Instagram, Facebook, and more",
+        "Fully in-house, customized frontend for the entire support operation",
+        "Agent, template, and contact management",
+        "Sales AI 'Amanda': chats via text, sends and interprets audio and photos, sells and cancels plans",
+        "Automatic handoff from AI to human agent when needed",
+        "Re-engagement flow for inactive customers, with automatic link sending",
+        "Lead classification and AI-generated sales report by affiliate",
+        "Dedicated cancellation AI flow",
+        "Ongoing maintenance: building the AIs, configuring Meta numbers, and bug fixing"
+      ],
+      "differential": "A fully in-house, proprietary platform, evolved with specialized AIs, automatic re-engagement flows, and 20+ unified communication channels — drastically reducing the need for human support without losing quality. Actively used by the 170+ gym network and under constant evolution."
+    },
+    {
       "key": "portfolio",
       "name": "Dev Portfolio",
       "short_description": "Personal portfolio built with Next.js, Three.js, and Framer Motion — 3D scene, fluid animations, 4-language i18n, and fully responsive design.",
