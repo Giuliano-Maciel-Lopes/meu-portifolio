@@ -5,17 +5,25 @@ import * as THREE from "three";
 
 /**
  * Capacete de astronauta 3D com a foto do Giuliano dentro do visor.
- * Tudo procedural (sem modelo externo): casco, visor de vidro, aro dourado,
- * anel do pescoço e luzes laterais. Inclina na direção do mouse.
+ * Tudo procedural (sem modelo externo): casco, visor dourado espelhado, aro dourado,
+ * anel do pescoço e luzes laterais. Inclina na direção do mouse e, com o mouse em cima,
+ * o visor sobe por cima do casco e revela o rosto.
  */
 
 const R = 1.25; // raio do casco
 const OPENING = 0.78; // meio-ângulo (rad) da abertura frontal do visor
 const RIM_Z = R * Math.cos(OPENING);
 const RIM_R = R * Math.sin(OPENING);
+const VISOR_LIFT = OPENING * 2.05; // quanto o visor gira para cima quando aberto (rad)
+const SPRING_STIFFNESS = 90;
+const SPRING_DAMPING = 11;
 
 type Props = {
   photo: string;
+};
+
+type HelmetProps = Props & {
+  hovered: React.RefObject<boolean>;
 };
 
 function Photo({ photo }: Props) {
@@ -29,9 +37,11 @@ function Photo({ photo }: Props) {
   );
 }
 
-function Helmet({ photo }: Props) {
+function Helmet({ photo, hovered }: HelmetProps) {
   const group = useRef<THREE.Group>(null);
+  const visor = useRef<THREE.Group>(null);
   const pointer = useRef({ x: 0, y: 0 });
+  const lift = useRef({ value: 0, velocity: 0 });
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
@@ -48,6 +58,15 @@ function Helmet({ photo }: Props) {
     const k = Math.min(1, delta * 3);
     g.rotation.y += (pointer.current.x * 0.45 - g.rotation.y) * k;
     g.rotation.x += (pointer.current.y * 0.25 - g.rotation.x) * k;
+
+    // mola amortecida: o visor abre/fecha com um leve balanço no final
+    const dt = Math.min(delta, 1 / 30);
+    const l = lift.current;
+    const target = hovered.current ? 1 : 0;
+    l.velocity += (target - l.value) * SPRING_STIFFNESS * dt;
+    l.velocity *= Math.exp(-SPRING_DAMPING * dt);
+    l.value += l.velocity * dt;
+    if (visor.current) visor.current.rotation.x = -l.value * VISOR_LIFT;
   });
 
   return (
@@ -68,13 +87,13 @@ function Helmet({ photo }: Props) {
         <Photo photo={photo} />
       </Suspense>
 
-      {/* visor de vidro com reflexo dourado */}
+      {/* vidro interno, levemente dourado, que fica sobre o rosto */}
       <mesh rotation={[Math.PI / 2, 0, 0]} scale={1.006}>
         <sphereGeometry args={[R, 96, 32, 0, Math.PI * 2, 0, OPENING]} />
         <meshPhysicalMaterial
           color="#FFE2A8"
           transparent
-          opacity={0.16}
+          opacity={0.12}
           roughness={0.04}
           metalness={0.2}
           clearcoat={1}
@@ -82,6 +101,22 @@ function Helmet({ photo }: Props) {
           depthWrite={false}
         />
       </mesh>
+
+      {/* visor dourado espelhado: gira em volta do centro do casco e desliza por cima dele */}
+      <group ref={visor}>
+        <mesh rotation={[Math.PI / 2, 0, 0]} scale={1.03}>
+          <sphereGeometry args={[R, 96, 32, 0, Math.PI * 2, 0, OPENING]} />
+          <meshPhysicalMaterial
+            color="#D4A373"
+            metalness={1}
+            roughness={0.08}
+            clearcoat={1}
+            clearcoatRoughness={0.05}
+            envMapIntensity={2.5}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      </group>
 
       {/* aro dourado do visor */}
       <mesh position={[0, 0, RIM_Z]}>
@@ -109,12 +144,12 @@ function Helmet({ photo }: Props) {
         </group>
       ))}
 
-      {/* antena */}
-      <mesh position={[R * 0.55, R * 0.95, -0.2]} rotation={[0, 0, -0.35]}>
+      {/* antena (fora do caminho do visor quando ele sobe) */}
+      <mesh position={[R * 0.75, R * 0.71, -0.35]} rotation={[0, 0, -0.35]}>
         <cylinderGeometry args={[0.018, 0.018, 0.6, 12]} />
         <meshStandardMaterial color="#A67C52" metalness={1} roughness={0.3} />
       </mesh>
-      <mesh position={[R * 0.66, R * 1.22, -0.2]}>
+      <mesh position={[R * 0.86, R * 0.98, -0.35]}>
         <sphereGeometry args={[0.05, 16, 16]} />
         <meshBasicMaterial color="#FFC857" toneMapped={false} />
       </mesh>
@@ -123,24 +158,33 @@ function Helmet({ photo }: Props) {
 }
 
 export function AstronautHelmet({ photo }: Props) {
+  // hover lido direto no useFrame: abrir/fechar o visor não re-renderiza o Canvas
+  const hovered = useRef(false);
+
   return (
-    <Canvas
-      dpr={[1, 1.75]}
-      camera={{ position: [0, 0, 4.6], fov: 38 }}
-      gl={{ antialias: true, alpha: true }}
-      style={{ pointerEvents: "none" }}
+    <div
+      className="h-full w-full rounded-full"
+      onPointerEnter={() => (hovered.current = true)}
+      onPointerLeave={() => (hovered.current = false)}
     >
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[3, 4, 5]} intensity={2} color="#FFF1D6" />
-      <pointLight position={[-3, -1, 2]} intensity={6} color="#FFC857" />
-      <Float speed={1.4} rotationIntensity={0.25} floatIntensity={0.6}>
-        <Helmet photo={photo} />
-      </Float>
-      <Environment resolution={128} frames={1}>
-        <Lightformer form="rect" intensity={5} color="#FFE2A8" position={[0, 4, 3]} scale={[6, 2, 1]} />
-        <Lightformer form="ring" intensity={3} color="#FFC857" position={[-4, 0, 3]} scale={3} />
-        <Lightformer form="rect" intensity={2} color="#ffffff" position={[4, -1, 3]} scale={[2, 4, 1]} />
-      </Environment>
-    </Canvas>
+      <Canvas
+        dpr={[1, 1.75]}
+        camera={{ position: [0, 0, 4.6], fov: 38 }}
+        gl={{ antialias: true, alpha: true }}
+        style={{ pointerEvents: "none" }}
+      >
+        <ambientLight intensity={0.35} />
+        <directionalLight position={[3, 4, 5]} intensity={2} color="#FFF1D6" />
+        <pointLight position={[-3, -1, 2]} intensity={6} color="#FFC857" />
+        <Float speed={1.4} rotationIntensity={0.25} floatIntensity={0.6}>
+          <Helmet photo={photo} hovered={hovered} />
+        </Float>
+        <Environment resolution={128} frames={1}>
+          <Lightformer form="rect" intensity={5} color="#FFE2A8" position={[0, 4, 3]} scale={[6, 2, 1]} />
+          <Lightformer form="ring" intensity={3} color="#FFC857" position={[-4, 0, 3]} scale={3} />
+          <Lightformer form="rect" intensity={2} color="#ffffff" position={[4, -1, 3]} scale={[2, 4, 1]} />
+        </Environment>
+      </Canvas>
+    </div>
   );
 }

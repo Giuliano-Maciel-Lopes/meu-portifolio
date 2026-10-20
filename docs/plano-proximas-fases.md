@@ -191,11 +191,12 @@ gh api repos/Giuliano-Maciel-Lopes/meu-portifolio/commits/$(git rev-parse HEAD)/
 - Variação opcional: em vez de subir, uma "lente" circular no visor segue o mouse (shader com `uMouse` e `discard` dentro do raio)
 
 **Checklist A2:**
-- [ ] Pivô do visor + material espelhado
-- [ ] Animação abrir/fechar com mola (lerp por `delta`)
-- [ ] Hover funcionando sem bloquear a rolagem da página
-- [ ] Fallback estático (mobile / reduced motion)
-- [ ] Build, prints e link da prévia
+- [x] Pivô do visor + material espelhado (o visor gira em volta do centro do casco e desliza por cima dele; a antena foi recuada para não atravessar o visor aberto)
+- [x] Animação abrir/fechar com mola amortecida (`SPRING_STIFFNESS` / `SPRING_DAMPING`, `VISOR_LIFT` = quanto sobe)
+- [x] Hover pelo `div` em volta do Canvas (`onPointerEnter`/`onPointerLeave` → ref lida no `useFrame`); o Canvas continua com `pointerEvents: none`, então a rolagem não é bloqueada
+- [x] Fallback estático (mobile / reduced motion): sem mudança, continua a foto com aro dourado
+- [x] Build e link da prévia
+- [ ] Prints: não foram tirados (sem browser na sessão). Conferir na prévia e ajustar `VISOR_LIFT`, mola e material se precisar
 
 ### Opção A1 — Foto 2D com máscara (mais fiel à F1, depende de foto nova)
 
