@@ -2,6 +2,8 @@
 
 Instruções para Claude Code neste repositório. Leia antes de qualquer tarefa.
 
+> **Trabalho em andamento (redesign "viagem pelo espaço"):** antes de qualquer tarefa, leia `docs/plano-proximas-fases.md`. Ele tem o estado atual, as preferências do Giuliano, as armadilhas técnicas e as próximas fases.
+
 ---
 
 ## Visão Geral
