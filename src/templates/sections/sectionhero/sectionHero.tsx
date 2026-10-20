@@ -1,6 +1,5 @@
 import { LeftContent } from "./components/leftcontent";
 import { RigthContet } from "./components/rigthContent";
-import { StarField } from "./components/StarField";
 import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { Venus3d } from "./components/venus3d";
@@ -11,9 +10,6 @@ export function SectionHero() {
   return (
     <section id="home" className="relative pt-20 pb-16 md:pb-0 md:min-h-[85vh] md:flex md:items-center scroll-mt-24 text-white">
 
-      <div className="hidden md:block">
-        <StarField />
-      </div>
 
  <div className=" hidden md:block absolute inset-0 z-0 opacity-80 pointer-events-none ">
  <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>

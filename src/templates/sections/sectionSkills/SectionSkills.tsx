@@ -8,6 +8,8 @@ import { useTranslation } from "react-i18next";
 import { BsChevronRight } from "react-icons/bs";
 import { ArrowButton } from "@/components/arrow/arrow";
 
+import { SectionTitle } from "@/components/sectionTitle/SectionTitle";
+
 export function SectionSkills() {
   const [categorySelected, setCategorySelected] = useState<string | null>("Back-end");
   const { isAnimationEnabled } = useAnimationEnabled();
@@ -39,7 +41,7 @@ export function SectionSkills() {
   }));
 
   return (
-    <section id="skills" className="flex bg-background py-20 scroll-mt-24">
+    <section id="skills" className="flex py-20 scroll-mt-24">
       <motion.div
         key={String(isAnimationEnabled)}
         className="container flex flex-col items-center"
@@ -48,7 +50,7 @@ export function SectionSkills() {
         viewport={isAnimationEnabled ? { once: false, amount: 0.15 } : undefined}
         variants={isAnimationEnabled ? fadeInFromBottom : undefined}
       >
-        <h3 className="text-center">{t("title")}</h3>
+        <SectionTitle index="02" title={t("title")} />
         <p className="text-sm text-textSecondary text-center max-w-xl">{t("proven_subtitle")}</p>
         <ArrowButton text={t("proven_link") as string} href="#projects" />
 

@@ -44,6 +44,8 @@ const FILTERS = [
   ...CATEGORY_ORDER.map((cat) => ({ key: cat, label: cat, color: CATEGORY_COLOR[cat] })),
 ];
 
+import { SectionTitle } from "@/components/sectionTitle/SectionTitle";
+
 export function SectionProjects() {
   const [selected, setSelected] = useState<MergedProject | null>(null);
   const [activeFilter, setActiveFilter] = useState<"all" | ProjectCategory>("all");
@@ -108,7 +110,7 @@ export function SectionProjects() {
 
 
   return (
-    <section id="projects" className="scroll-mt-24 relative overflow-hidden bg-background py-20">
+    <section id="projects" className="scroll-mt-24 relative overflow-hidden py-20">
       {/* sombra de entrada no topo */}
       <div
         aria-hidden
@@ -137,16 +139,12 @@ export function SectionProjects() {
       <div className="container flex flex-col gap-10 relative z-20">
         {/* cabeçalho */}
         <header className="text-center flex flex-col items-center gap-3">
-          <h3 className="text-center">
-            {t("title")}{" "}
-            <span className="bg-gradient-to-r from-amber to-gold bg-clip-text text-transparent">
-              {t("title_highlight")}
-            </span>
-          </h3>
-
-          <p className="text-textSecondary text-sm tracking-widest uppercase mb-0">
-            {t("subtitle")}
-          </p>
+          <SectionTitle
+            index="03"
+            title={t("title")}
+            highlight={t("title_highlight")}
+            subtitle={t("subtitle")}
+          />
 
           <div className="inline-flex items-center gap-3 mt-1 px-4 py-2 rounded-full border border-white/10 bg-white/[0.02]">
             <span className="text-sm text-textSecondary">

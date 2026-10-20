@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
+import { SectionTitle } from "@/components/sectionTitle/SectionTitle";
+
 export function SectionContact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,15 +15,12 @@ export function SectionContact() {
     <section id="contact" className="scroll-mt-24 mb-16 md:pt-20">
       <div className="container">
         <div className="text-center space-y-2 mb-12">
-          <h3 className="text-3xl font-bold tracking-tight">
-            {t("title")}{" "}
-            <span className="bg-gradient-to-r from-amber to-gold bg-clip-text text-transparent">
-              {t("title_highlight")}
-            </span>
-          </h3>
-          <p className="text-textSecondary text-sm tracking-widest uppercase mb-0">
-            {t("subtitle")}
-          </p>
+          <SectionTitle
+            index="05"
+            title={t("title")}
+            highlight={t("title_highlight")}
+            subtitle={t("subtitle")}
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8 max-w-4xl mx-auto">

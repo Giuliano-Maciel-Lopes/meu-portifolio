@@ -30,7 +30,27 @@ const buttonVariants = cva(
   hover:bg-[position:100%_0]
   backdrop-blur-[7px]
 `,
-
+        gold: `
+  group/btn relative overflow-hidden isolate
+  h-12 px-7 rounded-full
+  font-display text-base font-semibold tracking-tight text-black
+  bg-[linear-gradient(120deg,#A67C52,#FFC857_45%,#D4A373)]
+  bg-[length:200%_100%] bg-[position:0%_0]
+  shadow-[0_0_0_1px_rgba(255,200,87,0.35),0_10px_30px_-10px_rgba(255,200,87,0.6)]
+  transition-all duration-500
+  hover:bg-[position:100%_0] hover:-translate-y-0.5
+  hover:shadow-[0_0_0_1px_rgba(255,200,87,0.6),0_18px_40px_-12px_rgba(255,200,87,0.85)]
+  before:absolute before:inset-y-0 before:-left-1/2 before:w-1/3 before:-skew-x-12
+  before:bg-white/40 before:blur-md before:content-[''] before:animate-shine
+`,
+        goldOutline: `
+  h-12 px-7 rounded-full
+  font-display text-base font-semibold tracking-tight text-amber
+  border border-amber/40 bg-black/30 backdrop-blur-md
+  transition-all duration-300
+  hover:border-amber hover:bg-amber/10 hover:-translate-y-0.5
+  hover:shadow-[0_0_24px_rgba(255,200,87,0.25)]
+`,
       },
       size: {
         default: "h-9 px-4 py-2 rounded-2xl",

@@ -52,17 +52,16 @@ export function RigthContet() {
             const el = document.querySelector("#contact");
             if (el) el.scrollIntoView({ behavior: "smooth" });
           }}
-          variant="fancy"
-          className="text-lg"
+          variant="gold"
         >
           {t("cta_contact")}
         </Button>
 
-        <a href="/giulianoo.pdf" download>
-          <Button variant="fancy" className="text-lg">
+        <Button variant="goldOutline" asChild>
+          <a href="/giulianoo.pdf" download>
             {t("cta_cv")}
-          </Button>
-        </a>
+          </a>
+        </Button>
       </div>
 
       <div className="w-full flex justify-center">

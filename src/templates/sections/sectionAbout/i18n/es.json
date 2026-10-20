@@ -1,4 +1,5 @@
 {
+  "title": "Sobre mí",
   "who_label": "Quién soy",
   "greeting": "hola, soy",
   "description": "Desarrollador Full Stack en el mercado con enfoque en automatizaciones con IA, arquitectura de software y desarrollo web completo. Me gusta resolver problemas reales — desde la base de datos hasta la interfaz, con código limpio, bien estructurado y que tenga sentido para quienes lo usan.",
@@ -9,8 +10,17 @@
     "Arquitectura limpia, SOLID y código escalable"
   ],
   "highlights": [
-    { "value": "+20", "label": "Proyectos entregados" },
-    { "value": "FS", "label": "Front + Back-end" },
-    { "value": "IA", "label": "Automatizaciones reales" }
+    {
+      "value": "+20",
+      "label": "Proyectos entregados"
+    },
+    {
+      "value": "FS",
+      "label": "Front + Back-end"
+    },
+    {
+      "value": "IA",
+      "label": "Automatizaciones reales"
+    }
   ]
 }

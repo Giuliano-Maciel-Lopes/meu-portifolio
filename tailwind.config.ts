@@ -47,9 +47,19 @@ export default {
         accentGreen: "#38A169",
       },
       
+      keyframes: {
+        shine: {
+          "0%, 60%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(500%)" },
+        },
+      },
+      animation: {
+        shine: "shine 3.2s ease-in-out infinite",
+      },
       fontFamily: {
-        sans: ["PT Sans Caption", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
+        sans: ["Inter Variable", "Inter", "system-ui", "sans-serif"],
+        inter: ["Inter Variable", "Inter", "system-ui", "sans-serif"],
+        display: ["Space Grotesk Variable", "Space Grotesk", "Inter Variable", "sans-serif"],
       },
     },
   },

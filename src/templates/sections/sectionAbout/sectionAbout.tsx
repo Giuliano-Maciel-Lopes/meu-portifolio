@@ -1,8 +1,12 @@
 import { MediaContentAbout } from "./components/MediaContentAbout";
 import { TextContentAbout } from "./components/TextAbout";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { SectionTitle } from "@/components/sectionTitle/SectionTitle";
 
 export function SectionAbout() {
+  const { t } = useTranslation("about");
+
   return (
     <section id="about" className="scroll-mt-24 relative overflow-hidden md:py-20">
       <div className="hidden md:block pointer-events-none">
@@ -36,7 +40,7 @@ export function SectionAbout() {
       </div>
 
       <div className="container flex flex-col relative z-10">
-        <h3 className="text-center">About</h3>
+        <SectionTitle index="01" title={t("title")} />
 
         <div className="flex items-center">
           <TextContentAbout />
