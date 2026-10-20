@@ -40,7 +40,7 @@ export function SectionAbout() {
       </div>
 
       <div className="container flex flex-col relative z-10">
-        <SectionTitle index="01" title={t("title")} />
+        <SectionTitle index="04" title={t("title")} />
 
         <div className="flex items-center">
           <TextContentAbout />

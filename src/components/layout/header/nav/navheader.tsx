@@ -10,10 +10,10 @@ export function NavHeader({ className }: Props) {
 
   const navItems = [
     { name: t("home"), href: "#home" },
-    { name: t("about"), href: "#about" },
     { name: t("skills"), href: "#skills" },
     { name: t("projects"), href: "#projects" },
     { name: t("experience"), href: "#experienci" },
+    { name: t("about"), href: "#about" },
   ];
 
   return (

@@ -10,10 +10,10 @@ export function Sections() {
   return (
     <div className="flex flex-col gap-28">
         <SectionHero/>
-        <SectionAbout/>
         <SectionSkills/>
         <SectionProjects/>
         <SectionExperience/>
+        <SectionAbout/>
         <SectionContact/>
         <WhatsAppButton/>
     </div>

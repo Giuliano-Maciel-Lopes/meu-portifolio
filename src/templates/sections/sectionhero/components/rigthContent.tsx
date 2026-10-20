@@ -65,7 +65,7 @@ export function RigthContet() {
       </div>
 
       <div className="w-full flex justify-center">
-        <ArrowButton text={t("about_link") as string} href="#about" />
+        <ArrowButton text={t("journey_link") as string} href="#skills" />
       </div>
     </motion.div>
   );

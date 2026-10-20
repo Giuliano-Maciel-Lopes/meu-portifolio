@@ -51,7 +51,7 @@ export function SectionExperience() {
     <section id="experienci" className="flex flex-col scroll-mt-24 md:py-20">
       <div className="container flex flex-col gap-10">
         <div className="text-center space-y-2">
-          <SectionTitle index="04" title={t("title")} highlight={t("title_highlight")} />
+          <SectionTitle index="03" title={t("title")} highlight={t("title_highlight")} />
         </div>
 
         <div className="flex justify-center">

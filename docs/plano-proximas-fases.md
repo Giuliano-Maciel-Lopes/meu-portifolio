@@ -59,11 +59,11 @@ Fazer a **A2 primeiro** (dá pra fazer já, sem depender de foto). Partir para a
 | Seção | Mundo | Sensação |
 |---|---|---|
 | Home | Espaço + Vênus (já existe) | Partida |
-| Sobre mim | **Terra** | "Pousei": quem sou eu |
-| Skills | **Lua** | Ferramentas e base de lançamento |
+| Skills | **Lua** | Base de lançamento: o que eu domino |
 | Projetos | **Marte** | Exploração: o que construí |
 | Experiência | **Júpiter** | A jornada maior |
-| Contato | De volta à **Terra** / sinal de rádio | "Chama no rádio" |
+| Sobre mim | **Terra** | "Pousei": quem está por trás de tudo |
+| Contato | Estação / sinal de rádio | "Chama no rádio" |
 
 ### Como fica na tela
 

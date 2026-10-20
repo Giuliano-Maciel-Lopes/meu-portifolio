@@ -50,7 +50,7 @@ export function SectionSkills() {
         viewport={isAnimationEnabled ? { once: false, amount: 0.15 } : undefined}
         variants={isAnimationEnabled ? fadeInFromBottom : undefined}
       >
-        <SectionTitle index="02" title={t("title")} />
+        <SectionTitle index="01" title={t("title")} />
         <p className="text-sm text-textSecondary text-center max-w-xl">{t("proven_subtitle")}</p>
         <ArrowButton text={t("proven_link") as string} href="#projects" />
 
