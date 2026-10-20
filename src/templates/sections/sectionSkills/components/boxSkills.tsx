@@ -1,6 +1,7 @@
 import React, { SVGProps } from "react";
 import { motion } from "framer-motion";
-import { itemVariants, containerVariants } from "@/styles/animaçoes/animaçoes";
+import { warpIn } from "@/styles/animaçoes/animaçoes";
+import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 
 type SkillItem = {
   name: string;
@@ -22,15 +23,10 @@ function hexToRgb(hex: string) {
 }
 
 export function BoxSkills({ items, category }: BoxProps) {
+  const { isAnimationEnabled } = useAnimationEnabled();
+
   return (
-    <motion.div
-      key={category || "all"}
-      className="grid grid-cols-2 md:grid-cols-4 gap-6"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-    >
+    <div key={category || "all"} className="grid grid-cols-2 md:grid-cols-4 gap-6">
       {items.map((item, index) => {
         const rgb = hexToRgb(item.color);
         const iconColor =
@@ -41,7 +37,11 @@ export function BoxSkills({ items, category }: BoxProps) {
         return (
           <motion.div
             key={index}
-            variants={itemVariants}
+            custom={index % 4}
+            variants={isAnimationEnabled ? warpIn : undefined}
+            initial={isAnimationEnabled ? "hidden" : undefined}
+            whileInView={isAnimationEnabled ? "visible" : undefined}
+            viewport={isAnimationEnabled ? { once: true, amount: 0.2 } : undefined}
             className="group relative flex flex-col items-center p-4 rounded-xl bg-zinc-900 overflow-hidden cursor-default transition-all duration-300 ease-out hover:-translate-y-1"
             style={{
               border: `1px solid rgba(${rgb}, 0.25)`,
@@ -78,6 +78,6 @@ export function BoxSkills({ items, category }: BoxProps) {
           </motion.div>
         );
       })}
-    </motion.div>
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { fadeInFromRight } from "@/styles/animaçoes/animaçoes";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
@@ -13,7 +14,14 @@ const floatingIcons = [
   { Icon: SiN8N, color: "#EA4B71", angle: 300 },
 ];
 
-const ORBIT_RADIUS = 185;
+const ORBIT_RADIUS = 200;
+const PHOTO = "/linkdingiu.png";
+
+// three.js só no cliente
+const AstronautHelmet = dynamic(
+  () => import("@/templates/sections/sectionAbout/components/AstronautHelmet").then((m) => m.AstronautHelmet),
+  { ssr: false }
+);
 
 export function MediaContentAbout() {
   const { isAnimationEnabled } = useAnimationEnabled();
@@ -53,19 +61,21 @@ export function MediaContentAbout() {
         })}
       </motion.div>
 
-      <motion.div
-        whileHover={isAnimationEnabled ? { scale: 1.04 } : undefined}
-        transition={{ type: "spring", stiffness: 200, damping: 15 }}
-        className="relative z-10 rounded-full p-1 border-4 border-yellow-500 shadow-[0_0_25px_rgba(255,215,0,0.4)] hover:shadow-[0_0_40px_rgba(255,215,0,0.6)] transition-all duration-300"
-      >
-        <Image
-          src="/linkdingiu.png"
-          alt="Giuliano Maciel"
-          width={280}
-          height={280}
-          className="rounded-full object-cover w-[280px] h-[280px]"
-        />
-      </motion.div>
+      {isAnimationEnabled ? (
+        <div className="hidden md:block relative z-10 w-[380px] h-[380px]">
+          <AstronautHelmet photo={PHOTO} />
+        </div>
+      ) : (
+        <div className="relative z-10 rounded-full p-1 border-4 border-amber shadow-[0_0_25px_rgba(255,200,87,0.4)]">
+          <Image
+            src={PHOTO}
+            alt="Giuliano Maciel"
+            width={280}
+            height={280}
+            className="rounded-full object-cover w-[280px] h-[280px]"
+          />
+        </div>
+      )}
     </motion.div>
   );
 }

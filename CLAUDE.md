@@ -215,8 +215,8 @@ Usar sempre os tokens do projeto, nunca cores hardcoded do Tailwind como `yellow
 | `textMuted` | `#666666` | Texto desabilitado |
 | `border` | `#333333` | Bordas padrão |
 
-**Fonte de headings:** `font-inter` (Inter)
-**Fonte de corpo:** `font-sans` (PT Sans Caption — padrão)
+**Fonte de headings:** `font-display` (Space Grotesk, auto-hospedada via `@fontsource-variable`)
+**Fonte de corpo:** `font-sans` / `font-inter` (Inter, auto-hospedada via `@fontsource-variable`)
 
 ### Tipografia Global (`globals.css`)
 
@@ -248,6 +248,9 @@ const { isAnimationEnabled } = useAnimationEnabled();
 - `itemVariants` — fade + slide up (opacity 0→1, y 20→0)
 - `fadeInFromLeft` / `fadeInFromRight` — slide horizontal ±150px
 - `fadeInFromTop` / `fadeInFromBottom` — slide vertical ±50px
+- `warpIn` — card "chegando do espaço" (escala, inclinação e blur → posição final). Usar `custom={index}` para escalonar
+
+**Títulos de seção:** usar `<SectionTitle index="0X" title={t("title")} highlight={t("title_highlight")} />` (`src/components/sectionTitle/SectionTitle.tsx`).
 
 ### Imagens
 
@@ -301,11 +304,19 @@ O Canvas Three.js fica inteiro em `hidden md:block` — nunca renderiza em mobil
 
 Qualquer loader de modelo 3D deve ser envolvido em `<Suspense fallback={null}>`.
 
+### Fundo 3D global (viagem pelo espaço)
+
+- `src/components/space/SpaceBackground.tsx` — fundo fixo renderizado no `Layout`. Desktop com animação liberada: `SpaceScene`; mobile / reduced-motion: `StarField` em CSS
+- `src/components/space/SpaceScene.tsx` — estrelas guiadas pelo scroll, riscos de velocidade, nebulosas, objetos dourados e planetas da NASA (`PLANETS`, ancorados por id de seção — nunca na home)
+- Texturas dos planetas em `public/models/planets/` (domínio público, NASA). Para adicionar outro planeta: colocar o `.jpg` ali e uma entrada em `PLANETS`
+- `src/components/space/ScrollProgress.tsx` — barra de progresso dourada
+- `sectionAbout/components/AstronautHelmet.tsx` — capacete 3D procedural com a foto no visor (só desktop)
+
 ### Componente Button (shadcn/CVA)
 
 O Button em `src/components/ui/button.tsx` tem variantes configuradas com CVA. Usar sempre `variant` e `size` existentes:
 
-- `variant`: `default`, `destructive`, `outline`, `secondary`, `ghost`, `link`, `icon`, `fancy`
+- `variant`: `default`, `destructive`, `outline`, `secondary`, `ghost`, `link`, `icon`, `fancy`, `gold` (CTA principal), `goldOutline` (CTA secundário)
 - `size`: `default`, `sm`, `lg`, `icon`
 - `asChild`: usa `Slot` do Radix para polimorfismo (ex: `<Button asChild><a href="...">`)
 

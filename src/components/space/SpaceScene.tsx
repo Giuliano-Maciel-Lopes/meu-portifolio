@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Lightformer } from "@react-three/drei";
+import { Environment, Lightformer, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
 /**
@@ -16,13 +16,13 @@ const DEPTH = 220; // comprimento do túnel de estrelas
 const SCROLL_TO_TRAVEL = 0.045; // unidades 3D por pixel de scroll
 const GOLD = ["#FFC857", "#D4A373", "#F5E6C8", "#A67C52", "#FFFFFF"];
 
-type Motion = { travel: number; velocity: number; mx: number; my: number };
+type Motion = { travel: number; velocity: number; mx: number; my: number; scrollY: number };
 
 /* ------------------------------------------------------------------ */
 /* Controlador: lê scroll e mouse, calcula travel/velocidade           */
 /* ------------------------------------------------------------------ */
 function useTravel(reduced: boolean) {
-  const motion = useRef<Motion>({ travel: 0, velocity: 0, mx: 0, my: 0 });
+  const motion = useRef<Motion>({ travel: 0, velocity: 0, mx: 0, my: 0, scrollY: 0 });
   const target = useRef({ mx: 0, my: 0 });
 
   useEffect(() => {
@@ -47,6 +47,7 @@ function useTravel(reduced: boolean) {
     const intro = reduced ? 0 : Math.pow(Math.max(0, 1 - t / 2.6), 2) * 70;
     drift.current += (reduced ? 0 : 0.9 + intro) * dt;
 
+    m.scrollY = window.scrollY;
     const scrollTravel = reduced ? 0 : window.scrollY * SCROLL_TO_TRAVEL;
     const next = scrollTravel + drift.current;
     const v = (next - m.travel) / Math.max(dt, 0.001);
@@ -82,7 +83,10 @@ const starVertex = /* glsl */ `
     gl_PointSize = max(aSize * uPixelRatio * (160.0 / -mv.z), 1.2 * uPixelRatio);
     float near = smoothstep(0.0, 3.0, -mv.z);
     float far = smoothstep(uDepth, uDepth * 0.7, -mv.z);
-    vAlpha = twinkle * near * far;
+    // estrelas mais suaves atrás da coluna de conteúdo, para não brigar com o texto
+    float ndcX = gl_Position.x / gl_Position.w;
+    float side = mix(0.45, 1.0, smoothstep(0.35, 0.8, abs(ndcX)));
+    vAlpha = twinkle * near * far * side;
     vColor = aColor;
   }
 `;
@@ -310,7 +314,7 @@ function Nebulas({ motion }: { motion: React.MutableRefObject<Motion> }) {
 /* ------------------------------------------------------------------ */
 /* Objetos dourados                                                    */
 /* ------------------------------------------------------------------ */
-type Shape = "ico" | "octa" | "dode" | "torus" | "knot" | "planet";
+type Shape = "ico" | "octa" | "dode" | "torus" | "knot";
 type Obj = { shape: Shape; x: number; y: number; z: number; s: number; wire?: boolean; spin: number };
 
 const SPAN = 180; // distância de repetição dos objetos
@@ -320,7 +324,6 @@ const OBJECTS: Obj[] = [
   { shape: "ico", x: 13, y: 4, z: -20, s: 1.6, spin: 0.35 },
   { shape: "torus", x: -15, y: -4, z: -40, s: 2, wire: true, spin: 0.25 },
   { shape: "octa", x: -13, y: 6, z: -62, s: 1.5, spin: 0.5 },
-  { shape: "planet", x: 22, y: -3, z: -88, s: 4.5, spin: 0.08 },
   { shape: "dode", x: -16, y: -6, z: -108, s: 1.8, wire: true, spin: 0.3 },
   { shape: "knot", x: 15, y: 7, z: -128, s: 1.5, spin: 0.4 },
   { shape: "ico", x: -18, y: 2, z: -148, s: 2.6, wire: true, spin: 0.2 },
@@ -337,10 +340,8 @@ function Geometry({ shape }: { shape: Shape }) {
       return <dodecahedronGeometry args={[1, 0]} />;
     case "torus":
       return <torusGeometry args={[1, 0.28, 16, 64]} />;
-    case "knot":
-      return <torusKnotGeometry args={[0.8, 0.25, 128, 16]} />;
     default:
-      return <sphereGeometry args={[1, 48, 48]} />;
+      return <torusKnotGeometry args={[0.8, 0.25, 128, 16]} />;
   }
 }
 
@@ -368,8 +369,6 @@ function GoldObject({ o, index, motion }: { o: Obj; index: number; motion: React
     }
   });
 
-  const isPlanet = o.shape === "planet";
-
   return (
     <group ref={ref} position={[o.x, o.y, o.z]} scale={o.s}>
       <group ref={inner}>
@@ -379,22 +378,101 @@ function GoldObject({ o, index, motion }: { o: Obj; index: number; motion: React
             <meshBasicMaterial color="#FFC857" wireframe transparent opacity={0.7} fog={false} />
           ) : (
             <meshStandardMaterial
-              color={isPlanet ? "#B8864B" : "#D4A373"}
-              metalness={isPlanet ? 0.6 : 1}
-              roughness={isPlanet ? 0.55 : 0.22}
-              flatShading={!isPlanet && o.shape !== "knot"}
+              color="#D4A373"
+              metalness={1}
+              roughness={0.22}
+              flatShading={o.shape !== "knot"}
               envMapIntensity={1.4}
             />
           )}
         </mesh>
-        {isPlanet && (
-          <mesh rotation={[Math.PI / 2.3, 0.2, 0]}>
-            <ringGeometry args={[1.45, 2.3, 96]} />
-            <meshBasicMaterial color="#FFC857" side={THREE.DoubleSide} transparent opacity={0.35} />
-          </mesh>
-        )}
       </group>
     </group>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Planetas da NASA: aparecem só depois da home, ancorados nas seções  */
+/* ------------------------------------------------------------------ */
+type PlanetDef = {
+  texture: string;
+  anchor: string; // id da seção onde o planeta passa
+  x: number;
+  y: number;
+  radius: number;
+  tilt: number;
+};
+
+// Texturas de domínio público: Blue Marble (Terra) e CGI Moon Kit / LRO (Lua), NASA
+const PLANETS: PlanetDef[] = [
+  { texture: "/models/planets/moon.jpg", anchor: "skills", x: -22, y: 5, radius: 3.4, tilt: 0.1 },
+  { texture: "/models/planets/earth.jpg", anchor: "projects", x: 24, y: -4, radius: 5.5, tilt: 0.41 },
+];
+
+const PLANET_FAR = -60;
+const PLANET_NEAR = 6;
+
+function NasaPlanet({ def, motion }: { def: PlanetDef; motion: React.MutableRefObject<Motion> }) {
+  const texture = useTexture(def.texture);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 4;
+  const group = useRef<THREE.Group>(null);
+  const globe = useRef<THREE.Mesh>(null);
+  const anchorTop = useRef<number | null>(null);
+  const anchorHeight = useRef(1);
+
+  useEffect(() => {
+    const measure = () => {
+      const el = document.getElementById(def.anchor);
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      anchorTop.current = rect.top + window.scrollY;
+      anchorHeight.current = Math.max(rect.height, window.innerHeight);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(document.body);
+    return () => ro.disconnect();
+  }, [def.anchor]);
+
+  useFrame((state, delta) => {
+    const g = group.current;
+    if (!g || anchorTop.current === null) return;
+    const vh = window.innerHeight;
+    // 0 quando a seção começa a entrar na tela, 1 quando ela termina de sair
+    const p = (motion.current.scrollY - (anchorTop.current - vh)) / (anchorHeight.current + vh);
+    const visible = p > 0 && p < 1;
+    g.visible = visible;
+    if (!visible) return;
+    const eased = p * p * (3 - 2 * p);
+    g.position.set(def.x, def.y + Math.sin(state.clock.elapsedTime * 0.3) * 0.4, THREE.MathUtils.lerp(PLANET_FAR, PLANET_NEAR, eased));
+    // cresce do nada ao surgir, para não aparecer atrás do texto no centro da tela
+    g.scale.setScalar(THREE.MathUtils.smoothstep(p, 0.05, 0.3));
+    if (globe.current) globe.current.rotation.y += delta * 0.06;
+  });
+
+  return (
+    <group ref={group} visible={false} rotation={[def.tilt, 0, 0]}>
+      <mesh ref={globe}>
+        <sphereGeometry args={[def.radius, 64, 64]} />
+        <meshStandardMaterial map={texture} roughness={0.9} metalness={0} />
+      </mesh>
+      {/* halo atmosférico dourado */}
+      <mesh scale={1.06}>
+        <sphereGeometry args={[def.radius, 48, 48]} />
+        <meshBasicMaterial color="#FFC857" transparent opacity={0.08} side={THREE.BackSide} depthWrite={false} blending={THREE.AdditiveBlending} />
+      </mesh>
+    </group>
+  );
+}
+
+function NasaPlanets({ motion }: { motion: React.MutableRefObject<Motion> }) {
+  return (
+    <Suspense fallback={null}>
+      {PLANETS.map((def) => (
+        <NasaPlanet key={def.anchor} def={def} motion={motion} />
+      ))}
+    </Suspense>
   );
 }
 
@@ -420,11 +498,12 @@ function Scene({ lite, reduced }: { lite: boolean; reduced: boolean }) {
     <>
       <fog attach="fog" args={["#000000", 40, 170]} />
       <ambientLight intensity={0.25} />
-      <directionalLight position={[5, 6, 4]} intensity={1.6} color="#FFE2A8" />
+      <directionalLight position={[-6, 4, 6]} intensity={2.2} color="#FFF1D6" />
       <pointLight position={[0, 0, 6]} intensity={60} color="#FFE2A8" distance={80} decay={1.5} />
       <Stars count={lite ? 1400 : 4200} motion={motion} />
       {!lite && <WarpLines count={420} motion={motion} />}
       <Nebulas motion={motion} />
+      <NasaPlanets motion={motion} />
       {(lite ? OBJECTS.filter((_, i) => i % 2 === 0) : OBJECTS).map((o, i) => (
         <GoldObject key={i} o={o} index={i} motion={motion} />
       ))}

@@ -45,6 +45,7 @@ const FILTERS = [
 ];
 
 import { SectionTitle } from "@/components/sectionTitle/SectionTitle";
+import { warpIn } from "@/styles/animaçoes/animaçoes";
 
 export function SectionProjects() {
   const [selected, setSelected] = useState<MergedProject | null>(null);
@@ -194,10 +195,10 @@ export function SectionProjects() {
         <div className="flex flex-col gap-5">
           {showHero && hero && (
             <motion.div
-              initial={isAnimationEnabled ? { opacity: 0, y: 24 } : undefined}
-              whileInView={isAnimationEnabled ? { opacity: 1, y: 0 } : undefined}
-              viewport={isAnimationEnabled ? { once: true, amount: 0.1 } : undefined}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              variants={isAnimationEnabled ? warpIn : undefined}
+              initial={isAnimationEnabled ? "hidden" : undefined}
+              whileInView={isAnimationEnabled ? "visible" : undefined}
+              viewport={isAnimationEnabled ? { once: true, amount: 0.15 } : undefined}
             >
               <BannerProjects project={hero} hero onClick={() => setSelected(hero)} />
             </motion.div>
@@ -216,10 +217,11 @@ export function SectionProjects() {
                 <motion.div
                   key={project.nameProject}
                   className="h-full"
-                  initial={isAnimationEnabled ? { opacity: 0, y: 24 } : undefined}
-                  whileInView={isAnimationEnabled ? { opacity: 1, y: 0 } : undefined}
-                  viewport={isAnimationEnabled ? { once: true, amount: 0.05 } : undefined}
-                  transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+                  custom={index % 3}
+                  variants={isAnimationEnabled ? warpIn : undefined}
+                  initial={isAnimationEnabled ? "hidden" : undefined}
+                  whileInView={isAnimationEnabled ? "visible" : undefined}
+                  viewport={isAnimationEnabled ? { once: true, amount: 0.15 } : undefined}
                 >
                   <BannerProjects project={project} onClick={() => setSelected(project)} />
                 </motion.div>

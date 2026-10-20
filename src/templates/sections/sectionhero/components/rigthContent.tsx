@@ -41,7 +41,7 @@ export function RigthContet() {
           </AnimatePresence>
         </div>
 
-        <p className="text-gray-300 text-base leading-relaxed">
+        <p className="text-textPrimary text-lg leading-relaxed">
           {t("description")}
         </p>
       </div>
