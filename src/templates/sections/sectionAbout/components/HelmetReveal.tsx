@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
@@ -11,8 +11,6 @@ const FACE_PHOTO = "/about/astronauta-rosto.webp";
 const PHOTO_POSITION = "object-[25%_50%]";
 
 const LENS_RADIUS = 150;
-// No toque a lente abre o suficiente para mostrar o rosto inteiro
-const TAP_RADIUS = 260;
 // Fração do raio que fica 100% visível antes da borda suave
 const LENS_SOLID = 0.55;
 const SPRING = { stiffness: 260, damping: 28, mass: 0.6 };
@@ -21,7 +19,6 @@ export function HelmetReveal() {
   const { t } = useTranslation("about");
   const { isAnimationEnabled } = useAnimationEnabled();
   const [revealed, setRevealed] = useState(false);
-  const tapOpen = useRef(false);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -47,7 +44,6 @@ export function HelmetReveal() {
   };
 
   const handlePointerEnter = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse") return;
     // a lente nasce no ponto onde o mouse entrou, sem atravessar a foto
     const rect = event.currentTarget.getBoundingClientRect();
     springX.jump(event.clientX - rect.left);
@@ -57,38 +53,32 @@ export function HelmetReveal() {
     setRevealed(true);
   };
 
-  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse") moveLens(event);
-  };
-
-  const handlePointerLeave = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse") return;
-    radius.set(0);
-  };
-
-  // No celular não existe hover: cada toque abre ou fecha a lente
-  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse") return;
-    tapOpen.current = !tapOpen.current;
-    moveLens(event);
-    radius.set(tapOpen.current ? TAP_RADIUS : 0);
-    setRevealed(true);
-  };
+  const handlePointerLeave = () => radius.set(0);
 
   return (
     <div className="relative w-full">
+      {/* celular: sem hover, só a foto do rosto (a do capacete nem é baixada) */}
+      <div className="md:hidden relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gold/30 bg-card shadow-[0_0_40px_rgba(212,163,115,0.15)]">
+        <Image
+          src={FACE_PHOTO}
+          alt={t("photo_alt")}
+          fill
+          sizes="100vw"
+          className={cn("object-cover", PHOTO_POSITION)}
+        />
+      </div>
+
       <div
         onPointerEnter={handlePointerEnter}
-        onPointerMove={handlePointerMove}
+        onPointerMove={moveLens}
         onPointerLeave={handlePointerLeave}
-        onPointerUp={handlePointerUp}
-        className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gold/30 bg-card shadow-[0_0_40px_rgba(212,163,115,0.15)] cursor-none touch-manipulation select-none"
+        className="hidden md:block group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-gold/30 bg-card shadow-[0_0_40px_rgba(212,163,115,0.15)] cursor-none select-none"
       >
         <Image
           src={HELMET_PHOTO}
           alt={t("photo_alt")}
           fill
-          sizes="(min-width: 768px) 50vw, 100vw"
+          sizes="50vw"
           className={cn("object-cover", PHOTO_POSITION)}
           draggable={false}
         />
@@ -102,7 +92,7 @@ export function HelmetReveal() {
             src={FACE_PHOTO}
             alt=""
             fill
-            sizes="(min-width: 768px) 50vw, 100vw"
+            sizes="50vw"
             className={cn("object-cover", PHOTO_POSITION)}
             draggable={false}
           />
@@ -110,7 +100,7 @@ export function HelmetReveal() {
 
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute left-0 top-0 hidden md:block rounded-full border border-gold/50 shadow-[0_0_25px_rgba(255,200,87,0.35)]"
+          className="pointer-events-none absolute left-0 top-0 rounded-full border border-gold/50 shadow-[0_0_25px_rgba(255,200,87,0.35)]"
           style={{
             x: lensX,
             y: lensY,
@@ -127,12 +117,11 @@ export function HelmetReveal() {
 
       <span
         className={cn(
-          "mt-3 block text-center text-xs uppercase tracking-[0.2em] text-textSecondary transition-opacity duration-500",
+          "hidden md:block mt-3 text-center text-xs uppercase tracking-[0.2em] text-textSecondary transition-opacity duration-500",
           revealed && "opacity-0"
         )}
       >
-        <span className="hidden md:inline">{t("reveal_hint_hover")}</span>
-        <span className="md:hidden">{t("reveal_hint_tap")}</span>
+        {t("reveal_hint_hover")}
       </span>
     </div>
   );

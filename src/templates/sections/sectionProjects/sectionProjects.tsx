@@ -148,6 +148,7 @@ export function SectionProjects() {
         <header className="text-center flex flex-col items-center gap-3">
           <SectionTitle
             index="02"
+            mobileIndex="01"
             title={t("title")}
             highlight={t("title_highlight")}
             subtitle={t("subtitle")}

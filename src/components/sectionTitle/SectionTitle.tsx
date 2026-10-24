@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   index: string;
+  // número quando a ordem das seções muda no celular
+  mobileIndex?: string;
   title: string;
   highlight?: string;
   subtitle?: string;
@@ -17,7 +19,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
  * Título padrão das seções: número da "parada" da viagem, linha dourada
  * que cresce e palavras que sobem de dentro de uma máscara.
  */
-export function SectionTitle({ index, title, highlight, subtitle, align = "center", className }: Props) {
+export function SectionTitle({ index, mobileIndex, title, highlight, subtitle, align = "center", className }: Props) {
   const { isAnimationEnabled } = useAnimationEnabled();
   const words = title.split(" ").filter(Boolean);
   const highlightWords = highlight ? highlight.split(" ").filter(Boolean) : [];
@@ -37,7 +39,14 @@ export function SectionTitle({ index, title, highlight, subtitle, align = "cente
       variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
     >
       <div className="flex items-center gap-3 font-display text-sm font-medium tracking-[0.3em] text-amber/80">
-        <span>{index}</span>
+        {mobileIndex ? (
+          <>
+            <span className="md:hidden">{mobileIndex}</span>
+            <span className="hidden md:inline">{index}</span>
+          </>
+        ) : (
+          <span>{index}</span>
+        )}
         <motion.span
           className="h-px w-12 bg-gradient-to-r from-amber to-transparent origin-left"
           variants={{

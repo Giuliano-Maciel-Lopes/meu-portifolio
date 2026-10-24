@@ -9,5 +9,15 @@
   "description": "I build web solutions and AI automations that simplify processes and truly drive businesses forward — not just code, but results.",
   "cta_contact": "Get in Touch",
   "cta_cv": "Download CV",
-  "journey_link": "Start the journey"
+  "journey_link": "Start the journey",
+  "highlights": [
+    {
+      "value": "FS",
+      "label": "Front + Back-end"
+    },
+    {
+      "value": "AI",
+      "label": "Real automations"
+    }
+  ]
 }

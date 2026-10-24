@@ -50,9 +50,12 @@ export function SectionSkills() {
         viewport={isAnimationEnabled ? { once: false, amount: 0.15 } : undefined}
         variants={isAnimationEnabled ? fadeInFromBottom : undefined}
       >
-        <SectionTitle index="01" title={t("title")} />
+        <SectionTitle index="01" mobileIndex="02" title={t("title")} />
         <p className="text-sm text-textSecondary text-center max-w-xl">{t("proven_subtitle")}</p>
-        <ArrowButton text={t("proven_link") as string} href="#projects" />
+        {/* no celular os projetos ficam acima, então a seta para baixo não faz sentido */}
+        <div className="hidden md:block">
+          <ArrowButton text={t("proven_link") as string} href="#projects" />
+        </div>
 
         <div className="mt-16 w-full sticky top-16 z-30 py-2 bg-background/95 backdrop-blur-sm md:static md:w-auto md:py-0 md:bg-transparent md:backdrop-blur-none">
           <div className="relative">

@@ -5,9 +5,12 @@ import { fadeInFromLeft } from "@/styles/animaçoes/animaçoes";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 import { useTranslation } from "react-i18next";
 
+type Highlight = { value: string; label: string };
+
 export function LeftContent() {
   const { isAnimationEnabled } = useAnimationEnabled();
   const { t } = useTranslation("hero");
+  const highlights = t("highlights", { returnObjects: true }) as Highlight[];
 
   return (
     <motion.div
@@ -37,6 +40,19 @@ export function LeftContent() {
           animate={{ width: "170px" }}
           transition={isAnimationEnabled ? { duration: 0.8, ease: "easeOut" } : { duration: 0 }}
         />
+      </div>
+
+      {/* o que eu faço, logo de cara: Full Stack + automações com IA */}
+      <div className="flex gap-3">
+        {highlights.map((h) => (
+          <div
+            key={h.value}
+            className="flex items-center gap-3 rounded-xl border border-gold/20 bg-card/60 px-4 py-2.5"
+          >
+            <span className="font-display text-2xl font-bold text-amber leading-none">{h.value}</span>
+            <span className="text-[11px] uppercase tracking-widest text-textSecondary leading-tight">{h.label}</span>
+          </div>
+        ))}
       </div>
 
       <div className="flex flex-col gap-4">

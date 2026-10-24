@@ -9,9 +9,14 @@ import { WhatsAppButton } from "@/components/whatsapp/WhatsAppButton";
 export function Sections() {
   return (
     <div className="flex flex-col gap-28">
-        <SectionHero/>
+        {/* no celular os projetos vêm antes das skills; no desktop a ordem do código */}
+        <div className="-order-2 md:order-none">
+          <SectionHero/>
+        </div>
         <SectionSkills/>
-        <SectionProjects/>
+        <div className="-order-1 md:order-none">
+          <SectionProjects/>
+        </div>
         <SectionExperience/>
         <SectionAbout/>
         <SectionContact/>

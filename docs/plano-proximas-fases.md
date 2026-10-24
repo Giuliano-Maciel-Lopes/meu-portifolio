@@ -66,7 +66,7 @@ rode build/tsc antes de commitar e me mande o link da prévia da Vercel no final
 | Paralaxe da câmera com o mouse | `CameraRig` | `* 1.6` e `* 1.0` |
 
 - **Planetas hoje:** Lua em `skills` (x −22) e Terra em `projects` (x +24). Texturas em `public/models/planets/` (`moon.jpg`, `earth.jpg`), ambas da NASA e de domínio público.
-- **Barra de progresso dourada:** `src/components/space/ScrollProgress.tsx`
+- **Barra de progresso dourada:** removida a pedido do Giuliano (achou feia). Não recolocar.
 
 ### 2.2 Vênus no topo (o planeta da NASA que o Giuliano escolheu)
 - `src/templates/sections/sectionhero/sectionHero.tsx` (tem um `<Canvas>` **próprio**) + `components/venus3d.tsx`
@@ -77,7 +77,9 @@ rode build/tsc antes de commitar e me mande o link da prévia da Vercel no final
 - `src/templates/sections/sectionAbout/components/HelmetReveal.tsx` (Fase A1, foto 2D). Substituiu o capacete 3D procedural (`AstronautHelmet.tsx`, removido) e os ícones orbitando.
 - Fotos: `public/about/astronauta-capacete.webp` (embaixo) e `public/about/astronauta-rosto.webp` (em cima), recortadas da imagem original do Giuliano e alinhadas pixel a pixel. Para trocar, manter **o mesmo enquadramento e tamanho** nas duas.
 - A foto de cima recebe `mask-image: radial-gradient(...)` com `--x/--y/--r` vindos de `useMotionValue` + `useSpring` (sem spring quando `isAnimationEnabled` é falso).
-- Desktop: lente de `LENS_RADIUS` segue o mouse. Celular: toque abre/fecha (`TAP_RADIUS`). Agora a foto aparece também no mobile, abaixo do texto.
+- Desktop: lente de `LENS_RADIUS` segue o mouse. Celular: só a foto do rosto, estática, abaixo do texto (a do capacete nem é baixada).
+- Hero: destaques "FS · Front + Back-end" e "IA · Automações reais" logo abaixo do nome (chave `highlights` no i18n do hero), também no celular.
+- Celular: Projetos vêm antes de Skills (`order` no `sections/index.tsx`, numeração via `mobileIndex` do `SectionTitle`). Desktop mantém Skills → Projetos.
 - Enquadramento no card 4:3: `PHOTO_POSITION` (`object-[25%_50%]`).
 
 ### 2.4 Tipografia

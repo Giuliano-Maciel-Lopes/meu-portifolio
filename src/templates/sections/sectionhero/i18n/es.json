@@ -9,5 +9,15 @@
   "description": "Desarrollo soluciones web y automatizaciones con IA que simplifican procesos e impulsan negocios de verdad — no solo código, sino resultados.",
   "cta_contact": "Contáctame",
   "cta_cv": "Descargar CV",
-  "journey_link": "Iniciar el viaje"
+  "journey_link": "Iniciar el viaje",
+  "highlights": [
+    {
+      "value": "FS",
+      "label": "Front + Back-end"
+    },
+    {
+      "value": "IA",
+      "label": "Automatizaciones reales"
+    }
+  ]
 }
