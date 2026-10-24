@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { projects } from "./utils/projects";
 import type { ProjectCategory } from "./utils/projects";
 import { BannerProjects } from "./Components/bannerProjects";
-import { ProjectModal } from "./Components/ProjectModal";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -43,6 +43,15 @@ const FILTERS = [
   { key: "all" as const, label: "Todos", color: "#D4A373" },
   ...CATEGORY_ORDER.map((cat) => ({ key: cat, label: cat, color: CATEGORY_COLOR[cat] })),
 ];
+
+import { SectionTitle } from "@/components/sectionTitle/SectionTitle";
+import { warpIn } from "@/styles/animaçoes/animaçoes";
+
+// o modal só existe depois do clique: fica fora do bundle inicial
+const ProjectModal = dynamic(
+  () => import("@/templates/sections/sectionProjects/Components/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export function SectionProjects() {
   const [selected, setSelected] = useState<MergedProject | null>(null);
@@ -108,7 +117,7 @@ export function SectionProjects() {
 
 
   return (
-    <section id="projects" className="scroll-mt-24 relative overflow-hidden bg-background py-20">
+    <section id="projects" className="scroll-mt-24 relative overflow-hidden py-20">
       {/* sombra de entrada no topo */}
       <div
         aria-hidden
@@ -137,16 +146,13 @@ export function SectionProjects() {
       <div className="container flex flex-col gap-10 relative z-20">
         {/* cabeçalho */}
         <header className="text-center flex flex-col items-center gap-3">
-          <h3 className="text-center">
-            {t("title")}{" "}
-            <span className="bg-gradient-to-r from-amber to-gold bg-clip-text text-transparent">
-              {t("title_highlight")}
-            </span>
-          </h3>
-
-          <p className="text-textSecondary text-sm tracking-widest uppercase mb-0">
-            {t("subtitle")}
-          </p>
+          <SectionTitle
+            index="02"
+            mobileIndex="01"
+            title={t("title")}
+            highlight={t("title_highlight")}
+            subtitle={t("subtitle")}
+          />
 
           <div className="inline-flex items-center gap-3 mt-1 px-4 py-2 rounded-full border border-white/10 bg-white/[0.02]">
             <span className="text-sm text-textSecondary">
@@ -196,10 +202,10 @@ export function SectionProjects() {
         <div className="flex flex-col gap-5">
           {showHero && hero && (
             <motion.div
-              initial={isAnimationEnabled ? { opacity: 0, y: 24 } : undefined}
-              whileInView={isAnimationEnabled ? { opacity: 1, y: 0 } : undefined}
-              viewport={isAnimationEnabled ? { once: true, amount: 0.1 } : undefined}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              variants={isAnimationEnabled ? warpIn : undefined}
+              initial={isAnimationEnabled ? "hidden" : undefined}
+              whileInView={isAnimationEnabled ? "visible" : undefined}
+              viewport={isAnimationEnabled ? { once: true, amount: 0.15 } : undefined}
             >
               <BannerProjects project={hero} hero onClick={() => setSelected(hero)} />
             </motion.div>
@@ -218,10 +224,11 @@ export function SectionProjects() {
                 <motion.div
                   key={project.nameProject}
                   className="h-full"
-                  initial={isAnimationEnabled ? { opacity: 0, y: 24 } : undefined}
-                  whileInView={isAnimationEnabled ? { opacity: 1, y: 0 } : undefined}
-                  viewport={isAnimationEnabled ? { once: true, amount: 0.05 } : undefined}
-                  transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
+                  custom={index % 3}
+                  variants={isAnimationEnabled ? warpIn : undefined}
+                  initial={isAnimationEnabled ? "hidden" : undefined}
+                  whileInView={isAnimationEnabled ? "visible" : undefined}
+                  viewport={isAnimationEnabled ? { once: true, amount: 0.15 } : undefined}
                 >
                   <BannerProjects project={project} onClick={() => setSelected(project)} />
                 </motion.div>

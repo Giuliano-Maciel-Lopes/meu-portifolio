@@ -62,3 +62,35 @@ export const fadeInFromBottom: Variants = {
     transition: { duration: 1.2, ease: easeOut }
   }
 };
+
+/**
+ * Card "chegando do espaço": vem do fundo (pequeno, inclinado e desfocado)
+ * e encaixa com uma mola. Use `custom={index}` para escalonar a entrada.
+ */
+export const warpIn: Variants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.4,
+    y: 60,
+    rotateX: 28,
+    filter: "blur(14px)",
+    transformPerspective: 1200,
+  },
+  visible: (index: number = 0) => ({
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    rotateX: 0,
+    filter: "blur(0px)",
+    transformPerspective: 1200,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+      damping: 15,
+      mass: 0.9,
+      delay: index * 0.09,
+      filter: { duration: 0.6, delay: index * 0.09 },
+      opacity: { duration: 0.5, delay: index * 0.09 },
+    },
+  }),
+};

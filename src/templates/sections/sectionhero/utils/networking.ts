@@ -19,6 +19,6 @@ export const networks = [
   {
     icone: FaEnvelope,
     name: "Email",
-    link: "mailto:giulianomaciellopes@gmail.com",
+    link: "mailto:giulianomaciellopess@gmail.com",
   }
 ];

@@ -5,9 +5,12 @@ import { fadeInFromLeft } from "@/styles/animaçoes/animaçoes";
 import { useAnimationEnabled } from "@/hooks/useAnimationDesktop";
 import { useTranslation } from "react-i18next";
 
+type Highlight = { value: string; label: string };
+
 export function LeftContent() {
   const { isAnimationEnabled } = useAnimationEnabled();
   const { t } = useTranslation("hero");
+  const highlights = t("highlights", { returnObjects: true }) as Highlight[];
 
   return (
     <motion.div
@@ -24,7 +27,7 @@ export function LeftContent() {
           {t("developer_label")}
         </span>
 
-        <h1 className="text-6xl tracking-tight">
+        <h1 className="text-6xl lg:text-8xl">
           Giuliano{" "}
           <span className="bg-gradient-to-r from-amber via-gold to-goldDark bg-clip-text text-transparent">
             Maciel
@@ -39,9 +42,24 @@ export function LeftContent() {
         />
       </div>
 
+      {/* o que eu faço, logo de cara: Full Stack + automações com IA */}
+      <div className="flex gap-3">
+        {highlights.map((h) => (
+          <div
+            key={h.value}
+            className="flex items-center gap-3 rounded-xl border border-gold/20 bg-card/60 px-4 py-2.5"
+          >
+            <span className="font-display text-2xl font-bold text-amber leading-none">{h.value}</span>
+            <span className="text-[11px] uppercase tracking-widest text-textSecondary leading-tight">{h.label}</span>
+          </div>
+        ))}
+      </div>
+
       <div className="flex flex-col gap-4">
-        <Button variant="fancy" className="text-lg md:hidden">
-          {t("cta_cv")}
+        <Button variant="gold" className="md:hidden" asChild>
+          <a href="/giulianoo.pdf" download>
+            {t("cta_cv")}
+          </a>
         </Button>
         <div className="flex gap-4">
           {networks.map((network) => (

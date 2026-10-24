@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaIdCard, FaMedal } from "react-icons/fa";
-import { itemVariants, containerVariants } from "@/styles/animaçoes/animaçoes";
+import { warpIn } from "@/styles/animaçoes/animaçoes";
 import { experienci, certificates, PRATIQUE_START_DATE, FREELANCE_START_DATE } from "./utils/expert";
 import { getWorkingDuration } from "./utils/duration";
 import { BoxExp } from "./components/boxExp";
@@ -16,6 +16,8 @@ type TranslatedCertItem = { name: string; institution: string; description: stri
 // Datas de início de cada atuação (ver utils/expert.ts) — nenhuma tem data final,
 // então o tempo exibido é calculado automaticamente e nunca precisa ser editado à mão.
 const START_DATES = [PRATIQUE_START_DATE, FREELANCE_START_DATE];
+
+import { SectionTitle } from "@/components/sectionTitle/SectionTitle";
 
 export function SectionExperience() {
   const { isAnimationEnabled } = useAnimationEnabled();
@@ -49,12 +51,7 @@ export function SectionExperience() {
     <section id="experienci" className="flex flex-col scroll-mt-24 md:py-20">
       <div className="container flex flex-col gap-10">
         <div className="text-center space-y-2">
-          <h3 className="text-center text-3xl font-bold tracking-tight">
-            {t("title")}{" "}
-            <span className="bg-gradient-to-r from-amber to-gold bg-clip-text text-transparent">
-              {t("title_highlight")}
-            </span>
-          </h3>
+          <SectionTitle index="03" title={t("title")} highlight={t("title_highlight")} />
         </div>
 
         <div className="flex justify-center">
@@ -84,10 +81,10 @@ export function SectionExperience() {
             {mergedExp.map((exp, index) => (
               <motion.div
                 key={index}
-                initial={isAnimationEnabled ? { x: -150, opacity: 0 } : undefined}
-                whileInView={isAnimationEnabled ? { x: 0, opacity: 1 } : undefined}
-                viewport={isAnimationEnabled ? { once: false, amount: 0.2 } : undefined}
-                transition={{ duration: 1.2, ease: "easeOut" }}
+                variants={isAnimationEnabled ? warpIn : undefined}
+                initial={isAnimationEnabled ? "hidden" : undefined}
+                whileInView={isAnimationEnabled ? "visible" : undefined}
+                viewport={isAnimationEnabled ? { once: true, amount: 0.2 } : undefined}
               >
                 <BoxExp experience={exp} />
               </motion.div>
@@ -96,19 +93,22 @@ export function SectionExperience() {
         )}
 
         {categorySelected === "certificados" && (
-          <motion.div
+          <div
             key={categorySelected}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {mergedCerts.map((cert, index) => (
-              <motion.div key={index} variants={itemVariants}>
+              <motion.div
+                key={index}
+                custom={index % 3}
+                variants={isAnimationEnabled ? warpIn : undefined}
+                initial={isAnimationEnabled ? "hidden" : undefined}
+                animate={isAnimationEnabled ? "visible" : undefined}
+              >
                 <BoxCertificate certificate={cert} />
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         )}
       </div>
     </section>

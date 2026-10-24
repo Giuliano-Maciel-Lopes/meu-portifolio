@@ -9,5 +9,15 @@
   "description": "Desenvolvo soluções web e automações com IA que simplificam processos e alavancam negócios de verdade — não só código, mas resultado.",
   "cta_contact": "Entre em Contato",
   "cta_cv": "Baixar CV",
-  "about_link": "Sobre mim"
+  "journey_link": "Iniciar a viagem",
+  "highlights": [
+    {
+      "value": "FS",
+      "label": "Front + Back-end"
+    },
+    {
+      "value": "IA",
+      "label": "Automações reais"
+    }
+  ]
 }

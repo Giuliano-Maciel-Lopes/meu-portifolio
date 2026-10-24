@@ -45,11 +45,7 @@ export function WhatsAppButton() {
         whileTap={{ scale: 0.95 }}
         className="relative w-14 h-14 bg-[#25D366] hover:bg-[#1ebe5d] rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.5)] transition-colors duration-200"
       >
-        <motion.span
-          className="absolute inset-0 rounded-full bg-[#25D366] opacity-40"
-          animate={{ scale: [1, 1.5, 1], opacity: [0.4, 0, 0.4] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
-        />
+        <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-40 motion-safe:animate-wa-pulse" />
         <AnimatePresence mode="wait">
           {open ? (
             <motion.span
