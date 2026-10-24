@@ -312,7 +312,7 @@ Qualquer loader de modelo 3D deve ser envolvido em `<Suspense fallback={null}>`.
 - `src/components/space/SpaceScene.tsx` — estrelas guiadas pelo scroll, riscos de velocidade, nebulosas, objetos dourados e planetas da NASA (`PLANETS`, ancorados por id de seção — nunca na home)
 - Texturas dos planetas em `public/models/planets/` (domínio público, NASA). Para adicionar outro planeta: colocar o `.jpg` ali e uma entrada em `PLANETS`
 - `src/components/space/ScrollProgress.tsx` — barra de progresso dourada
-- `sectionAbout/components/AstronautHelmet.tsx` — capacete 3D procedural com a foto no visor (só desktop)
+- `sectionAbout/components/HelmetReveal.tsx` — duas fotos sobrepostas (capacete e rosto, em `public/about/`): uma lente segue o mouse e revela o rosto; no celular o toque abre/fecha
 
 ### Componente Button (shadcn/CVA)
 

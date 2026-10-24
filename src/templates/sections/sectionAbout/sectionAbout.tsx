@@ -42,7 +42,7 @@ export function SectionAbout() {
       <div className="container flex flex-col relative z-10">
         <SectionTitle index="04" title={t("title")} />
 
-        <div className="flex items-center">
+        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-12 pb-16 md:pb-0">
           <TextContentAbout />
           <MediaContentAbout />
         </div>

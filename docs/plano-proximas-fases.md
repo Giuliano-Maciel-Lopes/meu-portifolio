@@ -73,12 +73,12 @@ rode build/tsc antes de commitar e me mande o link da prévia da Vercel no final
 - Textura: `public/models/Venusnasa.jpg`
 - **É o ÚNICO planeta da home. Não adicionar outro planeta no topo.**
 
-### 2.3 Capacete de astronauta 3D com a foto (seção "Sobre mim")
-- `src/templates/sections/sectionAbout/components/AstronautHelmet.tsx`: capacete procedural (casco, visor de vidro levemente dourado, aro dourado, anel do pescoço, módulos com luz e antena). Flutua com `Float` do drei e inclina na direção do mouse.
-- Foto: `/linkdingiu.png`, aplicada num `circleGeometry` dentro do visor
-- Usado em `MediaContentAbout.tsx` (carregado via `next/dynamic`, `ssr: false`) dentro de `hidden md:block`. Sem animação, aparece a foto estática com aro dourado.
-- Constantes: `R = 1.25` (raio), `OPENING = 0.78` (abertura do visor), `RIM_Z` e `RIM_R` derivados
-- Os ícones de tecnologia continuam orbitando em volta (`ORBIT_RADIUS = 200`)
+### 2.3 Capacete que revela o rosto (seção "Sobre mim")
+- `src/templates/sections/sectionAbout/components/HelmetReveal.tsx` (Fase A1, foto 2D). Substituiu o capacete 3D procedural (`AstronautHelmet.tsx`, removido) e os ícones orbitando.
+- Fotos: `public/about/astronauta-capacete.webp` (embaixo) e `public/about/astronauta-rosto.webp` (em cima), recortadas da imagem original do Giuliano e alinhadas pixel a pixel. Para trocar, manter **o mesmo enquadramento e tamanho** nas duas.
+- A foto de cima recebe `mask-image: radial-gradient(...)` com `--x/--y/--r` vindos de `useMotionValue` + `useSpring` (sem spring quando `isAnimationEnabled` é falso).
+- Desktop: lente de `LENS_RADIUS` segue o mouse. Celular: toque abre/fecha (`TAP_RADIUS`). Agora a foto aparece também no mobile, abaixo do texto.
+- Enquadramento no card 4:3: `PHOTO_POSITION` (`object-[25%_50%]`).
 
 ### 2.4 Tipografia
 - Fontes auto-hospedadas via `@fontsource-variable/space-grotesk` e `@fontsource-variable/inter`, importadas em `src/pages/_app.tsx`. **Google Fonts não carrega no sandbox, por isso não usar `<link>`.**
@@ -198,7 +198,7 @@ gh api repos/Giuliano-Maciel-Lopes/meu-portifolio/commits/$(git rev-parse HEAD)/
 - [x] Build e link da prévia
 - [ ] Prints: não foram tirados (sem browser na sessão). Conferir na prévia e ajustar `VISOR_LIFT`, mola e material se precisar
 
-### Opção A1 — Foto 2D com máscara (mais fiel à F1, depende de foto nova)
+### Opção A1 — Foto 2D com máscara (FEITA, ver 2.3)
 
 Duas fotos **com o mesmo enquadramento**, alinhadas pixel a pixel:
 1. Ele **com** capacete de astronauta

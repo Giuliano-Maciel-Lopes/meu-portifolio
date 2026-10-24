@@ -22,5 +22,8 @@
       "value": "IA",
       "label": "Automatizaciones reales"
     }
-  ]
+  ],
+  "photo_alt": "Giuliano Maciel con traje de astronauta y casco, frente a una pantalla con código",
+  "reveal_hint_hover": "Pasa el mouse por el casco",
+  "reveal_hint_tap": "Toca el casco"
 }

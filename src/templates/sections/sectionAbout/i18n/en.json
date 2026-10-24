@@ -22,5 +22,8 @@
       "value": "AI",
       "label": "Real automations"
     }
-  ]
+  ],
+  "photo_alt": "Giuliano Maciel in an astronaut suit and helmet, in front of a screen full of code",
+  "reveal_hint_hover": "Hover over the helmet",
+  "reveal_hint_tap": "Tap the helmet"
 }
