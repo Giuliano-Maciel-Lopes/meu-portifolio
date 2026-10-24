@@ -1,4 +1,5 @@
 import { BsHeart, BsRobot, BsChatDots } from "react-icons/bs";
+import { TbBrandReactNative } from "react-icons/tb";
 import {
   SiJavascript,
   SiTypescript,
@@ -32,7 +33,8 @@ import {
   SiWhatsapp,
   SiOpenai,
   SiHearth,
-  SiMeta
+  SiMeta,
+  SiAnthropic
 } from "react-icons/si";
 
 
@@ -62,6 +64,7 @@ export const skills = [
 
   //  FRONT-END
   { category: "Front-end", name: "React", img: SiReact, color: "#61DAFB", description: "Componentização, hooks e SPA." },
+  { category: "Front-end", name: "React Native", img: TbBrandReactNative, color: "#61DAFB", description: "Apps mobile nativos para Android e iOS com React." },
   { category: "Front-end", name: "Next.js", img: SiNextdotjs, color: "#000000", description: "SSR, SSG, ISR e otimizações automáticas." },
   { category: "Front-end", name: "Redux", img: SiRedux, color: "#764ABC", description: "Gerenciamento de estado global." },
   { category: "Front-end", name: "TailwindCSS", img: SiTailwindcss, color: "#38B2AC", description: "Estilização produtiva com utility-first." },
@@ -108,6 +111,7 @@ export const skills = [
   { category: "Automações e IA", name: "Meta", img: SiMeta, color: "#0668E1", description: "Integração com a API Oficial da Meta para disparos via WhatsApp e Email." },
   { category: "Automações e IA", name: "Lovable", img: BsHeart, color: "#EA4B71", description: "Desenvolvimento acelerado com IA para produtos digitais." },
   { category: "Automações e IA", name: "Claude Code", img: BsRobot, color: "#D97757", description: "Assistente de IA da Anthropic para desenvolvimento de software." },
+  { category: "Automações e IA", name: "Agentes de IA", img: SiAnthropic, color: "#D97757", description: "Agentes autônomos que usam ferramentas, memória e tomam decisões em fluxos reais." },
   { category: "Automações e IA", name: "Chatwoot", img: BsChatDots, color: "#1F93FF", description: "Plataforma open-source de suporte ao cliente via múltiplos canais." },
   { category: "Automações e IA", name: "IA Atendente", img: BsRobot, color: "#10A37F", description: "Criação de assistentes de IA para atendimento automático via WhatsApp." },
 
