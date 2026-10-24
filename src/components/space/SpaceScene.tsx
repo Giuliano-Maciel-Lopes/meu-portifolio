@@ -403,9 +403,8 @@ type PlanetDef = {
   tilt: number;
 };
 
-// Texturas de domínio público: Blue Marble (Terra) e CGI Moon Kit / LRO (Lua), NASA
+// Textura de domínio público: Blue Marble (Terra), NASA. A Lua tem pouso próprio (MoonLanding)
 const PLANETS: PlanetDef[] = [
-  { texture: "/models/planets/moon.jpg", anchor: "skills", x: -22, y: 5, radius: 3.4, tilt: 0.1 },
   { texture: "/models/planets/earth.jpg", anchor: "projects", x: 24, y: -4, radius: 5.5, tilt: 0.41 },
 ];
 
@@ -477,6 +476,130 @@ function NasaPlanets({ motion }: { motion: React.MutableRefObject<Motion> }) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Pouso na Lua: a Lua cresce no fundo até quase encostar na tela e    */
+/* o fundo vira a superfície lunar enquanto a seção de skills está ali */
+/* ------------------------------------------------------------------ */
+const MOON_ANCHOR = "skills";
+const MOON_Z = -120;
+const MOON_MIN_SCALE = 2; // raio da Lua quando surge no fundo
+const MOON_GROWTH = 55; // crescimento total (exponencial, sensação de aproximação)
+const MOON_SWING_X = 70; // abertura do zigue-zague na chegada (esquerda → direita → centro)
+const MOON_SWING_Y = 22;
+const MOON_TURNS = 1.25; // voltas da espiral até parar no centro
+const SURFACE_DISTANCE = 240; // a foto fica no fundo da cena, atrás das estrelas (far = 260)
+const SURFACE_ROLL = 0.18; // giro da foto que assenta no pouso, continuando a espiral
+
+function MoonLanding({ motion }: { motion: React.MutableRefObject<Motion> }) {
+  // CGI Moon Kit / LRO e foto do Hadley Delta pela Apollo 15 (AS15-87-11748), NASA, domínio público
+  const [moonMap, surfaceMap] = useTexture(["/models/planets/moon.jpg", "/models/planets/moon-surface.jpg"]);
+  moonMap.colorSpace = THREE.SRGBColorSpace;
+  surfaceMap.colorSpace = THREE.SRGBColorSpace;
+  const { camera } = useThree();
+  const moon = useRef<THREE.Mesh>(null);
+  const moonMat = useRef<THREE.MeshStandardMaterial>(null);
+  const surface = useRef<THREE.Mesh>(null);
+  const surfaceMat = useRef<THREE.MeshBasicMaterial>(null);
+  const anchor = useRef<{ top: number; bottom: number } | null>(null);
+  const forward = useMemo(() => new THREE.Vector3(), []);
+  const up = useMemo(() => new THREE.Vector3(), []);
+
+  useEffect(() => {
+    const measure = () => {
+      const el = document.getElementById(MOON_ANCHOR);
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      anchor.current = { top: rect.top + window.scrollY, bottom: rect.bottom + window.scrollY };
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(document.body);
+    return () => ro.disconnect();
+  }, []);
+
+  useFrame((state) => {
+    const m = moon.current;
+    const s = surface.current;
+    const a = anchor.current;
+    if (!m || !s || !moonMat.current || !surfaceMat.current || !a) return;
+    const vh = window.innerHeight;
+    const y = motion.current.scrollY;
+    // aproximação: da saída do hero até o título das skills chegar ao topo
+    const arrive = THREE.MathUtils.smoothstep(y, a.top - vh * 0.95, a.top - vh * 0.1);
+    // decolagem: quando o fim da seção chega ao pé da tela
+    const leave = THREE.MathUtils.smoothstep(y, a.bottom - vh, a.bottom - vh * 0.3);
+    // percurso dentro da seção: 0 logo após o pouso, 1 no início da decolagem
+    const explore = THREE.MathUtils.smoothstep(y, a.top - vh * 0.1, a.bottom - vh);
+    // pouso: a bola quase encosta na tela e o fundo vira a superfície
+    const touchdown = THREE.MathUtils.smootherstep(arrive, 0.7, 0.99) * (1 - THREE.MathUtils.smoothstep(leave, 0, 0.35));
+
+    // a bola some enquanto a foto da superfície aparece por trás dela
+    moonMat.current.opacity = 1 - touchdown;
+    m.visible = arrive > 0.001 && leave < 0.999 && touchdown < 0.999;
+    if (m.visible) {
+      // na decolagem a Lua diminui e cai para baixo da nave
+      const scale = MOON_MIN_SCALE * Math.pow(MOON_GROWTH, arrive) * (1 - 0.85 * leave);
+      m.scale.setScalar(scale);
+      // chegada em espiral: começa na esquerda, cruza para a direita e assenta no centro
+      const swing = 1 - arrive;
+      const angle = Math.PI * 2 * MOON_TURNS * arrive;
+      m.position.set(
+        -MOON_SWING_X * swing * Math.cos(angle),
+        MOON_SWING_Y * swing * Math.sin(angle) - leave * 90,
+        MOON_Z
+      );
+      // gira sobre o próprio eixo na aproximação e desacelera ao pousar
+      m.rotation.y = Math.PI * 1.5 * (1 - swing * swing) + state.clock.elapsedTime * 0.03;
+      m.rotation.z = 0.35 * swing * Math.sin(angle);
+    }
+
+    s.visible = touchdown > 0.001;
+    if (s.visible) {
+      // foto presa à câmera, sempre cobrindo a tela inteira (corte "cover" da foto quadrada)
+      const h = 2 * SURFACE_DISTANCE * Math.tan(THREE.MathUtils.degToRad((camera as THREE.PerspectiveCamera).fov / 2));
+      const image = surfaceMap.image as HTMLImageElement;
+      const ratio = image.height / image.width;
+      const width = Math.max((h * state.size.width) / state.size.height, h / ratio);
+      const height = width * ratio;
+      // zoom e giro que assentam no pouso
+      const settle = 1.3 - 0.3 * touchdown;
+      s.scale.set(width * settle, height * settle, 1);
+      // a foto corre com a rolagem: céu no pouso, montanha no meio e o chão no fim da seção
+      const pan = ((height - h) / 2) * (1 - 2 * explore);
+      camera.getWorldDirection(forward);
+      up.set(0, 1, 0).applyQuaternion(camera.quaternion);
+      s.position.copy(camera.position).addScaledVector(forward, SURFACE_DISTANCE).addScaledVector(up, -pan);
+      s.quaternion.copy(camera.quaternion);
+      s.rotateZ(SURFACE_ROLL * (1 - touchdown));
+      // mais clara no meio da seção, mais escura nas bordas onde ficam título e filtros
+      surfaceMat.current.color.setScalar(0.24 + 0.14 * Math.sin(Math.PI * explore));
+      surfaceMat.current.opacity = touchdown;
+    }
+  });
+
+  return (
+    <>
+      <mesh ref={moon} visible={false}>
+        <sphereGeometry args={[1, 96, 96]} />
+        <meshStandardMaterial ref={moonMat} map={moonMap} roughness={1} metalness={0} transparent fog={false} />
+      </mesh>
+      <mesh ref={surface} visible={false} renderOrder={-1} frustumCulled={false}>
+        <planeGeometry args={[1, 1]} />
+        {/* brilho controlado no useFrame para o texto e os cards continuarem legíveis */}
+        <meshBasicMaterial
+          ref={surfaceMat}
+          map={surfaceMap}
+          transparent
+          opacity={0}
+          depthWrite={false}
+          fog={false}
+          toneMapped={false}
+        />
+      </mesh>
+    </>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Câmera com paralaxe do mouse                                        */
 /* ------------------------------------------------------------------ */
 function CameraRig({ motion }: { motion: React.MutableRefObject<Motion> }) {
@@ -504,6 +627,9 @@ function Scene({ lite, reduced }: { lite: boolean; reduced: boolean }) {
       {!lite && <WarpLines count={420} motion={motion} />}
       <Nebulas motion={motion} />
       <NasaPlanets motion={motion} />
+      <Suspense fallback={null}>
+        <MoonLanding motion={motion} />
+      </Suspense>
       {(lite ? OBJECTS.filter((_, i) => i % 2 === 0) : OBJECTS).map((o, i) => (
         <GoldObject key={i} o={o} index={i} motion={motion} />
       ))}
