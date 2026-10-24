@@ -52,9 +52,24 @@ export default {
           "0%, 60%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(500%)" },
         },
+        nebula: {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.6" },
+          "50%": { transform: "scale(1.15)", opacity: "1" },
+        },
+        "wa-pulse": {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.4" },
+          "50%": { transform: "scale(1.5)", opacity: "0" },
+        },
+        "nudge-down": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(5px)" },
+        },
       },
       animation: {
         shine: "shine 3.2s ease-in-out infinite",
+        nebula: "nebula 10s ease-in-out infinite",
+        "nudge-down": "nudge-down 0.6s ease-in-out infinite",
+        "wa-pulse": "wa-pulse 2.5s ease-out infinite",
       },
       fontFamily: {
         sans: ["Inter Variable", "Inter", "system-ui", "sans-serif"],

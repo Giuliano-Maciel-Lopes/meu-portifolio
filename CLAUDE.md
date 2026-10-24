@@ -291,18 +291,23 @@ Cada seção tem `id` para o scroll e `scroll-mt-24` para compensar o header fix
 
 ### Cena 3D (Hero)
 
-O Canvas Three.js fica inteiro em `hidden md:block` — nunca renderiza em mobile:
+O Canvas da Vênus fica em `HeroVenus.tsx`, importado com `next/dynamic` (`ssr: false`) para o three.js não entrar no bundle inicial. Só é **montado** quando `isAnimationEnabled` é verdadeiro (`hidden md:block` sozinho só esconde via CSS, o Canvas continuaria rodando no celular) e pausa (`frameloop="never"`) quando o hero sai da tela:
 
 ```tsx
-<div className="hidden md:block absolute inset-0 z-0 opacity-80 pointer-events-none">
-  <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-    <Suspense fallback={null}>
-      <Venus3d />
-    </Suspense>
-    <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={1} />
-  </Canvas>
-</div>
+{isAnimationEnabled && (
+  <div className="hidden md:block absolute inset-0 z-0 opacity-80 pointer-events-none">
+    <HeroVenus active={inView} />
+  </div>
+)}
 ```
+
+### Performance (regras)
+
+- three.js / R3F sempre via `next/dynamic` com `ssr: false`, montado só quando `isAnimationEnabled`
+- Animações **infinitas** decorativas em CSS (keyframes no `tailwind.config.ts`: `nebula`, `wa-pulse`, `nudge-down`) com `motion-safe:`, nunca `repeat: Infinity` do Framer Motion (roda JS a cada frame)
+- Evitar `backdrop-blur` em cards por cima da cena 3D (o blur é recalculado a cada frame); usar fundo mais opaco
+- Componentes que só aparecem após interação (ex.: `ProjectModal`) via `next/dynamic`
+- Imagens sempre com `next/image`; texturas 3D comprimidas (JPEG progressivo, ~200 KB)
 
 Qualquer loader de modelo 3D deve ser envolvido em `<Suspense fallback={null}>`.
 

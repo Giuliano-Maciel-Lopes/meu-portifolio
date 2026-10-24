@@ -17,7 +17,7 @@ type Props = {
 
 export function BoxExp({ experience }: Props) {
   return (
-    <div className="group relative rounded-2xl border border-white/10 bg-[#0d0d0d]/80 backdrop-blur-sm shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:border-gold/30 hover:shadow-[0_8px_40px_rgba(212,163,115,0.1)] transition-all duration-300 p-6">
+    <div className="group relative rounded-2xl border border-white/10 bg-[#0d0d0d]/85 shadow-[0_4px_24px_rgba(0,0,0,0.5)] hover:border-gold/30 hover:shadow-[0_8px_40px_rgba(212,163,115,0.1)] transition-all duration-300 p-6">
       <div className="absolute left-0 top-6 bottom-6 w-[2px] rounded-full bg-gradient-to-b from-gold/60 via-amber/30 to-transparent" />
 
       <div className="flex items-start justify-between gap-4 mb-5 pl-4">

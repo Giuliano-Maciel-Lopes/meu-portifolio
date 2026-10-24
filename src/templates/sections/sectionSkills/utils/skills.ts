@@ -32,7 +32,6 @@ import {
   SiN8N,
   SiWhatsapp,
   SiOpenai,
-  SiHearth,
   SiMeta,
   SiAnthropic
 } from "react-icons/si";

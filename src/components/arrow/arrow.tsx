@@ -1,6 +1,5 @@
 import { BsArrowDown } from "react-icons/bs";
 import { Button } from "../ui/button";
-import { motion } from "framer-motion";
 
 type Props = {
   text?: string;
@@ -27,12 +26,9 @@ export function ArrowButton({ text = "Clique aqui", onClick, href }: Props) {
       className="flex items-center gap-1 text-yellow-500 font-medium hover:text-yellow-600 transition-colors"
     >
       <span>{text}</span>
-      <motion.div
-        animate={{ y: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 0.6 }}
-      >
+      <span className="motion-safe:animate-nudge-down">
         <BsArrowDown size={20} />
-      </motion.div>
+      </span>
     </Button>
   );
 }

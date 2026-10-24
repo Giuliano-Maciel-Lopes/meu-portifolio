@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { projects } from "./utils/projects";
 import type { ProjectCategory } from "./utils/projects";
 import { BannerProjects } from "./Components/bannerProjects";
-import { ProjectModal } from "./Components/ProjectModal";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -46,6 +46,12 @@ const FILTERS = [
 
 import { SectionTitle } from "@/components/sectionTitle/SectionTitle";
 import { warpIn } from "@/styles/animaçoes/animaçoes";
+
+// o modal só existe depois do clique: fica fora do bundle inicial
+const ProjectModal = dynamic(
+  () => import("@/templates/sections/sectionProjects/Components/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export function SectionProjects() {
   const [selected, setSelected] = useState<MergedProject | null>(null);

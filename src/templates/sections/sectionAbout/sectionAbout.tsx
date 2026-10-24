@@ -1,6 +1,5 @@
 import { MediaContentAbout } from "./components/MediaContentAbout";
 import { TextContentAbout } from "./components/TextAbout";
-import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { SectionTitle } from "@/components/sectionTitle/SectionTitle";
 
@@ -9,34 +8,32 @@ export function SectionAbout() {
 
   return (
     <section id="about" className="scroll-mt-24 relative overflow-hidden md:py-20">
-      <div className="hidden md:block pointer-events-none">
-        <motion.div
-          className="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full"
+      {/* nebulosas em CSS: animam no compositor, sem trabalho de JS por frame */}
+      <div aria-hidden className="hidden md:block pointer-events-none">
+        <div
+          className="absolute -top-20 -right-20 w-[400px] h-[400px] rounded-full blur-[60px] will-change-transform motion-safe:animate-nebula"
           style={{
             background: "radial-gradient(circle, rgba(99,57,255,0.12), transparent 70%)",
-            filter: "blur(60px)",
+            animationDuration: "8s",
           }}
-          animate={{ scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute -bottom-10 -left-20 w-[350px] h-[350px] rounded-full"
+        <div
+          className="absolute -bottom-10 -left-20 w-[350px] h-[350px] rounded-full blur-[70px] will-change-transform motion-safe:animate-nebula"
           style={{
             background: "radial-gradient(circle, rgba(20,120,255,0.1), transparent 70%)",
-            filter: "blur(70px)",
+            animationDelay: "2s",
           }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.9, 0.5] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(212,163,115,0.06), transparent 70%)",
-            filter: "blur(80px)",
-          }}
-          animate={{ scale: [1, 1.1, 1], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-        />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div
+            className="w-[300px] h-[300px] rounded-full blur-[80px] will-change-transform motion-safe:animate-nebula"
+            style={{
+              background: "radial-gradient(circle, rgba(212,163,115,0.06), transparent 70%)",
+              animationDuration: "12s",
+              animationDelay: "4s",
+            }}
+          />
+        </div>
       </div>
 
       <div className="container flex flex-col relative z-10">

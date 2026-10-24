@@ -1,6 +1,6 @@
-import { Suspense, useEffect, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Lightformer, useTexture } from "@react-three/drei";
+import { Environment, Lightformer, PerformanceMonitor, Preload, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 
 /**
@@ -465,16 +465,6 @@ function NasaPlanet({ def, motion }: { def: PlanetDef; motion: React.MutableRefO
   );
 }
 
-function NasaPlanets({ motion }: { motion: React.MutableRefObject<Motion> }) {
-  return (
-    <Suspense fallback={null}>
-      {PLANETS.map((def) => (
-        <NasaPlanet key={def.anchor} def={def} motion={motion} />
-      ))}
-    </Suspense>
-  );
-}
-
 /* ------------------------------------------------------------------ */
 /* Pouso na Lua: a Lua cresce no fundo até quase encostar na tela e    */
 /* o fundo vira a superfície lunar enquanto a seção de skills está ali */
@@ -579,7 +569,7 @@ function MoonLanding({ motion }: { motion: React.MutableRefObject<Motion> }) {
   return (
     <>
       <mesh ref={moon} visible={false}>
-        <sphereGeometry args={[1, 96, 96]} />
+        <sphereGeometry args={[1, 64, 64]} />
         <meshStandardMaterial ref={moonMat} map={moonMap} roughness={1} metalness={0} transparent fog={false} />
       </mesh>
       <mesh ref={surface} visible={false} renderOrder={-1} frustumCulled={false}>
@@ -626,9 +616,13 @@ function Scene({ lite, reduced }: { lite: boolean; reduced: boolean }) {
       <Stars count={lite ? 1400 : 4200} motion={motion} />
       {!lite && <WarpLines count={420} motion={motion} />}
       <Nebulas motion={motion} />
-      <NasaPlanets motion={motion} />
       <Suspense fallback={null}>
+        {PLANETS.map((def) => (
+          <NasaPlanet key={def.anchor} def={def} motion={motion} />
+        ))}
         <MoonLanding motion={motion} />
+        {/* compila os shaders e sobe as texturas já no carregamento, não no meio da rolagem */}
+        <Preload all />
       </Suspense>
       {(lite ? OBJECTS.filter((_, i) => i % 2 === 0) : OBJECTS).map((o, i) => (
         <GoldObject key={i} o={o} index={i} motion={motion} />
@@ -649,14 +643,18 @@ type SceneProps = {
 };
 
 export function SpaceScene({ lite, reduced }: SceneProps) {
+  // resolução cai uma vez quando o FPS não aguenta (sem voltar: cada troca realoca o canvas)
+  const [dpr, setDpr] = useState(lite ? 1 : 1.5);
+
   return (
     <Canvas
-      dpr={lite ? 1 : [1, 1.5]}
+      dpr={dpr}
       camera={{ position: [0, 0, 8], fov: 60, near: 0.1, far: 260 }}
       gl={{ antialias: !lite, alpha: false, powerPreference: "high-performance" }}
       onCreated={({ gl }) => gl.setClearColor("#000000")}
       style={{ pointerEvents: "none" }}
     >
+      {!lite && <PerformanceMonitor onDecline={() => setDpr(1)} />}
       <Scene lite={lite} reduced={reduced} />
     </Canvas>
   );

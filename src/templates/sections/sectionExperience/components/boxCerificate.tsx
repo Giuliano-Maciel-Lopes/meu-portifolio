@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
 interface PropsCertificate {
@@ -24,7 +25,7 @@ export function BoxCertificate({ certificate }: Props) {
       onClick={handleClick}
       className={`
         group relative flex flex-col rounded-2xl border border-white/10
-        bg-[#0d0d0d]/80 backdrop-blur-sm
+        bg-[#0d0d0d]/85
         shadow-[0_4px_24px_rgba(0,0,0,0.5)]
         hover:border-gold/30 hover:shadow-[0_8px_40px_rgba(212,163,115,0.1)]
         transition-all duration-300 p-5 overflow-hidden
@@ -35,9 +36,11 @@ export function BoxCertificate({ certificate }: Props) {
 
       <div className="flex items-center gap-3 mb-4 pb-3 border-b border-white/5">
         <div className="w-14 h-10 shrink-0 overflow-hidden rounded-lg border border-white/10">
-          <img
+          <Image
             src={certificate.imageUrl || "/certificado.png"}
             alt={certificate.name}
+            width={56}
+            height={40}
             className="w-full h-full object-cover"
           />
         </div>
