@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FaGithub, FaPlay, FaExternalLinkAlt, FaTimes, FaLock, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import type { MergedProject } from "../sectionProjects";
 import { deriveAccent } from "../utils/projectTheme";
@@ -80,9 +81,10 @@ export function ProjectModal({ project, onClose }: Props) {
     scrollRef.current.style.scrollBehavior = "smooth";
   }
 
-  return (
+  // portal no body: dentro da seção o modal ficava preso no stacking context (z-20) e o header cobria o botão de fechar
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-3 md:p-4"
       style={{ background: "rgba(0,0,0,0.82)", backdropFilter: "blur(8px)" }}
       onClick={onClose}
     >
@@ -91,7 +93,7 @@ export function ProjectModal({ project, onClose }: Props) {
         className="relative w-full flex flex-col overflow-hidden"
         style={{
           maxWidth: "760px",
-          maxHeight: "90vh",
+          maxHeight: "min(90vh, 90dvh)",
           background: "#0b0b0b",
           border: `1px solid ${accent}40`,
           borderRadius: "22px",
@@ -102,10 +104,10 @@ export function ProjectModal({ project, onClose }: Props) {
         <button
           onClick={onClose}
           aria-label="Fechar"
-          className="absolute top-3.5 right-3.5 z-20 w-8 h-8 grid place-items-center rounded-full text-white/60 hover:text-white transition-colors"
-          style={{ background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,.14)" }}
+          className="absolute top-3 right-3 z-20 w-10 h-10 md:w-8 md:h-8 grid place-items-center rounded-full text-white/80 hover:text-white transition-colors"
+          style={{ background: "rgba(0,0,0,0.7)", border: "1px solid rgba(255,255,255,.2)" }}
         >
-          <FaTimes className="w-3.5 h-3.5" />
+          <FaTimes className="w-4 h-4 md:w-3.5 md:h-3.5" />
         </button>
 
         {/* header com imagem / carousel */}
@@ -338,7 +340,7 @@ export function ProjectModal({ project, onClose }: Props) {
       {/* lightbox carousel */}
       {fullscreenIdx !== null && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10"
+          className="fixed inset-0 z-[70] flex items-center justify-center p-4 md:p-10"
           style={{ background: "rgba(0,0,0,0.88)", backdropFilter: "blur(12px)" }}
           onClick={() => setFullscreenIdx(null)}
         >
@@ -356,7 +358,7 @@ export function ProjectModal({ project, onClose }: Props) {
             <button
               onClick={() => setFullscreenIdx(null)}
               aria-label="Fechar"
-              className="absolute top-3 right-3 z-20 w-8 h-8 grid place-items-center rounded-full text-white/60 hover:text-white transition-colors"
+              className="absolute top-3 right-3 z-20 w-10 h-10 md:w-8 md:h-8 grid place-items-center rounded-full text-white/60 hover:text-white transition-colors"
               style={{ background: "rgba(0,0,0,0.6)", border: "1px solid rgba(255,255,255,0.14)" }}
             >
               <FaTimes className="w-3.5 h-3.5" />
@@ -420,6 +422,7 @@ export function ProjectModal({ project, onClose }: Props) {
           </div>
         </div>
       )}
-    </div>
+    </div>,
+    document.body
   );
 }
